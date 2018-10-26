@@ -1,0 +1,254 @@
+<!--index.wxml-->
+<view class="page-body">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+         autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="swiperChange">
+        <block wx:for="{{background}}" wx:index="{{index}}" wx:key="id">
+          <swiper-item>
+            <image src="{{item}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots"> 
+      <block wx:for="{{background}}" wx:key="unique"> 
+        <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
+      </block> 
+    </view>
+    </view>
+</view>
+<view class="w710" style="background: #fff7f7;">
+    <view id="marquee" class="flexRowBetween">
+      <view class="horn"><image src="/images/horn.png"></image></view>
+      <view class="marquee_right">
+        <view class="marquee_box">
+          <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
+            <text>技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司</text>
+            <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="next_page flex"><image src="/images/next_page.png"></image></view>
+  </view>
+</view>
+<view class="great flex">
+    <view class="great_left flex">
+      <view class="left_cont">
+        <view class="color">
+            <view class="group flex">
+                <view class="group_left color">今日团购</view>
+                <view class="group_right flexRowBetween">
+                    <view class="time1">02</view> <view class="time_center flex">:</view>
+                    <view class="time1">02</view> <view  class="time_center flex">:</view>
+                    <view class="time1">56</view>
+                </view>
+            </view>
+        </view>
+        <image src="/images/index1.png"></image>
+        <view class="font28"><text class="font24 color6"></text>名称名称<text class="color font30"> ¥89</text></view>
+      </view>
+    </view>
+    <view class="great_right">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0">
+        <view class="right_top flex">
+          <view class="great_tLeft avoidOverflow">
+              <view class="font30" style="color:#ff9b0e;">人气美妆区</view>
+              <view class="font26 color6" style="font-weight: 700">特惠不打烊</view>
+          </view>
+          <view class="great_tRight flex">
+              <image src="/images/hot1.png"></image>
+          </view>
+        </view>
+        <view class="right_bottom">
+            <view class="group flex">
+                <view class="group_left color3 font24">限时秒杀</view>
+                <view class="group_right flexRowBetween">
+                    <view class="font24 color3" style="width:28%;">还剩:</view>
+                    <view class="time1">02</view> <view class="time_center flex">:</view>
+                    <view class="time1">02</view> <view  class="time_center flex">:</view>
+                    <view class="time1">56</view>
+                </view>
+            </view>
+        </view>
+      </view>
+      <view class="great_top">
+        <view class="right_top flex">
+          <view class="great_tLeft avoidOverflow">
+              <view class="font30" style="color:#ff9b0e;">休闲食品区</view>
+              <view class="font26 color6" style="font-weight: 700">特惠不止5折</view>
+          </view>
+          <view class="great_tRight flex">
+              <image src="/images/hot2.png"></image>
+          </view>
+        </view>
+        <view class="right_bottom">
+            <view class="group flex">
+                <view class="group_left color3 font24">限时秒杀</view>
+                <view class="group_right flexRowBetween">
+                    <view class="font24 color3" style="width:28%;">还剩:</view>
+                    <view class="time1">02</view> <view class="time_center flex">:</view>
+                    <view class="time1">02</view> <view  class="time_center flex">:</view>
+                    <view class="time1">56</view>
+                </view>
+            </view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class="menu flexRowBetween font30 color6">
+  <view class="menu_item">
+    <view><image src="/images/menu1.png"></image></view>
+    <view class="font24">人气美妆</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu2.png"></image></view>
+    <view class="font24">新鲜水果</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu3.png"></image></view>
+    <view class="font24">休闲食品</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu4.png"></image></view>
+    <view class="font24">家禽蛋类</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu5.png"></image></view>
+    <view class="font24">健康养生</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu6.png"></image></view>
+    <view class="font24">温馨家具</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu7.png"></image></view>
+    <view class="font24">水产海鲜</view>
+  </view>
+  <view class="menu_item">
+    <view><image src="/images/menu8.png"></image></view>
+    <view class="font24">往期团购</view>
+  </view>
+</view>
+
+<view class="w710" style="background: #f7f7f7;margin-top: 20rpx;padding-top:30rpx;padding-bottom: 40rpx;">
+    <view class="mall_tlt">
+        <image src="/images/tlt_bg.png"></image>
+        <view  class="mall_tlt_txt font30 color3">优惠大厅</view>
+    </view>
+  <view class="recommend1 flexRowBetween">
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount">
+        <image src="/images/discout1.png" class="img_bg"></image>
+        <view class="activty flex">
+          <view class="activty_cont flex">
+            <view class="activty_left">
+              <image src="/images/discount_icon1.png"></image>
+            </view>
+            <view class="activty_left activty_right">
+               <view class="font32 color1">优惠券</view>
+               <view class="font28 member_in color1">红包抢到手软</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount">
+        <image src="/images/discout2.png" class="img_bg"></image>
+        <view class="activty flex">
+          <view class="activty_cont flex">
+            <view class="activty_left">
+                  <image src="/images/discount_icon2.png"></image>
+            </view>
+            <view class="activty_left activty_right">
+               <view class="font32  color1">相关内容</view>
+               <view class="font28 member_in  color1">了解更多</view>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="content_box w710 bg1">
+        <view class="title flex">
+            <view class="mall_tlt">
+                <image src="/images/tlt_bg.png"></image>
+                <view  class="mall_tlt_txt font30 color3">限时抢购区</view>
+            </view>
+            <view class="more font28 flex" bindtap="intoPath" data-path="/pages/product_list/product_list">更多</view>
+        </view>
+        <view class="flexRowBetween" style="flex-wrap: wrap">
+          <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail">
+              <image src="/images/product.png"></image>
+              <view class="product_name1 font30 avoidOverflow">名称名称名称名称</view>
+              <view class="product_pro font28 flex">
+                <view class="color price">¥300</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+              <view class="product_pro font28 flex">
+                <view class="color6 price font22">销量:222</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+          </view>
+          <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail">
+              <image src="/images/product.png"></image>
+              <view class="product_name1 font30 avoidOverflow">名称名称名称名称</view>
+              <view class="product_pro font28 flex">
+                <view class="color price">¥300</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+              <view class="product_pro font28 flex">
+                <view class="color6 price font22">销量:222</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+          </view>
+          <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail">
+              <image src="/images/product.png"></image>
+              <view class="product_name1 font30 avoidOverflow">名称名称名称名称</view>
+              <view class="product_pro font28 flex">
+                <view class="color price">¥300</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+              <view class="product_pro font28 flex">
+                <view class="color6 price font22">销量:222</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+          </view>
+          <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail">
+              <image src="/images/product.png"></image>
+              <view class="product_name1 font30 avoidOverflow">名称名称名称名称</view>
+              <view class="product_pro font28 flex">
+                <view class="color price">¥300</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+              <view class="product_pro font28 flex">
+                <view class="color6 price font22">销量:222</view>
+                <view class="color6 font22 time">开始时间:2018-08-24</view>
+              </view>
+          </view>
+        </view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="navbar">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+        <view class="nav_img">
+          <image src="/images/navbar1-a.png"></image>
+        </view>
+        <view class="text this-text">首页</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user_order/user_order">
+        <view class="nav_img">
+           <image src="/images/navbar2.png"></image>
+        </view>
+        <view class="text">待收货</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
+        <view class="nav_img">
+           <image src="/images/navbar3.png"></image>
+        </view>
+        <view class="text">购物车</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+        <view class="nav_img">
+            <image src="/images/navbar4.png"></image>
+        </view>
+        <view class="text">我的</view>
+    </view>
+</view>

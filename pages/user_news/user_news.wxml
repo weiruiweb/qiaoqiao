@@ -1,0 +1,25 @@
+<!--userPoster.wxml-->
+<view class="news">
+	<image src="/images/news_banner.jpg"></image>
+</view>
+<view class="mall_tlt">
+    <image src="/images/new_tlt.jpg"></image>
+    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
+</view>
+<view class="w710 font28 color6">
+	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
+</view>
+<view class="mall_tlt">
+    <image src="/images/new_tlt.jpg"></image>
+    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
+</view>
+<view class="w710 font28 color6">
+	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
+</view>
+<view class="mall_tlt">
+    <image src="/images/new_tlt.jpg"></image>
+    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
+</view>
+<view class="w710 font28 color6">
+	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
+</view>

@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/waitGoods/waitGoods",
+    "pages/shopping/shopping",
+    "pages/user/user",
+    "pages/user_order/user_order",
+    "pages/user_credit/user_credit",
+    "pages/user_discount/user_discount",
+    "pages/user_cash/user_cash",
+    "pages/user_back_money/user_back_money",
+    "pages/user_next/user_next",
+    "pages/user_collect/user_collect",
+    "pages/user_poster/user_poster",
+    "pages/user_news/user_news",
+    "pages/user_address/user_address",
+    "pages/user_address_new/user_address_new",
+    "pages/user_account/user_account",
+    "pages/login/login",
+    "pages/discount/discount",
+    "pages/product_list/product_list",
+    "pages/detail/detail",
+    "pages/order_confirm/order_confirm",
+    "pages/user_order_comment/user_order_comment",
+    "pages/user_order_flow/user_order_flow",
+    "pages/user_order_code/user_order_code"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "巧巧爱家",
+    "navigationBarTextStyle": "black"
+  }
+}

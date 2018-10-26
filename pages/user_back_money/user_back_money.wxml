@@ -1,0 +1,92 @@
+<!--index3.wxml-->
+<view class="credit w710 flex">
+    <view class="credit_cont flex">
+        <view class="credit_user">
+            <view class="user_img">
+              <open-data type="userAvatarUrl"></open-data>
+            </view>
+        </view>
+        <view class="credit_infor">
+            <view class="font30 color3">米桃子</view>
+            <view class="font26 color6">1556546466</view>
+        </view>
+        <view class="credit_number color">
+            佣金:18000
+        </view>
+    </view>
+</view>
+<view class="date font30">
+    <view class="date_item">
+        <view style="width:45%;display:flex;align-items:center;">
+            <view class="date_left" style="color:#00c6f7;width:100%;">
+                <picker  mode="date"  bindchange="bindTimeChange" >
+                    <view style="display:flex;align-items:center;width:100%;height:100%;">
+                        <view style="width:85%;height:70rpx;">
+                            <view class="picker text">
+                              起始日期
+                            </view>
+                            <view class="text  font22" >{{time}}</view>
+                        </view>
+                        <view style="width:15%;height:70rpx;align-items:center;">
+                            <image src="/images/up_icon2.png"></image>
+                        </view>
+                    </view> 
+                </picker>
+                
+            </view>
+            
+        </view> 
+    </view>
+    <view class="date_item" style="border:none">
+        <view style="width:45%;display:flex;align-items:center;">
+            <view class="date_left" style="color:#00c6f7;width:100%;">
+                <picker  mode="date" bindchange="bindTimeChange" >
+                    <view style="display:flex;align-items:center;width:100%;height:100%;">
+                        <view style="width:85%;height:70rpx;">
+                            <view class="picker text">
+                              截至日期
+                            </view>
+                            <view class="text font22">{{time}}</view>
+                        </view>
+                        <view style="width:15%;height:70rpx;">
+                            <image src="/images/up_icon1.png"></image>
+                        </view>
+                    </view>
+                </picker>
+            </view>
+            
+        </view> 
+    </view>     
+</view>
+<view class="credit_cont">
+    <view class="credit_list">
+        <view class="credit_item">
+            <view class="credit_left">
+                <view class="credit_reson font28">
+                    签到一天领取1积分
+                </view>
+                <view class="credit_dates font24 color9">
+                    0000-0-0
+                </view>
+            </view>
+            <view class="credit_right font28">
+                -700
+            </view>
+        </view>
+    </view>
+    <view class="credit_list">
+        <view class="credit_item">
+            <view class="credit_left">
+                <view class="credit_reson font28">
+                    签到一天领取1积分
+                </view>
+                <view class="credit_dates font24 color9">
+                    0000-0-0
+                </view>
+            </view>
+            <view class="credit_right font28 color">
+                +70
+            </view>
+        </view>
+    </view>
+</view>

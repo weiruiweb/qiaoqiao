@@ -1,0 +1,118 @@
+<!--index3.wxml-->
+<view class="tab font30 flexRowBetween color6">
+    <view class="tab_item " data-id="0" bindtap="tab">
+        <text class="{{currentId == 0?'tab_this':''}}">全部</text>
+    </view>
+    <view class="tab_item " data-id="1" bindtap="tab">
+        <text class="{{currentId == 1?'tab_this':''}}">待付款</text>
+    </view>
+    <view class="tab_item" data-id="2" bindtap="tab">
+        <text class="{{currentId == 2?'tab_this':''}}">待收货</text>
+    </view>
+    <view class="tab_item" data-id="3" bindtap="tab">
+        <text class="{{currentId == 3?'tab_this':''}}">已完成</text>
+    </view>
+    <view class="tab_item" data-id="4" bindtap="tab">
+        <text class="{{currentId == 4?'tab_this':''}}">已取消</text>
+    </view>
+</view>
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left">交易时间:2018-09-20</view>
+        <view class="tlt_left tlt_right color">待商家发货</view>
+    </view>
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">空间+导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X100</view>
+                    <view class="product_price color">¥788</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order_handle">
+            <view class="submit_info font28">去支付</view>  <view class="submit_info font28">取消订单</view>
+        </view>
+</view>
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left">交易时间:2018-09-20</view>
+        <view class="tlt_left tlt_right color">待商家发货</view>
+    </view>
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">空间+导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X100</view>
+                    <view class="product_price color">¥788</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order_handle">
+          <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow">查看物流</view>
+    </view>
+</view>
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left">交易时间:2018-09-20</view>
+        <view class="tlt_left tlt_right color">待商家发货</view>
+    </view>
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">空间+导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X100</view>
+                    <view class="product_price color">¥788</view>
+                </view>
+            </view>
+        </view>
+        
+    </view>
+    <view class="order_handle">
+          <view class="submit_info font28">删除订单</view>  <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment">去评价</view>
+    </view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="navbar">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+        <view class="nav_img">
+          <image src="/images/navbar1.png"></image>
+        </view>
+        <view class="text">首页</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user_order/user_order">
+        <view class="nav_img">
+           <image src="/images/navbar2-a.png"></image>
+        </view>
+        <view class="text this-text">待收货</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
+        <view class="nav_img">
+           <image src="/images/navbar3.png"></image>
+        </view>
+        <view class="text">购物车</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+        <view class="nav_img">
+            <image src="/images/navbar4.png"></image>
+        </view>
+        <view class="text">我的</view>
+    </view>
+</view>

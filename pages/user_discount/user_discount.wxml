@@ -1,0 +1,64 @@
+<!--userINfo.wxml-->
+<view class="tab font30 flexRowBetween color6">
+    <view class="tab_item " data-id="0" bindtap="tab">
+        <text class="{{currentId == 0?'tab_this':''}}">全部</text>
+    </view>
+    <view class="tab_item " data-id="1" bindtap="tab">
+        <text class="{{currentId == 1?'tab_this':''}}">未使用</text>
+    </view>
+    <view class="tab_item" data-id="2" bindtap="tab">
+        <text class="{{currentId == 2?'tab_this':''}}">已使用</text>
+    </view>
+    <view class="tab_item" data-id="3" bindtap="tab">
+        <text class="{{currentId == 3?'tab_this':''}}">已过期</text>
+    </view>
+</view>
+<view class="ticket">
+	<view class="ticket_sort {{currentId == 0?'madeShow':''}}">
+		<view class="ticket_bg">
+		   <image src="/images/discount1.png"></image>
+		   <view class="ticket_cont">
+		   		<view class="discount_left">
+		   			¥<text>100</text>
+		   		</view>
+		   		<view class="discount_center">
+		   			<view class="discount_txt1 color1">满99元享用</view>
+		   			<view class="discount_txt2 color1">11.12当日有效 可叠加店铺券</view>
+		   			<view class="discount_txt3  color1">限制公众号使用</view>
+		   		</view>
+		   		<view class="discount_right"><view class="ac_discount">立即领取</view></view>
+		   </view>
+		</view>
+		<view class="ticket_bg">
+		   <image src="/images/discount2.png"></image>
+		   <view class="ticket_cont">
+		   		<view class="discount_left">
+		   			¥<text>100</text>
+		   		</view>
+		   		<view class="discount_center">
+		   			<view class="discount_txt1 color1">满99元享用</view>
+		   			<view class="discount_txt2 color1">11.12当日有效 可叠加店铺券</view>
+		   			<view class="discount_txt3  color1" style="background: #d6d6d6;color:#5d5d5d;">限制公众号使用</view>
+		   		</view>
+		   		<view class="discount_right"><view class="ac_discount" style="color:#5d5d5d;">已经使用</view></view>
+		   </view>
+		</view>
+	</view>
+	<view class="ticket_sort {{currentId == 1?'madeShow':''}}">
+	  <view class="ticket_bg">
+		   <image src="/images/discount1.png"></image>
+		   <view class="ticket_cont">
+		   		<view class="discount_left">
+		   			¥<text>100</text>
+		   		</view>
+		   		<view class="discount_center">
+		   			<view class="discount_txt1 color1">满99元享用</view>
+		   			<view class="discount_txt2 color1">11.12当日有效 可叠加店铺券</view>
+		   			<view class="discount_txt3  color1">限制公众号使用</view>
+		   		</view>
+		   		<view class="discount_right"><view class="ac_discount">立即领取</view></view>
+		   </view>
+		</view>
+	</view>
+</view>
+

@@ -1,0 +1,12 @@
+<!--userPoster.wxml-->
+<view class="poster">
+	<view class="poster_txt1" style="{{fonts[4].font}}">
+		限时抢购商城
+	</view>
+	<view class="poster_img">
+		<image src="{{web_QrData.info.url}}"></image>
+	</view>
+	<view class="poster_txt2" style="{{fonts[3].font}}">
+		扫一扫二维码，赶快加入我们
+	</view>
+</view>

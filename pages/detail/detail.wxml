@@ -1,0 +1,207 @@
+<!--detail.wxml-->
+<view id="details">
+<view class="banner">
+	<image src="/images/index1.png"></image>
+</view>
+<view class="detail">
+	<view class="product_top">
+		<view class="price_sale flexRowBetween">
+			<view class="price_left flex">
+				<view class="price color">
+					￥5000.00元
+				</view>
+				<view  class="font24 color6" style="margin-left: 20rpx;">
+					销量:111
+				</view>
+			</view>
+			<view class="sale">
+				包邮
+			</view>
+		</view>
+		<view class="font28 color6" style="margin-top: 20rpx;">
+			网站开发高端定制网站开发高端定制网站开发高端定制网站开发高端定制网站开发高端定制网站开发高端定制
+		</view>
+		<view class="product_time flexRowBetween">
+			<view class="font24 color9">
+				开始时间：2018-08-30
+			</view>
+			<view class="font24 color9">
+				开始时间：2018-08-30
+			</view>
+		</view>
+	</view>
+	<view class="choose flexRowBetween" style="margin-top: 20rpx;">
+		<view class="choose_left font28" style="width:80%;overflow:hidden;">
+			基本展示基本展示
+		</view>
+	</view>
+	<view class="choose flexRowBetween">
+		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
+			基本展示基本展示
+		</view>
+		<view class="next_page" style="width:20%;text-align:right;">	
+			<image src="/images/next_page.png"></image>
+		</view>
+	</view>
+	<view class="choose flexRowBetween" style="border: none;">
+		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
+			基本展示基本展示
+		</view>
+		<view class="next_page" style="width:20%;text-align:right;">	
+			<image src="/images/next_page.png"></image>
+		</view>
+	</view>
+	<view class="detail_comment flexRowBetween">
+		<view class="detail  {{tabCurrent == 0?'detail_select':''}}" data-current="0" bindtap="select_this">
+			详情
+		</view>
+		<view class="comment {{tabCurrent == 1?'detail_select':''}}"  data-current="1" bindtap="select_this">
+			评价
+		</view>
+	</view>
+	<view class="detail_show">
+		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
+			<image src="/images/banner.png"></image>
+		</view>
+		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
+			<view class="good_com flexRowBetween">
+				<view class="comment_number">
+					评价(120)
+				</view>
+				<view class="good_percent">
+					<text>好评率</text>
+					<text class="percent">99%</text>
+					<image src="/images/next_page.jpg"></image>
+				</view>
+			</view>
+			<view class="comment_list ">
+				<view class="flexRowBetween" style="align-items:center;">
+					<view class="comment_user" style="display:flex;align-items:center;">
+						<view class="user_img">
+							<image src="/images/menu3.png"></image>
+						</view>
+						<view class="txts" style="height:58rpx;">
+							<view class="text1">米桃子</view>
+							<view class="text2">2015.3.2</view>
+						</view>
+					</view>
+				</view>
+				<view class="comment_cont">
+					很满意的一次购物很满意的一次购物很满意的一次购物
+					很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物
+				</view>
+			</view>
+			<view class="comment_list ">
+				<view class="flexRowBetween"  style="align-items:center;">
+					<view class="comment_user" style="display:flex;align-items:center;">
+						<view class="user_img">
+							<image src="/images/menu3.png"></image>
+						</view>
+						<view class="txts" style="height:58rpx;">
+							<view class="text1">米桃子</view>
+							<view class="text2">2015.3.2</view>
+						</view>
+					</view>
+				</view>
+				<view class="comment_cont">
+					很满意的一次购物很满意的一次购物很满意的一次购物
+				</view>
+			</view>
+			<view class="comment_list ">
+				<view class="flexRowBetween"  style="align-items:center;">
+					<view class="comment_user" style="display:flex;align-items:center;">
+						<view class="user_img">
+							<image src="/images/menu3.png"></image>
+						</view>
+						<view class="txts" style="height:58rpx;">
+							<view class="text1">米桃子</view>
+							<view class="text2">2015.3.2</view>
+						</view>
+					</view>
+				</view>
+				<view class="comment_cont">
+					很满意的一次购物很满意的一次购物很满意的一次购物
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="{{isShow?'mask':''}}"></view>
+</view>
+<view id="buy">
+	<view class="buy_click">
+		<view class="consult">
+			<image src="/images/collect.png"></image>
+			<view class="text1">客服</view>
+		</view>
+		<view class="consult collect">
+			<image src="/images/collect.png"></image>
+			<view class="text1">收藏</view>
+		</view>
+		<view class="go_buy flexRowBetween" bindtap="goBuy">
+			<view class="shoppingCart color1">
+				加入购物车
+			</view>
+			<view class="go_pay color1">
+				立即购买
+			</view>
+		</view>
+	</view>
+</view>
+<view id="choose" class="{{isShow?'sildeIn':'slideOut'}}">
+	<view class="w710">
+		<view class="flexRowBetween pricity">
+			<view class="choose_pro">
+				<image src="/images/index1.png"></image>
+			</view>
+			<view class="product_txt">
+				<view class="pro_name">公众号管理</view>
+				<view class="pro_type">
+					个性化定制
+				</view>
+				<view class="price_choose">
+				￥3999
+				</view>
+			</view>
+			<view class="close" bindtap="close">
+			<image src="/images/close.jpg"></image>
+			</view>
+		</view>
+		<view id="type" class="flex">
+			<view class="pro_type"  >	
+				型号
+			</view>
+			<view class="pro_types" data-type="0"  bindtap="chooseType" style="{{chooseType == 0?'background:#e50112;color:#fff;':'' }}">	
+				模板
+			</view>
+			<view class="pro_types" data-type="1"  bindtap="chooseType" style="{{chooseType == 1?'background:#e50112;color:#fff;':'' }}">	
+				定制
+			</view>
+		</view>
+		<view id="type" class="flex">
+			<view class="pro_type"  >	
+				数量
+			</view>
+			<view class="pro_types" data-type="0"  bindtap="chooseType1" style="{{chooseType1 == 0?'background:#e50112;color:#fff;':'' }}">	
+				模板
+			</view>
+			<view class="pro_types" data-type="1"  bindtap="chooseType1" style="{{chooseType1 == 1?'background:#e50112;color:#fff;':'' }}">	
+				定制
+			</view>
+		</view>
+		<view class="choose_number flexRowBetween">
+			<view class="number_txt">
+				数量
+			</view>
+			<view class="edit_number flexRowBetween">
+				<view class="minus" style="line-height:45rpx;border-right: solid 1px #e5e5e5;">-</view>
+				<view class="number">1</view>
+				<view class="add">+</view>
+
+			</view>
+		</view>
+	</view>
+	<button class="submit_info" bindtap="close">确认</button>
+</view>
+
+

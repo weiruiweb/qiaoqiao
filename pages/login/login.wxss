@@ -1,0 +1,59 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"; 
+
+page{
+	width:100%;
+	min-height:100%;
+	background:#e3747b;
+}
+.login{
+	height:555rpx;
+	width:100%;
+	text-align:center;
+	display:flex;
+	align-items:center;
+}
+.login image{
+	width:180rpx;
+	height:180rpx;
+	margin:0 auto;
+}
+#login{
+	width:84%;
+	margin:0 auto;
+}
+.login_input{
+	height:130rpx;
+	border-bottom:solid 1rpx #e0e0e0;
+}
+.input_img{
+
+	width:17.5%;
+	padding-left:2%;
+}
+.input_img image{
+	width:26rpx;
+	height:30rpx;
+}
+.input_in{
+	width:80.5%;
+	font-size:26rpx;
+}
+.input_in input{
+	color:#fff;
+}
+.code_in{
+	margin:0;
+	font-size:26rpx;
+}
+.user_img{
+	width:160rpx;
+	height:160rpx;
+	border-radius:50%;
+	overflow:hidden;
+	margin:20rpx auto;
+}
+.placeholder{
+	color:#fff;
+}

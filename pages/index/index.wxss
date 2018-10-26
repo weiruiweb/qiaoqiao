@@ -1,0 +1,438 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+
+page{
+	width:100%;
+	min-height:100%;
+	background:#f1eff6;
+}
+.page-body image{
+	width:100%;
+	height:400rpx;
+}
+view{
+	color:#666;
+}
+.swiper{
+	height:400rpx;
+	 position:relative;
+}
+swiper{
+	width:100%;
+	height: 100%;
+}
+.swiper-block{
+  height: 400rpx;
+  width: 100%;
+}
+.swiper-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow:unset;
+}
+.slide-image{
+  height:330rpx;
+  width: 520rpx;
+  border-radius: 9rpx;
+  box-shadow: 0px 0px 30rpx rgba(0, 0,0,.2); 
+  margin: 0rpx 30rpx;
+  z-index: 1;  
+}
+.active{
+  transform: scale(1.14);
+  transition:all .2s ease-in 0s;
+  z-index: 20; 
+}
+
+.dots{ 
+  position: absolute; 
+  right: 50rpx; 
+  bottom: 20rpx; 
+  display: flex; 
+  justify-content: center; 
+} 
+.dots .dot{ 
+  margin: 0 12rpx; 
+  width: 18rpx; 
+  height: 18rpx; 
+  background: #999; 
+  border-radius: 8rpx; 
+  transition: all .6s; 
+} 
+.dots .dot.active{ 
+  width: 34rpx; 
+  background: #fff; 
+}
+ 
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+/*********跑马灯效果***********/
+#marquee{
+  width: 100%;
+  height: 72rpx;
+}
+.horn{
+	width:10%;
+	height:100%;
+	display:flex;
+	align-items:center;
+}
+.horn image{
+	width:34rpx;
+	height:34rpx;
+}
+.marquee_right{
+	width:80%;
+	height:100%;
+	overflow:hidden;
+}
+.next_page{
+	width:10%;
+	height:100%;
+}
+.next_page image{
+	width:16rpx;
+	height:38rpx;
+	margin:0 auto;
+}
+.marquee_box {
+  width: 100%;
+  height:100%;
+  position: relative;
+}
+.marquee_text {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+}
+.marquee_box .title {
+  padding: 10rpx 20rpx;
+  margin: 0 0 20rpx 0;
+  border-left: 10rpx solid #ccc;
+  font-size: 30rpx;
+  background: #ececec;
+}
+.marquee_panel {
+  margin: 20rpx 20rpx 20rpx 0;
+  border-left: 10rpx solid #ccc;
+  font-size: 26rpx;
+}
+.marquee_panel>view {
+  padding: 30rpx;
+  background: #ececec;
+  border-radius: 0 20rpx 20rpx 0;
+}
+/******************推荐1************************/
+.great{
+	width:100%;
+	height:318rpx;
+	border-top:solid 1px #e0e0e0;
+	border-bottom:solid 1px #e0e0e0;
+	margin-top: 44rpx;
+	background: #fff7f7;
+}
+.great_left{
+	width:50%;
+	height:100%;
+	border-right:solid 1px #e0e0e0;
+}
+.great_right{
+	width:50%;
+	height:100%;
+}
+.left_cont{
+	width:80%;
+	height:250rpx;
+	margin:0 auto;
+	text-align: center;
+}
+.great_left image{
+	width:80%;
+	height:146rpx;
+	border-radius: 10rpx;
+	margin:10rpx auto;
+}
+.great_top{
+	width:100%;
+	height: 50%;
+	text-align: center;
+}
+.great_bottom{
+	border-top:solid 1px #e0e0e0;
+}
+.great_tRight image{
+	width:134rpx;
+	height: 86rpx;
+	margin:0 auto;
+}
+.great_tLeft{
+	width:50%;
+	text-align: center;
+}
+.great_tRight{
+	width:50%;
+	text-align: center;
+}
+
+.recommend{
+	width:100%;
+	height: 126rpx;
+}
+.recommend_left{
+	width:48.5%;
+	height: 100%;
+	background: #f7f7f7;
+	border-radius: 10rpx;
+	border:solid 1px #e0e0e0;
+	margin-bottom: 20rpx;
+}
+.group{
+	height:40rpx;
+	width:100%;
+}
+.group_left{
+	width:48%;
+	padding-right: 2%;
+	font-size: 36rpx;
+}
+.group_right{
+	width:50%;
+}
+.group_right .time1{
+	width:26%;
+	height:38rpx;
+	background: #666;
+	border-radius: 10rpx;
+	text-align: center;
+	font-size: 22rpx;
+	color:#fff;
+	line-height: 38rpx;
+}
+.time_center{
+	width:4%;
+	height:38rpx;
+	line-height: 38rpx;
+	color:#666;
+	text-align: center;
+}
+.right_bottom .group_left{
+	width:42%;
+	font-size: 24rpx;
+}
+.right_bottom .time_center{
+	width:2%;
+	height:30rpx;
+	line-height: 30rpx;
+	color:#666;
+	text-align: center;
+}
+.right_bottom .group{
+	height:100%;
+	width:100%;
+}
+.right_bottom .group_right .time1{
+	width:16%;
+	height:30rpx;
+	background: #030001;
+	border-radius: 10rpx;
+	text-align: center;
+	font-size: 22rpx;
+	color:#fff;
+	line-height: 30rpx;
+}
+.right_bottom .group_right{
+	width:56%;
+	padding-right: 2%;
+}
+.right_top{
+	width:100%;
+	height:70%;
+}
+.right_bottom{
+	width:100%;
+	height:30%;
+}
+/*********************menu*********************/
+.menu{
+	width:100%;
+	flex-wrap:wrap;
+	margin-top:10rpx;
+	padding-top: 40rpx;
+	background: #f7f7f7;
+	margin-top:20rpx;
+}
+.menu_item{
+	width:25%;
+	text-align:center;
+	height:160rpx;
+
+}
+.menu_item image{
+	width:70rpx;
+	height:70rpx;
+	margin-bottom: 10rpx;
+}
+.menu_item view{
+	text-align:center;
+	width:100%;
+}
+/********************优惠大厅**********************/
+.recommend1{
+	margin-top: 20rpx;
+}
+.recommend_left1{
+	width:48.5%;
+	border-radius: 10rpx;
+	position: relative;
+}
+.recommend_left1 .img_bg{
+	width:100%;
+	height: 160rpx;
+}
+
+.product_name1{
+	height:66rpx;
+	line-height: 66rpx;
+	width:96%;
+	padding: 0 2%;
+}
+.activty{
+	width:100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+}
+
+.activty_left image{
+	width:84rpx;
+	height:84rpx;
+	border-radius: 50%;
+	margin:0 auto;
+}
+.activty_left{
+	width:40%;
+	height:100%;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.activty_right{
+	width:60%;
+}
+.mall_tlt_txt{
+	color:#333;
+	width:100%;
+	height:100%;
+	text-align:center;
+	position:absolute;
+	left:0;
+	top:0;
+}
+.mall_tlt{
+	position:relative;
+	text-align:center;
+	width:212rpx;
+	overflow:hidden;
+	margin:0 auto;
+	height:50rpx;
+	line-height:50rpx;
+}
+.mall_tlt image{
+	width:180rpx;
+	height:50rpx;
+}
+.member_in{
+	width:180rpx;
+	height:44rpx;
+	border-radius: 20rpx;
+	border:solid 1px #fff;
+	text-align: center;
+	line-height: 44rpx;
+	margin-top: 10rpx;
+}
+/***********************限时请购**************************/
+.content_box{
+	padding-top: 20rpx;
+	border-radius: 10rpx;
+}
+.title{
+	height:90rpx;
+	width:100%;
+	position: relative;
+}
+.more{
+	position: absolute;
+	right: 20rpx;
+	top:10rpx;
+	height:50rpx;
+	line-height: 50rpx;
+}
+.product{
+	height:208rpx;
+	border-bottom:solid 1px #515151;
+}
+.product_box{
+	width:100%;
+	height:156rpx;
+
+}
+.product_detail{
+	width:100%;
+	height:150rpx;
+}
+.product_left{
+	width:31.5%;
+	height:100%;
+}
+.product_left image{
+	width:194rpx;
+	height:156rpx;
+	border-radius: 10rpx;
+}
+.product_right{
+	width:68.5%;
+	height:100%;
+}
+.product_price{
+	width:100%;
+}
+.test{
+	height:100%;
+	display:flex;
+	flex-flow: row wrap;
+	align-content:space-between;
+}
+.product_name{
+	width:60%
+}
+.product_date{
+	width:40%;
+	text-align:right;
+}
+.recommend_left image{
+	width:100%;
+	height:280rpx;
+	border-radius: 10rpx 10rpx 0 0;
+}
+.product_pro{
+	margin-bottom: 10rpx;
+}
+.product_pro .price{
+	width:26%;
+	padding: 0 2%;
+	text-align:left;
+
+}
+.product_pro .time{
+	width:68%;
+	margin-right: 2%;
+	text-align: right;
+}
+.product_item{
+	height: 450rpx;
+}

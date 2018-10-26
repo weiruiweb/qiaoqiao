@@ -1,0 +1,17 @@
+.poster{
+	margin-top:200rpx;
+}
+.poster_txt1{
+	color:#444;
+}
+.poster_img image{
+	width:282rpx;
+	height:282rpx;
+	margin:30rpx 0 50rpx;
+}
+.poster{
+	text-align:center;
+}
+.poster_txt2{
+	color:#666;
+}

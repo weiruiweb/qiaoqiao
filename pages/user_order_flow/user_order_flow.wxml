@@ -1,0 +1,28 @@
+<!--index3.wxml-->
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left">交易时间:2018-09-20</view>
+        <view class="tlt_left tlt_right color">等待收货</view>
+    </view>
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">空间+导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X100</view>
+                    <view class="product_price color">¥788</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
+    快递公司:<text class="color9" style="margin-left: 20rpx;">中通快递</text>
+</view>
+<view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
+    快递单号:<text class="color9" style="margin-left: 20rpx;">134536455</text>
+</view>

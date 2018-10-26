@@ -1,0 +1,22 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"; 
+view{
+	color:#c4e8fb;
+}
+.banner{
+	width:100%;
+	height:478rpx;
+	overflow:hidden;
+	position:relative;
+}
+.banner_img image{
+	width:100%;
+	height:478rpx;
+}
+.banner_txt{
+	width:100%;
+	height:121rpx;
+	position:absolute;
+	top:39.5%;
+}

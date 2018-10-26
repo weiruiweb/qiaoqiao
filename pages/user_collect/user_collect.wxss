@@ -1,0 +1,61 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"; 
+page{
+	width:100%;
+	min-height:100%;
+	background:#f7f7f7;
+}
+
+.product_box{
+	height:230rpx;
+	border-bottom:solid 1px #e0e0e0;
+}
+.product_detail{
+	width:100%;
+	height:140rpx;
+}
+.product_left{
+	width:27.5%;
+	height:156rpx;
+}
+.product_left image{
+	width:156rpx;
+	height:156rpx;
+}
+.product_right{
+	width:72.5%;
+	height:156rpx;
+}
+.order_handle{
+	width:100%;
+	height:118rpx;
+}
+.product_number{
+	width:50%;
+	font-weight: 700;
+}
+.product_price{
+	width:50%;
+	text-align:right;
+}
+.test{
+	height:100%;
+	display:flex;
+	flex-flow: row wrap;
+	align-content:space-between;
+}
+.product_top{
+	height:40%;
+}
+.submit_info{
+	width:166rpx;
+	height:60rpx;
+	line-height:60rpx;
+	margin:24rpx 20rpx;
+	float:right;
+	background:#f7f7f7;
+	border:solid 1px #aeaeae;
+	color:#666;
+	font-size:28rpx;
+}

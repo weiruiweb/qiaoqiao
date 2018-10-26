@@ -1,0 +1,86 @@
+<!--userPoster.wxml-->
+<view class="w710">
+  <view class="recommend flexRowBetween">
+      <view class="recommend_left">
+      	<view class="discount_cont">
+      		<image src="/images/discout1.png" class="discount_img"></image>
+			<view class="discount flex">
+				<view class="discount_detail">
+					<view class="discount_top flex">
+						<view class="discount_left">
+							<text class="font22">¥</text>500
+						</view>
+						<view class="discount_right">
+							<view class="detail1 font32">元优惠券</view>
+							<view class="detail2 font24">订满99元使用</view>
+						</view>
+					</view>
+					<view class="discount_bottom">
+						<view class="discount_time font22 discount_bg1">活动日期8月30日-9月11日</view>
+					</view>
+				</view>
+			</view>
+			<image src="/images/discount_has.png" class="discount_use"></image>
+      	</view>
+      	<view class="discount_cont">
+      		<image src="/images/discout1.png" class="discount_img"></image>
+			<view class="discount flex">
+				<view class="discount_detail">
+					<view class="discount_top flex">
+						<view class="discount_left">
+							<text class="font22">¥</text>500
+						</view>
+						<view class="discount_right">
+							<view class="detail1 font32">元优惠券</view>
+							<view class="detail2 font24">订满99元使用</view>
+						</view>
+					</view>
+					<view class="discount_bottom">
+						<view class="discount_time font22 discount_bg1">活动日期8月30日-9月11日</view>
+					</view>
+				</view>
+			</view>
+      	</view>
+      </view>
+      <view class="recommend_left">
+      	<view class="discount_cont">
+      		<image src="/images/discout2.png" class="discount_img"></image>
+			<view class="discount flex">
+				<view class="discount_detail">
+					<view class="discount_top flex">
+						<view class="discount_left">
+							<text class="font22">¥</text>500
+						</view>
+						<view class="discount_right">
+							<view class="detail1 font32">元优惠券</view>
+							<view class="detail2 font24">订满99元使用</view>
+						</view>
+					</view>
+					<view class="discount_bottom">
+						<view class="discount_time font22 discount_bg2">活动日期8月30日-9月11日</view>
+					</view>
+				</view>
+			</view>
+      	</view>
+      	<view class="discount_cont">
+      		<image src="/images/discout2.png" class="discount_img"></image>
+			<view class="discount flex">
+				<view class="discount_detail">
+					<view class="discount_top flex">
+						<view class="discount_left">
+							<text class="font22">¥</text>500
+						</view>
+						<view class="discount_right">
+							<view class="detail1 font32">元优惠券</view>
+							<view class="detail2 font24">订满99元使用</view>
+						</view>
+					</view>
+					<view class="discount_bottom">
+						<view class="discount_time font22 discount_bg2">活动日期8月30日-9月11日</view>
+					</view>
+				</view>
+			</view>
+      	</view>
+      </view>
+  </view>
+</view>

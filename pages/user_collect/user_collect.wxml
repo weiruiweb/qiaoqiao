@@ -1,0 +1,35 @@
+<!--index3.wxml-->
+<view class="product">
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">空间+导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number color">¥788</view>
+                    <view class="product_price color"><view class="submit_info font28">移除收藏</view></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="product">
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="/images/index1.png"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">名称空间名称名称名称名称名称名称名称名称名称导示</view>
+                <view class="font24 color9">2018-09-09</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number color">¥788</view>
+                    <view class="product_price "><view class="submit_info font28">移除收藏</view></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

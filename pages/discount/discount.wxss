@@ -1,0 +1,66 @@
+view{
+	color:#fff;
+}
+.recommend{
+	width:100%;
+	height: 160rpx;
+}
+.recommend_left{
+	width:48.5%;
+	height: 100%;
+	border-radius: 10rpx;
+}
+.discount_cont{
+	width:100%;
+	height:100%;
+	position: relative;
+	margin-bottom: 20rpx;
+}
+.discount_cont .discount_img{
+	width:100%;
+	height:100%;
+}
+.discount{
+	width: 80%;
+	height:160rpx;
+	position: absolute;
+	left: 10%;
+	top:0rpx;
+}
+.discount_detail{
+	width:100%;
+	height:100rpx;
+}
+.discount_top{
+	width:100%;
+	top:80%;
+}
+.discount_left{
+	width:40%;
+	font-size:54rpx;
+}
+.discount_right{
+	width:58%;
+	padding-left: 2%;
+}
+.discount_time{
+	width:100%;
+	height: 30rpx;
+	background: 
+}
+.discount_bg1{
+	background: #fe9d34;
+	text-align: center;
+}
+.discount_bg2{
+	background: #ff5c3b;
+	text-align: center;
+}
+.discount_use{
+	width:144rpx;
+	height:112rpx;
+	position: absolute;
+	left:25%;
+	top:20rpx;
+	z-index: 999;
+}

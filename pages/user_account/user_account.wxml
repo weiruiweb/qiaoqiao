@@ -1,0 +1,30 @@
+<!--User.wxml-->
+
+<view class="flex">
+	<view class="w710">
+		<view class="input_list1 font28 flex" style="height:120rpx;">
+			<view class="input_before1">头像:</view>
+			<view class="input_box">
+				<view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+			</view>
+		</view>
+		<view class="input_list1 font28 flex">
+			<view class="input_before1">微信:</view>
+			<view class="input_box font28 color6">葳蕤</view>
+		</view>
+		<view class="input_list1 font28 flex">
+			<view class="input_before1">微信名:</view>
+			<view class="input_box font28 color6">weirui_yd</view>
+		</view>
+		<view class="input_list1 font28 flex">
+			<view class="input_before1">账号:</view>
+			<view class="input_box font28 color6">45245</view>
+		</view>
+		<view class="input_list1 font28 flex">
+			<view class="input_before1">备注说明:</view>
+			<view class="input_box font28 color6 flex" style="text-align:left;">备注说明备注说明备注说明</view>
+		</view>
+	</view>
+</view>
