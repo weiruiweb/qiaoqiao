@@ -36,7 +36,7 @@
       <view class="left_cont">
         <view class="color">
             <view class="group flex">
-                <view class="group_left color">今日团购</view>
+                <view class="group_left color" style="font-size:30rpx">今日团购</view>
                 <view class="group_right flexRowBetween">
                     <view class="time1">02</view> <view class="time_center flex">:</view>
                     <view class="time1">02</view> <view  class="time_center flex">:</view>
