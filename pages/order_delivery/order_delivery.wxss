@@ -133,6 +133,9 @@
 .choose_way {
 	border-bottom: solid 1px #e0e0e0;
 }
+.discount{
+	border-bottom: solid 1px #e0e0e0;
+}
 .comment textarea{
 	width:94%;
 	height:380rpx;

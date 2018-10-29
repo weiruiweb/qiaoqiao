@@ -23,7 +23,9 @@
     "pages/order_confirm/order_confirm",
     "pages/user_order_comment/user_order_comment",
     "pages/user_order_flow/user_order_flow",
-    "pages/user_order_code/user_order_code"
+    "pages/user_order_code/user_order_code",
+    "pages/order_delivery/order_delivery",
+    "pages/order_get/order_get"
 
   ],
   "window": {

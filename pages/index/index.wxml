@@ -96,35 +96,35 @@
     </view>
 </view>
 <view class="menu flexRowBetween font30 color6">
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath" data-path="/pages/product_list/product_list">
     <view><image src="/images/menu1.png"></image></view>
     <view class="font24">人气美妆</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath" data-path="/pages/product_list/product_list">
     <view><image src="/images/menu2.png"></image></view>
     <view class="font24">新鲜水果</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath"  data-path="/pages/product_list/product_list">
     <view><image src="/images/menu3.png"></image></view>
     <view class="font24">休闲食品</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath"  data-path="/pages/product_list/product_list">
     <view><image src="/images/menu4.png"></image></view>
     <view class="font24">家禽蛋类</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath"  data-path="/pages/product_list/product_list">
     <view><image src="/images/menu5.png"></image></view>
     <view class="font24">健康养生</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item" bindtap="intoPath" data-path="/pages/product_list/product_list">
     <view><image src="/images/menu6.png"></image></view>
     <view class="font24">温馨家具</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item"  bindtap="intoPath" data-path="/pages/product_list/product_list">
     <view><image src="/images/menu7.png"></image></view>
     <view class="font24">水产海鲜</view>
   </view>
-  <view class="menu_item">
+  <view class="menu_item"  bindtap="intoPath"  data-path="/pages/product_list/product_list">
     <view><image src="/images/menu8.png"></image></view>
     <view class="font24">往期团购</view>
   </view>

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -68,7 +68,13 @@
 				{
 					"id": -1,
 					"name": "取货吗",
-					"pathName": "pages/user_order_code/user_order_code"
+					"pathName": "pages/user_order_code/user_order_code",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "111",
+					"pathName": "pages/user_order/user_order"
 				}
 			]
 		}

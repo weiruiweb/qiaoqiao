@@ -37,7 +37,7 @@
         </view>
     </view>
     <view class="order_handle">
-            <view class="submit_info font28">去支付</view>  <view class="submit_info font28">取消订单</view>
+            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/order_confirm/order_confirm">去支付</view>  <view class="submit_info font28">取消订单</view>
         </view>
 </view>
 <view class="product">
