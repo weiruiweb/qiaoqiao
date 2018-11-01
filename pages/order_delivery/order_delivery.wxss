@@ -143,3 +143,19 @@
 	background:#f2f2f2;
 	border-radius:10rpx;
 }
+.user_message{
+	background:#fff;
+	padding:52rpx 25rpx;
+	overflow:hidden;
+	border-bottom:solid 1px #ececec;
+	align-items:center;
+}
+.text1{
+	font-size:28rpx;
+	color:#262626;}
+textarea{
+	width:580rpx;
+	height:30rpx;
+	font-size:28rpx;
+	color:#999;
+}

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -74,7 +74,25 @@
 				{
 					"id": -1,
 					"name": "111",
-					"pathName": "pages/user_order/user_order"
+					"pathName": "pages/user_order/user_order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的优惠卷",
+					"pathName": "pages/user_discount/user_discount",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/order_confirm/order_confirm",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "111",
+					"pathName": "pages/user_order_code/user_order_code"
 				}
 			]
 		}

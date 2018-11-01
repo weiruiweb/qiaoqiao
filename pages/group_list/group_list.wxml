@@ -1,21 +1,12 @@
 <!--userPoster.wxml-->
 <view class="w710">
 	<view id="sort" class="flex">
-		<view class="sort_icon" bindtap="sort_show">
-			<image src="/images/sort.jpg"></image>
-			<view class="font24 color6">分类</view>
-		</view>
 		<view class="search flex">
 			<input placeholder="搜索商品名称" class="font28"></input>
 		</view>
 	</view>
 </view>
-<view class="menu {{isShow?'sildeIn':'slideOut'}}" >
-	<view class="menu_item  {{web_currentId==0?'active':''}}" catchtap="menuTap" data-id="0">全部</view>
-  <block wx:for="{{web_labelData}}" wx:key="id">
-	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" catchtap="menuTap">{{item.title}}</view>
-  </block>
-</view>
+
 
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">

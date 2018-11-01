@@ -11,16 +11,13 @@
         <view class="banner_center flex">
             <view>
                 <view class=" font32 color1 flex">
-                    葳蕤
-                </view>
-                <view class=" font26 flex" style="color:#f2f2f2;">
-                    1564645656
+                    <open-data type="userNickName"></open-data>
                 </view>
             </view>
          </view>
         <view class="banner_right flex">
             <view  style="width:100%;text-align: center;">
-                <view class="font32 color1" style="width:100%;text-align: center;">0</view>
+                <view class="font32 color1" style="width:100%;text-align: center;">{{web_userData.balance?web_userData.balance:'网络故障'}}</view>
                 <view class="font28 color1" style="width:100%;text-align: center;">分享金</view>
             </view>
         </view>
@@ -30,15 +27,15 @@
     <view class="sort_cont flexRowBetween">    
         <view class="sort_item"  bindtap="intoPath"  data-path="/pages/userOrder/userOrder">
             <view class="sort_icon">
-                0
+                {{web_collectData?web_collectData:'0'}}
             </view>
             <view class="sort_txt">
                我的收藏
             </view>
         </view>
-        <view class="sort_item"  bindtap="intoPath"  data-path="/pages/userRecord/userRecord">
+        <view class="sort_item">
                 <view class="sort_icon">
-                    0
+                    {{web_userData.score?web_userData.score:'网络故障'}}
                 </view>
                 <view class="sort_txt">
                    我的积分
@@ -103,7 +100,7 @@
     <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_cash/user_cash">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon4.png"></image>
-            <text>我的体现</text>
+            <text>我的提现</text>
         </view>
         <view class="next_page">
             <image src="/images/next_page.png"></image>
@@ -184,25 +181,25 @@
 </view>
 <view style="width:100%;height:150rpx;"></view>
 <view class="navbar">
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/index/index">
         <view class="nav_img">
           <image src="/images/navbar1.png"></image>
         </view>
         <view class="text">首页</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user_order/user_order">
+    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/user_order/user_order">
         <view class="nav_img">
            <image src="/images/navbar2.png"></image>
         </view>
         <view class="text">待收货</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
+    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/shopping/shopping">
         <view class="nav_img">
            <image src="/images/navbar3.png"></image>
         </view>
         <view class="text">购物车</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/user/user">
         <view class="nav_img">
             <image src="/images/navbar4-a.png"></image>
         </view>

@@ -4,22 +4,11 @@
 </view>
 <view class="mall_tlt">
     <image src="/images/new_tlt.jpg"></image>
-    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
+    <view  class="mall_tlt_txt font28 color1">{{web_mainData.title}}</view>
 </view>
 <view class="w710 font28 color6">
-	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
-</view>
-<view class="mall_tlt">
-    <image src="/images/new_tlt.jpg"></image>
-    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
-</view>
-<view class="w710 font28 color6">
-	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
-</view>
-<view class="mall_tlt">
-    <image src="/images/new_tlt.jpg"></image>
-    <view  class="mall_tlt_txt font28 color1">优惠活动通知</view>
-</view>
-<view class="w710 font28 color6">
-	优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知优惠活动通知
+	<view class="content ql-editor">
+        <import src="../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+    </view> 
 </view>

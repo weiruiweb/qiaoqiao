@@ -4,39 +4,41 @@
         我的下级
     </view>
     <view class="next_right">
-        总共<text class="color">200</text>人
+        总共<text class="color">{{web_total}}</text>人
     </view>
 </view>
 <view class="date font30">
     <view class="date_item">
         <view style="width:45%;display:flex;align-items:center;">
-            <view class="date_left" style="color:#00c6f7;width:100%;">
-                <picker  mode="date"  bindchange="bindTimeChange" >
-                    <view style="display:flex;align-items:center;width:100%;height:100%;">
+            <view class="date_left" style="color:#39bddf;width:100%;">
+                <picker  mode="date" value="{{web_startTime}}" data-type="startTime" bindchange="bindTimeChange" >
+                    <view style="display:flex;align-items:center;width:100%;">
                         <view style="width:85%;height:70rpx;">
                             <view class="picker text">
                               起始日期
                             </view>
-                            <view class="text  font22" >{{time}}</view>
+                            <view class="text  font22" >{{web_startTime}}</view>
                         </view>
-                        <view style="width:15%;height:70rpx;align-items:center;">
+                        <view style="width:15%;height:70rpx;">
                             <image src="/images/up_icon2.png"></image>
                         </view>
                     </view> 
-                </picker>  
+                </picker>
+                
             </view>
+            
         </view> 
     </view>
-    <view class="date_item"  style="border:none">
+    <view class="date_item" style="border:none;">
         <view style="width:45%;display:flex;align-items:center;">
-            <view class="date_left" style="color:#00c6f7;width:100%;">
-                <picker  mode="date" bindchange="bindTimeChange" >
-                    <view style="display:flex;align-items:center;width:100%;height:100%;">
+            <view class="date_left" style="color:#39bddf;width:100%;">
+                <picker  mode="date" value="{{web_endTime}}" data-type="endTime" bindchange="bindTimeChange" >
+                    <view style="display:flex;align-items:center;width:100%;">
                         <view style="width:85%;height:70rpx;">
                             <view class="picker text">
                               截至日期
                             </view>
-                            <view class="text font22">{{time}}</view>
+                            <view class="text  font22" >{{web_endTime}}</view>
                         </view>
                         <view style="width:15%;height:70rpx;">
                             <image src="/images/up_icon1.png"></image>
@@ -46,22 +48,29 @@
             </view>
             
         </view> 
-    </view>     
+    </view> 
 </view>
-<view class="credit_cont">
-    <view class="credit_list">
-        <view class="credit_item">
-            <view class="credit_left">
-                <view class="credit_reson font28">
-                    签到一天领取1积分
+
+
+<view class="team_all">
+    <block wx:for="{{web_mainData}}" wx:key='id'>
+        <view class="team_list">
+            <view class="team_item">
+                <view class="team_left">
+                    <image src="{{item.userInfo.headImgUrl}}" style="border-radius:50%"></image>
                 </view>
-                <view class="credit_dates font24 color9">
-                    通过微信加入
+                <view class="team_right">
+                    <view class="team_user flexRowBetween">
+                        <view class="tuser_name" style="{{fonts[4].font}}">{{item.userInfo.nickname}}</view>
+                        <view class="tuser_name" style="{{fonts[2].font}};color:#444;">{{item.create_time}}</view>
+                    </view>
+                    <view class="teat_add" style="{{fonts[1].font}}">
+                        通过微信分享二维码加入团队
+                    </view>
                 </view>
-            </view>
-            <view class="credit_right font28">
-                2018-9-9
             </view>
         </view>
-    </view>
+    </block>
 </view>
+
+

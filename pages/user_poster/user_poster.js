@@ -15,6 +15,8 @@ Page({
       fonts:app.globalData.font
     })
   },
+
+  
   getQrData(){
     const self = this;
     const postData = {};

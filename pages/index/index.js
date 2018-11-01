@@ -1,11 +1,14 @@
 import {Api} from '../../utils/api.js';
-var api = new Api();
+const api = new Api();
 const app = getApp();
+import {Token} from '../../utils/token.js';
+const token = new Token();
 
 
 Page({
   data: {
-    background: ['/images/banner.jpg', '/images/banner.jpg', '/images/banner.jpg'],
+    mainData:[],
+    labelData:[],
     indicatorDots: true,
     vertical: false,
     autoplay: true,
@@ -58,8 +61,11 @@ Page({
       swiperIndex: e.detail.current,
     })
   },
+
+
   onLoad(options) {
     const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     console.log(self.data.img1);
     var length = self.data.text.length * self.data.size;
     var windowWidth = wx.getSystemInfoSync().windowWidth;
@@ -70,8 +76,123 @@ Page({
       marquee2_margin: length < windowWidth ? windowWidth - length : self.data.marquee2_margin
     });
     self.run2();
-
+    self.getSliderData();
+    self.getLabelData();
+    self.getMainData();
+    self.getNoticeData()
   },
+
+  getSliderData(){
+    const self = this;
+    const postData = {};
+    postData.searchItem = {
+      title:'首页轮播图',
+      thirdapp_id:'2'
+    };
+    const callback = (res)=>{ 
+      if(res.info.data.length>0){
+        self.data.sliderData = res.info.data[0];
+      }
+      self.setData({
+        web_sliderData:self.data.sliderData,
+      });
+    };
+    api.labelGet(postData,callback);
+  },
+
+  getLabelData(){
+    const self = this;
+    const postData = {};
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      type:3
+    };
+    postData.order = {
+      create_time:'normal'
+    }
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.labelData.push.apply(self.data.labelData,res.info.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','none');
+      }
+      console.log(self.data.labelData)
+      wx.hideLoading();
+      self.setData({
+        web_labelData:self.data.labelData,
+      });
+    };
+    api.labelGet(postData,callback);   
+  },
+
+  getMainData(isNew,currentId){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self); 
+    };
+    const postData = {};
+    postData.paginate = api.cloneForm(self.data.paginate);
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      type:1
+    };
+    postData.getAfter={
+      sku:{
+        tableName:'sku',
+        middleKey:'product_no',
+        key:'product_no',
+        condition:'=',
+      } 
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        for (var i = 0; i < res.info.data.length; i++) {
+            self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
+        };    
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','none');
+      };
+      wx.hideLoading();
+      console.log(self.data.mainData)
+      self.setData({
+
+        web_mainData:self.data.mainData,
+      });  
+    };
+    api.productGet(postData,callback);
+  },
+
+  getNoticeData(){
+    const self = this;
+    const postData = {};
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.thirdapp_id
+    };
+    postData.getBefore = {
+      aboutData:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['通知']],
+        },
+        middleKey:'menu_id',
+        key:'id',
+        condition:'in',
+      },
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.noticeData = res.info.data[0];
+      };
+      self.setData({
+        web_noticeData:self.data.noticeData,
+      });
+    };
+    api.articleGet(postData,callback);
+  },
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');

@@ -25,8 +25,8 @@
     "pages/user_order_flow/user_order_flow",
     "pages/user_order_code/user_order_code",
     "pages/order_delivery/order_delivery",
-    "pages/order_get/order_get"
-
+    "pages/order_get/order_get",
+    "pages/group_list/group_list"
   ],
   "window": {
     "backgroundTextStyle": "light",

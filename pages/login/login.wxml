@@ -1,30 +1,32 @@
 <!--login.wxml-->
-<view class="login">
-  <view style="text-align: center;margin:0 auto;">
-   <view class="user_img">
-      <open-data type="userAvatarUrl"></open-data>
-    </view>
-    <view class="font28 color1">密桃仔</view>
-  </view>
-</view>
-<view id="login">
-  <view class="login_input flexRowBetween">
-    <view class="input_img">
-      <image src="/images/login1.png"></image>
-    </view>
-     <view class="input_in">
-      <input placeholder="请输入手机号" placeholder-class="placeholder" class="color1"></input>
+<view wx:if="{{web_show}}">
+  <view class="login">
+    <view style="text-align: center;margin:0 auto;">
+     <view class="user_img">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="font28 color1"><open-data type="userNickName"></open-data></view>
     </view>
   </view>
-  <view class="login_input flexRowBetween">
-    <view class="input_img">
-      <image src="/images/login2.png"></image>
+  <view id="login">
+    <view class="login_input flexRowBetween">
+      <view class="input_img">
+        <image src="/images/login1.png"></image>
+      </view>
+       <view class="input_in">
+        <input placeholder="请输入账号" placeholder-class="placeholder" class="color1" data-key="login_name" bindinput="bindInputChange"></input>
+      </view>
     </view>
-     <view class="input_in">
-      <input placeholder="请输入密码" placeholder-class="placeholder"  class="color1"></input>
+    <view class="login_input flexRowBetween">
+      <view class="input_img">
+        <image src="/images/login2.png"></image>
+      </view>
+       <view class="input_in">
+        <input placeholder="请输入密码" placeholder-class="placeholder"  class="color1" data-key="password" bindinput="bindInputChange"></input>
+      </view>
     </view>
   </view>
-</view>
-<view class="submit_info" style="width:93%;margin-top:160rpx;" bindtap="intoPath" data-path="/pages/user_order_code/user_order_code">
-  登录
+  <view class="submit_info" style="width:93%;margin-top:160rpx;" bindtap="submit">
+    登录
+  </view>
 </view>

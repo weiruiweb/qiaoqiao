@@ -1,39 +1,58 @@
 //logs.js
 import {Api} from '../../utils/api.js';
-var api = new Api();
-const app = getApp()
+const api = new Api();
+const app = getApp();
+import {Token} from '../../utils/token.js';
+const token = new Token();
 
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    QrData:[]
+    
+    mainData:[]
+    
   },
-  onLoad(){
+    
+
+  onLoad(options){
     const self = this;
-    self.getQrData();
-    this.setData({
-      fonts:app.globalData.font
-    })
+    wx.showLoading();
+    if(!wx.getStorageSync('token')){
+      var token = new Token();
+      token.getUserInfo();
+    };
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.data.id = options.id;
+    self.getMainData();
   },
-  getQrData(){
+
+
+  getMainData(){
     const self = this;
     const postData = {};
-    postData.token = wx.getStorageSync('token');
-    postData.qrInfo = {
-      scene:wx.getStorageSync('info').user_no,
-      path:'pages/index/index',
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.mall_thirdapp_id,
     };
-    postData.output = 'url';
-    postData.ext = 'png';
+    postData.searchItem.id = self.data.id;
     const callback = (res)=>{
-      console.log(res);
-      self.data.QrData = res;
-      self.setData({
-        web_QrData:self.data.QrData,
-      });
+      self.data.mainData = {};
+      if(res.info.data.length>0){
+        self.data.mainData = res.info.data[0];
+        self.data.mainData.content = api.wxParseReturn(res.info.data[0].content).nodes;
+      };
+      console.log(self.data.mainData);
       wx.hideLoading();
+      self.setData({
+        web_mainData:self.data.mainData,
+      });   
     };
-    api.getQrCode(postData,callback);
- },
+    api.articleGet(postData,callback);
+  },
+  
 
 })
+

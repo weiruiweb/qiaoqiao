@@ -12,7 +12,7 @@ class Base{
     //http 请求类, 当noRefech为true时，不做未授权重试机制
     request(params) {
         var that = this;
-        var baseRestUrl = 'https://liubin.yisuiyanghuoguo.com/liubin/public/index.php/api/v1/';
+        var baseRestUrl = 'https://qqaj.yisuiyanghuoguo.com/api/public/index.php/api/v1/';
         var url=baseRestUrl + params.url;
         
         
@@ -88,6 +88,16 @@ class Base{
     cloneForm(form){
         var res =  JSON.parse(JSON.stringify(form));   
         return res;           
+    };
+
+    checkArrayEqual(array1,array2){
+        
+        if(array1.sort().toString() == array2.sort().toString()){
+            return true;
+        }else{
+            return false;
+        }
+        
     };
 
     fillForm(form,pform){

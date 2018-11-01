@@ -1,58 +1,48 @@
 <!--index3.wxml-->
 <view class="product">
-    <view class="product_box w710 flexRowBetween">
-        <view class="product_left">
-            <image src="/images/index1.png"></image>
-        </view>
-        <view class="product_right">
-            <view class="product_detail">
-                <view class="font32 color3 product_top">空间+导示</view>
-                <view class="font24 color9 product_top">类型一</view>
-                <view class="product_top flex">
-                    <view class="font30 color6 product_number">X1</view>
-                    <view class="font30 product_price color">¥189</view>
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.product.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top">{{item.product.title}}</view>
+                    <view class="font24 color9 product_top">类型一</view>
+                    <view class="product_top flex">
+                        <view class="font30 color6 product_number">X{{item.count}}</view>
+                        <view class="font30 product_price color">¥{{item.product.price}}</view>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
+    </block>
 </view>
 <view class="main">
     <view class="input_list1 font28 flex w710">
         <view class="input_before1">联系人:</view>
-        <input placeholder="请输入姓名"></input>
+        <input placeholder="请输入姓名" data-key="name" bindblur="changeBind" value="{{web_submitData.name}}"></input>
     </view>
     <view class="w710 input_list1 font28 flex">
         <view class="input_before1">联系电话:</view>
-        <input placeholder="请输入联系电话"></input>
+        <input placeholder="请输入联系电话" data-key="phone" bindblur="changeBind" value="{{web_submitData.phone}}"></input>
     </view>
     <view class="w710 input_list1 font28 flex">
         <view class="input_before1">买家留言:</view>
-        <input placeholder="输入买家留言"></input>
+        <input placeholder="输入买家留言" data-key="message" bindblur="changeBind" value="{{web_submitData.message}}"></input>
     </view>
 </view>
-<view class="store w710 flex">
-    <view class="store_cont flex">
-        <view class="store_left">
-            <view class="font30 color3">门店名称门店名称门店名称</view>
-            <view class="font26 color9">地址:地址地址地址地址地址地址地址地址</view>
-        </view>
-        <view class="store_right">
-            <image src="/images/location.png"></image>
-        </view>
-    </view>
-</view>
+
 <view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">
 </view>
 <view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">
     <view class="code_cont">
-        <view class="font32 color3" style="height:120rpx;line-height: 120rpx;text-align: center;">取货：12133</view>
-        <button class="submit_info" bindtap="mask">保存</button>
+        <view class="font32 color3" style="height:120rpx;line-height: 120rpx;text-align: center;">取货码：{{web_code}}</view>
+        <button class="submit_info" bindtap="intoPathRedi" data-path="/pages/user_order/user_order">确认</button>
     </view>
 </view>
-<view class="w710 location">
-    <image src="/images/index1.png"></image>
-</view>
+
 <view class="confirm_btn flex font30">
-   <view class="confirm_left color">合计: ¥1899</view> 
-   <view class="confirm_right color1 bg" bindtap="show">提交订单</view> 
+   <view class="confirm_left color">合计: ¥{{web_totalPrice}}</view> 
+   <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
 </view>
