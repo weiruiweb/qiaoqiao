@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -92,7 +92,14 @@
 				{
 					"id": -1,
 					"name": "111",
-					"pathName": "pages/user_order_code/user_order_code"
+					"pathName": "pages/user_order_code/user_order_code",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "111",
+					"pathName": "pages/detail/detail",
+					"query": "product_id=2&user_no=UB15702912423561"
 				}
 			]
 		}

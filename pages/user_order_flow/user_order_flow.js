@@ -16,7 +16,36 @@ Page({
   },
 
   onLoad(options){
+  	const self = this;
+  	console.log(options)
+  	self.data.id = options.id;
+  	self.getMainData()
+  },
 
+  getMainData(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+  	postData.searchItem = {
+  		id:self.data.id
+  	};
+    const callback = (res)=>{
+      if(res.solely_code==100000){
+        if(res.info.data.length>0){
+          self.data.mainData= res.info.data[0];
+        }else{
+          
+          api.showToast('数据错误','none');
+        };
+        wx.hideLoading();
+        self.setData({
+          web_mainData:self.data.mainData,
+        });  
+      }else{
+        api.showToast('网络故障','none')
+      }
+    };
+    api.orderGet(postData,callback);
   },
  
   intoPath(e){

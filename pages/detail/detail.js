@@ -1,4 +1,4 @@
-import {Api} from '../../utils/api.js';
+	import {Api} from '../../utils/api.js';
 const api = new Api();
 const app = getApp();
 import {Token} from '../../utils/token.js';
@@ -43,6 +43,8 @@ Page({
     });
     if(options.id){
       self.data.id = options.id
+    }else if(options.product_id){
+    	self.data.id = options.product_id
     };
     self.getMainData();
     self.getMessageData();
@@ -58,6 +60,17 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     });
+    if(options.scene){
+      var scene = decodeURIComponent(options.scene)
+    };
+    if(options.group_no){
+      self.data.scene = options.group_no
+    };
+    if(options.user_no){
+    	self.data.user_no = options.user_no
+    };
+    console.log(self.data.scene)
+  	
   },
 
 
@@ -241,7 +254,8 @@ Page({
       console.log(skuDatas);
       if(self.data.skuData.id !=''&&self.data.skuData.id !=undefined){
         wx.setStorageSync('payPro',skuDatas);
-        api.pathTo('/pages/order_confirm/order_confirm','nav')
+       
+        api.pathTo('/pages/order_confirm/order_confirm?group_no='+self.data.scene+'&&user_no='+self.data.user_no,'nav')
       }else{
         api.showToast('请完善信息','none')
       }
@@ -334,7 +348,7 @@ Page({
       }
       return {
         title: '纯粹科技',
-        path: 'pages/detail/detail?id='+self.data.id,
+        path: 'pages/detail/detail?id='+self.data.id+'&&user_no='+wx.getStorageSync('info').user_no,
         success: function (res){
           console.log(res);
           console.log(parentNo)

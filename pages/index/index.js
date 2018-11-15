@@ -20,7 +20,7 @@ Page({
     nextMargin: 0,
     swiperIndex:0,
     img1:0,
-    text: '这是一条会滚动的文字滚来滚去的文字跑马灯，哈哈哈哈哈哈哈哈',
+    text: '',
     marqueePace: 1,
     marqueeDistance: 0,
     marqueeDistance2: 0,
@@ -80,7 +80,24 @@ Page({
     self.getSliderData();
     self.getLabelData();
     self.getMainData();
-    self.getNoticeData()
+    self.getNoticeData();
+   	if(options.scene){
+      var scene = decodeURIComponent(options.scene)
+    };
+    if(options.parentNo){
+      var scene = options.parentNo
+    };
+    console.log(scene)
+    if(scene){
+      var token = new Token({parent_no:scene});
+      token.getUserInfo();
+    };
+
+    if(!wx.getStorageSync('token')){
+      var token = new Token();
+      token.getUserInfo();
+    };
+
   },
 
   getSliderData(){
@@ -243,8 +260,8 @@ Page({
         if (hour <= 9) hour = '0' + hour;
         if (minute <= 9) minute = '0' + minute;
         if (second <= 9) second = '0' + second;
-        //
-        console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+    
+     
         times--;
           self.setData({
             web_day:day,

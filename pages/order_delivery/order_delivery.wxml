@@ -60,7 +60,8 @@
         </textarea>
     </view>
 </view>
+<view >可用积分：{{web_userData.info.score}}</view>
 <view class="confirm_btn flex font30">
-   <view class="confirm_left color">合计: ¥{{web_totalPrice}}</view> 
+   <view class="confirm_left color">合计: ¥{{web_totalPrice}}<span style="font-size:14px">(积分抵扣{{web_scorePrice}}元)</span></view> 
    <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
 </view>

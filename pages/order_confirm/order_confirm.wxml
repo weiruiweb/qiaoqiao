@@ -35,7 +35,7 @@
         <view class="product_right">
             <view class="product_detail">
                 <view class="font32 color3 product_top">{{item.product.title}}</view>
-                <view class="font24 color9 product_top">类型一</view>
+                <view class="font24 color9 product_top">{{item.product.description}}</view>
                 <view class="product_top flex">
                     <view class="font30 color6 product_number">X{{item.count}}</view>
                     <view class="font30 product_price color">¥{{item.product.price}}</view>
@@ -48,11 +48,11 @@
 
 
 <view class="w710 discount">
-    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/order_delivery/order_delivery" style="height:70rpx;border-bottom:solid 1px #e0e0e0;">
+    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/order_delivery/order_delivery?group_no={{web_group_no}}&&user_no={{web_user_no}}" style="height:70rpx;border-bottom:solid 1px #e0e0e0;">
         <view class="infor_right avoidOverflow font28 color6" style="width:84%;padding: 0;">快递配送</view>
         <view class="infor_left font28" style="width:16%;text-align: right;"><image src="/images/next_page.png" class="next_img"></image></view>
     </view>
-    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/order_get/order_get"  style="height:70rpx;border-bottom:solid 1px #e0e0e0;">
+    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/order_get/order_get?user_no={{web_user_no}}"  style="height:70rpx;border-bottom:solid 1px #e0e0e0;" wx:if="{{!web_group_no}}">
         <view class="infor_right avoidOverflow font28 color6" style="width:84%;padding: 0;">上门自提</view>
         <view class="infor_left font28" style="width:16%;text-align: right;"><image src="/images/next_page.png" class="next_img"></image></view>
     </view>

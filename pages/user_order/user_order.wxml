@@ -43,12 +43,16 @@
             </view>
         </block>
         <view class="order_handle">
-            <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
+            <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
             <view class="submit_info font28" data-id="{{item.id}}" data-price="{{item.price}}" bindtap="pay" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">去支付</view>  
+            <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='5'}}">已成团</view>
+            <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='4'}}">未成团</view>  
             <view class="submit_info font28" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'||item.pay_status == '1'&&item.order_step == '1'}}">删除订单</view>
             <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.order_step == '0'}}">去评价</view>
             <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
-            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow" wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
+
+            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
+
         </view>
     </view>
 </block>

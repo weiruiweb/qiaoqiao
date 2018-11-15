@@ -184,7 +184,7 @@ Page({
       }
       return {
         title: '巧巧爱家',
-        path: 'pages/detail/detail?group_no='+group_no+'&&id='+id,
+        path: 'pages/detail/detail?group_no='+group_no+'&&product_id='+id,
         success: function (res){
           console.log(res);
           console.log(parentNo)

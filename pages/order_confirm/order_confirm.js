@@ -31,22 +31,38 @@ Page({
     order_id:'',
     complete_api:[],
     buyType:'delivery',
+
   },
 
-  onLoad() {
+  onLoad(options) {
     const self = this;
     wx.showLoading();
     if(!wx.getStorageSync('token')){
       var token = new Token();
       token.getUserInfo();
     };
+    if(options.group_no){
+    	self.data.group_no=options.group_no;
+    	self.setData({
+    		web_group_no:self.data.group_no
+    	})
+    };
+     if(options.group_no){
+    	self.data.user_no=options.user_no;
+    	self.setData({
+    		web_user_no:self.data.user_no
+    	})
+    };
+
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.setData({
+
       fonts:app.globalData.font,
       web_buyType:self.data.buyType
     });
     getApp().globalData.address_id = '';
     self.getOrderData();
+    
   },
 
  
