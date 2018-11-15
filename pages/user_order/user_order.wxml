@@ -1,18 +1,18 @@
 <!--index3.wxml-->
 <view class="tab font30 flexRowBetween color6">
-    <view class="tab_item " data-num="0" bindtap="menuClick">
+    <view class="tab_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 0?'tab_this':''}}">全部</text>
     </view>
-    <view class="tab_item " data-num="1" bindtap="menuClick">
+    <view class="tab_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 1?'tab_this':''}}">待付款</text>
     </view>
-    <view class="tab_item" data-num="2" bindtap="menuClick">
+    <view class="tab_item" data-num="2" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 2?'tab_this':''}}">待收货</text>
     </view>
-    <view class="tab_item" data-num="3" bindtap="menuClick">
+    <view class="tab_item" data-num="3" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 3?'tab_this':''}}">已完成</text>
     </view>
-    <view class="tab_item" data-num="4" bindtap="menuClick">
+    <view class="tab_item" data-num="4" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 4?'tab_this':''}}">已取消</text>
     </view>
 </view>
@@ -43,11 +43,12 @@
             </view>
         </block>
         <view class="order_handle">
+            <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
             <view class="submit_info font28" data-id="{{item.id}}" data-price="{{item.price}}" bindtap="pay" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">去支付</view>  
-            <view class="submit_info font28" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'}}">取消订单</view>
-            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/commentOrder/commentOrder" wx:if="{{item.pay_status == '1'&&item.item[0].isremark!='0'&&item.order_step == '1'}}">去评价</view>
+            <view class="submit_info font28" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'||item.pay_status == '1'&&item.order_step == '1'}}">删除订单</view>
+            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.order_step == '0'}}">去评价</view>
             <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
-            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow" wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">查看物流</view>
+            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow" wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
         </view>
     </view>
 </block>

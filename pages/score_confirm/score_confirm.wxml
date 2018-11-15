@@ -1,0 +1,54 @@
+<!--index3.wxml-->
+<view class="manage w710 flex" wx:if="{{web_addressData.name}}">
+    <view class="manage_cont" bindtap="intoPath" data-path="/pages/user_address/user_address">
+        <view class="user_address flex color3">
+            <view class="address_left flex">
+                <image src="/images/navbar4-a.png"></image>{{web_addressData.name}}
+            </view>
+            <view class="address_right">
+                {{web_addressData.phone}}
+            </view>
+        </view>
+        <view class="address_infor flex">
+            <view class="infor_left flex"><image src="/images/user_icon10.png"></image></view>
+            <view class="infor_right avoidOverflow">{{web_addressData.province+web_addressData.city+web_addressData.country+web_addressData.detail}}</view>
+            <view class="next_page flex"><image src="/images/next_page.png"></image></view>
+        </view>
+    </view>
+</view>
+<view class="confirm"  style="display:flex;align-items:center;border-bottom:solid 1px #ececec" bindtap="intoPath" data-path="/pages/user_address/user_address" wx:else>
+    <view class="order_user color3"  style="padding:0 50rpx" >
+        <view class="order_left" >
+            请选择收货地址
+        </view>
+    </view>
+    <view class="next_page" style="text-align:center;margin-left:360rpx" >
+        <image src="/images/next_page.png"></image>
+    </view>
+</view>
+
+<view class="product">
+
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="{{web_mainData.mainImg[0].url}}"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top">{{web_mainData.title}}</view>
+                <view class="font24 color9 product_top">类型一</view>
+                <view class="product_top flex">
+                    <view class="font30 color6 product_number">X{{web_mainData.count}}</view>
+                    <view class="font30 product_price color">¥{{web_mainData.price}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+
+<view class="confirm_btn flex font30">
+   <view class="confirm_left color">合计: ¥{{web_mainData.price}}</view> 
+   <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
+</view>

@@ -160,15 +160,7 @@
             <image src="/images/next_page.png"></image>
         </view>
     </view>
-    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_account/user_account">
-        <view class="user_left flexRowBetween">
-            <image src="/images/user_icon11.png"></image>
-            <text>账户信息</text>
-        </view>
-        <view class="next_page">
-            <image src="/images/next_page.png"></image>
-        </view>
-    </view>
+
     <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/login/login" style="margin-top: 20rpx;">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon12.png"></image>

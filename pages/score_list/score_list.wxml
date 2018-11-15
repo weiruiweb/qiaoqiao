@@ -10,12 +10,11 @@
 
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/score_detail/score_detail?id={{item.id}}">
         <image src="{{item.mainImg[0].url}}"></image>
         <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
         <view class="product_pro font28 flex">
-          <view class="color price">¥{{item.price}}</view>
-          <view class="color6 font22 time">开始时间:{{item.create_time}}</view>
+          <view class="color price">{{item.price}}积分</view>
         </view>
     </view>
   </block>

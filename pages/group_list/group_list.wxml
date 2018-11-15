@@ -1,4 +1,5 @@
 <!--userPoster.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
 <view class="w710">
 	<view id="sort" class="flex">
 		<view class="search flex">
@@ -15,7 +16,7 @@
         <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
         <view class="product_pro font28 flex">
           <view class="color price">¥{{item.price}}</view>
-          <view class="color6 font22 time">开始时间:{{item.create_time}}</view>
+          <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
         </view>
     </view>
   </block>

@@ -133,7 +133,7 @@ Page({
         token:wx.getStorageSync('token'),
         sku:self.data.mainData,
         pay:{
-          balance:self.data.totalPrice.toFixed(2),
+          wxPay:self.data.totalPrice.toFixed(2),
         },
         snap_address:self.data.submitData,
         passage2:self.data.code,
@@ -185,22 +185,23 @@ Page({
       searchItem:{
         id:order_id
       },
-      balance:self.data.totalPrice.toFixed(2),
-      
+      wxPay:self.data.totalPrice.toFixed(2),
+      wxPayStatus:0
     };
     const callback = (res)=>{
       wx.hideLoading();
       if(res.solely_code==100000){
         
-        self.show();
-         /*const payCallback=(payData)=>{
+        
+         const payCallback=(payData)=>{
           if(payData==1){
+            self.show();
             setTimeout(function(){
               api.pathTo('/pages/user_order/user_order','redi');
-            },800)  
+            },1000)  
           };   
         };
-        api.realPay(res.info,payCallback); */  
+        api.realPay(res.info,payCallback);   
       }else{
         api.showToast('支付失败','none')
       }

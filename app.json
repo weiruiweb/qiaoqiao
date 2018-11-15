@@ -26,7 +26,10 @@
     "pages/user_order_code/user_order_code",
     "pages/order_delivery/order_delivery",
     "pages/order_get/order_get",
-    "pages/group_list/group_list"
+    "pages/group_list/group_list",
+    "pages/score_list/score_list",
+    "pages/score_detail/score_detail",
+    "pages/score_confirm/score_confirm"
   ],
   "window": {
     "backgroundTextStyle": "light",

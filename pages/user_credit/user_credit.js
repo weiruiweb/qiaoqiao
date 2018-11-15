@@ -115,7 +115,7 @@ Page({
     this.setData({
       ['web_'+label]: e.detail.value
     });
-    self.data[label+'stap'] = new Date(self.data.date+' '+e.detail.value).getTime();
+    self.data[label+'stap'] = new Date(self.data.date+' '+e.detail.value).getTime()/1000;
     if(self.data.endTimestap&&self.data.startTimestap){
       self.data.searchItem.create_time = ['between',[self.data.startTimestap,self.data.endTimestap]];
     }else if(self.data.startTimestap){

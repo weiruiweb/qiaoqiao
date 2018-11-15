@@ -1,0 +1,156 @@
+/***********************限时请购**************************/
+page{
+	width:100%;
+	min-height: 100%;
+	background: #f1eff6;
+}
+.recommend{
+	width:100%;
+
+}
+.recommend_left{
+	width:48.5%;
+	height: 100%;
+	background: #f7f7f7;
+	border-radius: 10rpx;
+	border:solid 1px #e0e0e0;
+	margin-bottom: 20rpx;
+}
+.content_box{
+	padding-top: 20rpx;
+	border-radius: 10rpx;
+}
+.title{
+	height:90rpx;
+	width:100%;
+	position: relative;
+}
+.more{
+	position: absolute;
+	right: 20rpx;
+	top:10rpx;
+	height:50rpx;
+	line-height: 50rpx;
+}
+.product{
+	height:208rpx;
+	border-bottom:solid 1px #515151;
+}
+.product_box{
+	width:100%;
+	height:156rpx;
+
+}
+.product_detail{
+	width:100%;
+	height:150rpx;
+}
+.product_left{
+	width:31.5%;
+	height:100%;
+}
+.product_left image{
+	width:194rpx;
+	height:156rpx;
+	border-radius: 10rpx;
+}
+.product_right{
+	width:68.5%;
+	height:100%;
+}
+.product_price{
+	width:100%;
+}
+.test{
+	height:100%;
+	display:flex;
+	flex-flow: row wrap;
+	align-content:space-between;
+}
+.product_name{
+	width:60%
+}
+
+.product_name1{
+	height:66rpx;
+	line-height: 66rpx;
+	width:96%;
+	padding: 0 2%;
+}
+.product_date{
+	width:40%;
+	text-align:right;
+}
+.recommend_left image{
+	width:100%;
+	height:280rpx;
+	border-radius: 10rpx 10rpx 0 0;
+}
+.product_pro{
+	margin-bottom: 10rpx;
+}
+.product_pro .price{
+	width:24%;
+	padding: 0 2%;
+	text-align:left;
+}
+.product_pro .time{
+	width:68%;
+	margin-right: 2%;
+	text-align: right;
+}
+.product_item{
+	height: 436rpx;
+}
+.sort_icon image{
+	width:32rpx;
+	height:24rpx;
+}
+
+#sort{
+	height:90rpx;
+}
+.sort_icon{
+	width:15%;
+	text-align: center;
+}
+.search{
+	width:85%;
+}
+.search input{
+	width:94%;
+	padding:0 3%;
+	border-radius: 20rpx;
+	background: #fff;
+}
+.menu{
+	width:220rpx;
+	min-height: 100%;
+	background: #f1eff6;
+	position:absolute;
+	left:-220rpx;
+	transition:all 1s;
+	z-index:999;
+	border-top:solid 1px #e0e0e0;
+	margin-top: 30rpx;
+}
+.menu_item{
+	width:100%;
+	text-align: center;
+	height:70rpx;
+	line-height:70rpx;
+	border-bottom:solid 1px #e0e0e0;
+	font-size: 24rpx;
+}
+.active{
+	height:100rpx;line-height: 100rpx;background: #e5747c;color:#fff
+}
+.sildeIn{
+	transition:all 1s;
+	transform:translateX(220rpx);
+
+}
+.slideOut{
+	transition:all 1s 0.5s;
+	transform:translateX(-220rpx);
+}

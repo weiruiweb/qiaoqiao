@@ -15,6 +15,7 @@ Page({
       type:1,
       status:['in',[0,1]]
     },
+    buttonClicked:false
   },
 
 
@@ -26,7 +27,10 @@ Page({
     };
     if(options.num){
       self.changeSearch(options.num)
-    }
+    };
+    wx.showShareMenu({
+      withShareTicket: true
+    });
     this.setData({
       fonts:app.globalData.font
     });
@@ -43,7 +47,10 @@ Page({
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
-    postData.searchItem = api.cloneForm(self.data.searchItem)
+    postData.searchItem = api.cloneForm(self.data.searchItem);
+    postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.searchItem.type = 1;
+    postData.searchItem.status = ['in',[0,1]]
     postData.order = {
       create_time:'desc'
     }
@@ -57,6 +64,7 @@ Page({
         };
         wx.hideLoading();
         self.setData({
+          buttonClicked:false,
           web_mainData:self.data.mainData,
         });  
       }else{
@@ -120,6 +128,9 @@ Page({
 
   menuClick: function (e) {
     const self = this;
+    self.setData({
+      buttonClicked:true
+    });
     const num = e.currentTarget.dataset.num;
     self.changeSearch(num);
   },
@@ -129,7 +140,7 @@ Page({
     this.setData({
       num: num
     });
-
+    self.data.searchItem = {}
     if(num=='0'){
 
     }else if(num=='1'){
@@ -141,10 +152,10 @@ Page({
       self.data.searchItem.order_step = '0';
     }else if(num=='3'){
       self.data.searchItem.pay_status = '1';
-      self.data.searchItem.transport_status = '1';
+      self.data.searchItem.transport_status = '2';
       self.data.searchItem.order_step = '0';
     }else if(num=='4'){
-      self.data.searchItem.order_step = '3';
+      self.data.searchItem.order_step = '2';
     }
     self.setData({
       web_mainData:[],
@@ -159,6 +170,50 @@ Page({
       self.data.paginate.currentPage++;
       self.getMainData();
     };
+  },
+
+  onShareAppMessage(res,e){
+    const self = this;
+    var id = api.getDataSet(e,'id');
+    var group_no = api.getDataSet(e,'group_no');
+     console.log(res)
+      if(res.from == 'button'){
+        self.data.shareBtn = true;
+      }else{   
+        self.data.shareBtn = false;
+      }
+      return {
+        title: '巧巧爱家',
+        path: 'pages/detail/detail?group_no='+group_no+'&&id='+id,
+        success: function (res){
+          console.log(res);
+          console.log(parentNo)
+          if(res.errMsg == 'shareAppMessage:ok'){
+            console.log('分享成功')
+            if (self.data.shareBtn){
+              if(res.hasOwnProperty('shareTickets')){
+              console.log(res.shareTickets[0]);
+                self.data.isshare = 1;
+              }else{
+                self.data.isshare = 0;
+              }
+            }
+          }else{
+            wx.showToast({
+              title: '分享失败',
+            })
+            self.data.isshare = 0;
+          }
+        },
+        fail: function(res) {
+          console.log(res)
+        }
+      }
+  },
+
+   intoPath(e){
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
   intoPathRedirect(e){

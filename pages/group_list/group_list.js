@@ -44,12 +44,14 @@ Page({
 
   getMainData(isNew){
     const self = this;
+    var nowTime = Date.parse(new Date());
     if(isNew){
       api.clearPageIndex(self); 
     };
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
+      deadline:['>',nowTime],
       thirdapp_id:getApp().globalData.thirdapp_id,
       is_group:1
     };
@@ -67,6 +69,14 @@ Page({
       });  
     };
     api.skuGet(postData,callback);
+  },
+
+  onReachBottom() {
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
   },
 
 

@@ -7,6 +7,7 @@ const token = new Token();
 
 Page({
   data: {
+    groupData:[],
     mainData:[],
     labelData:[],
     indicatorDots: true,
@@ -109,12 +110,22 @@ Page({
     };
     postData.order = {
       create_time:'normal'
-    }
+    };
+    postData.getBefore = {
+      label:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['商品类别']],
+        },
+        middleKey:'parentid',
+        key:'id',
+        condition:'in'
+      },
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.labelData.push.apply(self.data.labelData,res.info.data);
       }else{
-        self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
       }
       console.log(self.data.labelData)
@@ -128,6 +139,7 @@ Page({
 
   getMainData(isNew,currentId){
     const self = this;
+    var nowTime = Date.parse(new Date());
     if(isNew){
       api.clearPageIndex(self); 
     };
@@ -141,6 +153,9 @@ Page({
       sku:{
         tableName:'sku',
         middleKey:'product_no',
+        searchItem:{
+          deadline:['>',nowTime]
+        },
         key:'product_no',
         condition:'=',
       } 
@@ -148,21 +163,33 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         for (var i = 0; i < res.info.data.length; i++) {
+
             self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
-        };    
+        };
+        for (var i = 0; i < self.data.mainData.length; i++) {
+          if(self.data.mainData[i].is_group==1){
+            self.data.groupData.push(self.data.mainData[i])
+          }
+          console.log(self.data.groupData)
+        }; 
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
       };
       wx.hideLoading();
-      console.log(self.data.mainData)
+      
       self.setData({
-
+        web_groupData:self.data.groupData[0],
         web_mainData:self.data.mainData,
       });  
+      self.countDown()
     };
     api.productGet(postData,callback);
   },
+
+
+
+
 
   getNoticeData(){
     const self = this;
@@ -191,6 +218,46 @@ Page({
     };
     api.articleGet(postData,callback);
   },
+
+
+
+    countDown(){
+      const self = this;
+      
+      var timer=null;
+      console.log(parseInt(self.data.groupData[0].deadline))
+      console.log(parseInt(Date.parse(new Date())))
+      var times = (parseInt(self.data.groupData[0].deadline)-parseInt(Date.parse(new Date())))/1000;
+      timer=setInterval(function(){
+        var day=0,
+          hour=0,
+          minute=0,
+          second=0;//时间默认值       
+        if(times > 0){
+          day = Math.floor(times / (60 * 60 * 24));
+          hour = Math.floor(times / (60 * 60)) - (day * 24);
+          minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+        }
+        if (day <= 9) day = '0' + day;
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        //
+        console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+        times--;
+          self.setData({
+            web_day:day,
+            web_hour:hour,
+            web_minute:minute,
+            web_second:second
+          })
+      },1000);
+      if(times<=0){
+        clearInterval(timer);
+      }
+
+    },
 
 
   intoPath(e){

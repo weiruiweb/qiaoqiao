@@ -23,14 +23,6 @@
 		<view class="font28 color6" style="margin-top: 20rpx;">
 			{{web_mainData.title}}
 		</view>
-		<view class="product_time flexRowBetween">
-			<view class="font24 color9">
-				开始时间：2018-08-30
-			</view>
-			<view class="font24 color9">
-				结束时间：2018-08-30
-			</view>
-		</view>
 	</view>
 	<view class="choose flexRowBetween" style="margin-top: 20rpx;">
 		<view class="choose_left font28" style="width:80%;overflow:hidden;">
@@ -68,63 +60,27 @@
 		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
 			<view class="good_com flexRowBetween">
 				<view class="comment_number">
-					评价(120)
-				</view>
-				<view class="good_percent">
-					<text>好评率</text>
-					<text class="percent">99%</text>
-					<image src="/images/next_page.png"></image>
+					评价({{web_count}})
 				</view>
 			</view>
-			<view class="comment_list ">
-				<view class="flexRowBetween" style="align-items:center;">
-					<view class="comment_user" style="display:flex;align-items:center;">
-						<view class="user_img">
-							<image src="/images/menu3.png"></image>
-						</view>
-						<view class="txts" style="height:58rpx;">
-							<view class="text1">米桃子</view>
-							<view class="text2">2015.3.2</view>
+			<block wx:for="{{web_messageData}}">
+				<view class="comment_list ">
+					<view class="flexRowBetween" style="align-items:center;">
+						<view class="comment_user" style="display:flex;align-items:center;">
+							<view class="user_img">
+								<image src="{{item.user[0].headImgUrl}}"></image>
+							</view>
+							<view class="txts" style="height:58rpx;">
+								<view class="text1">{{item.user[0].nickname}}</view>
+								<view class="text2">{{item.create_time}}</view>
+							</view>
 						</view>
 					</view>
-				</view>
-				<view class="comment_cont">
-					很满意的一次购物很满意的一次购物很满意的一次购物
-					很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物很满意的一次购物
-				</view>
-			</view>
-			<view class="comment_list ">
-				<view class="flexRowBetween"  style="align-items:center;">
-					<view class="comment_user" style="display:flex;align-items:center;">
-						<view class="user_img">
-							<image src="/images/menu3.png"></image>
-						</view>
-						<view class="txts" style="height:58rpx;">
-							<view class="text1">米桃子</view>
-							<view class="text2">2015.3.2</view>
-						</view>
+					<view class="comment_cont">
+						{{item.content}}
 					</view>
 				</view>
-				<view class="comment_cont">
-					很满意的一次购物很满意的一次购物很满意的一次购物
-				</view>
-			</view>
-			<view class="comment_list ">
-				<view class="flexRowBetween"  style="align-items:center;">
-					<view class="comment_user" style="display:flex;align-items:center;">
-						<view class="user_img">
-							<image src="/images/menu3.png"></image>
-						</view>
-						<view class="txts" style="height:58rpx;">
-							<view class="text1">米桃子</view>
-							<view class="text2">2015.3.2</view>
-						</view>
-					</view>
-				</view>
-				<view class="comment_cont">
-					很满意的一次购物很满意的一次购物很满意的一次购物
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 </view>
@@ -144,9 +100,9 @@
 			<view class="shoppingCart color1" bindtap="selectModel" data-type="addCart" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
 			</view>
-			<view class="go_pay color1" bindtap="{{web_skuData.is_group=='1'?'goBuy':'selectModel'}}" data-type="buy" style="{{web_skuData.is_group=='1'?'width:100%':''}}">
+			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='1'?'goBuy':'selectModel'}}" data-type="buy" style="{{web_skuData.is_group=='1'?'width:100%':''}}">
 				立即购买
-			</view>
+			</button>
 		</view>
 	</view>
 </view>
@@ -159,7 +115,7 @@
 			<view class="product_txt">
 				<view class="pro_name">{{web_skuData.title}}</view>
 				<view class="pro_type">
-					个性化定制
+					{{web_skuData.description}}
 				</view>
 				<view class="price_choose">
 				￥{{web_totalPrice?web_totalPrice:web_skuData.price}}

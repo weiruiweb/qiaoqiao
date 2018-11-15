@@ -238,10 +238,10 @@ Page({
       searchItem:{
         id:order_id,
       },
-      balance:self.data.totalPrice.toFixed(2),
-     
+      wxPay:self.data.totalPrice.toFixed(2),
+      wxPayStatus:0 
     };
-    if(self.data.couponData.length>0){
+    if(self.data.couponData.discount>0){
        postData.coupon = {
         coupon_no:self.data.couponNo,
         price:self.data.couponPrice.toFixed(2)
@@ -253,15 +253,14 @@ Page({
     const callback = (res)=>{
       wx.hideLoading();
       if(res.solely_code==100000){
-        api.showToast('支付成功','none')
-         /*const payCallback=(payData)=>{
+         const payCallback=(payData)=>{
           if(payData==1){
             setTimeout(function(){
               api.pathTo('/pages/user_order/user_order','redi');
             },800)  
           };   
         };
-        api.realPay(res.info,payCallback); */  
+        api.realPay(res.info,payCallback);   
       }else{
         api.showToast('支付失败','none')
       }

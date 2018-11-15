@@ -9,6 +9,7 @@ Page({
 
 
   data: {
+    messageData:[],
     mainData:[],
     chooseId:[],
     tabCurrent:0,
@@ -30,7 +31,7 @@ Page({
   onLoad(options){
     const self = this;
     console.log(self.data.skuData);
-    
+    self.data.paginate = getApp().globalData.paginate;
     wx.showLoading();
     if(!wx.getStorageSync('token')){
       var token = new Token();
@@ -44,7 +45,7 @@ Page({
       self.data.id = options.id
     };
     self.getMainData();
-    
+    self.getMessageData();
     if(wx.getStorageSync('collectData')[self.data.id]){
       self.setData({
         url: '/images/collect_active.png',
@@ -231,18 +232,22 @@ Page({
 
   goBuy(){
     const self = this;
-    const skuDatas = [];
-    skuDatas.push({
-      id:self.data.id,
-      count:self.data.count
-    });
-    console.log(skuDatas);
-    if(self.data.skuData.id !=''&&self.data.skuData.id !=undefined){
-      wx.setStorageSync('payPro',skuDatas);
-      api.pathTo('/pages/order_confirm/order_confirm','nav')
-    }else{
-      api.showToast('请完善信息','none')
-    }
+    const callback = (user,res) =>{ 
+      const skuDatas = [];
+      skuDatas.push({
+        id:self.data.id,
+        count:self.data.count
+      });
+      console.log(skuDatas);
+      if(self.data.skuData.id !=''&&self.data.skuData.id !=undefined){
+        wx.setStorageSync('payPro',skuDatas);
+        api.pathTo('/pages/order_confirm/order_confirm','nav')
+      }else{
+        api.showToast('请完善信息','none')
+      }
+    };
+    api.getAuthSetting(callback);
+
 
   },
 
@@ -250,61 +255,65 @@ Page({
 
   chooseSku(e){
     const self = this;
-    if(self.data.buttonClicked){
-      api.showToast('数据有误请稍等','none');
-      setTimeout(function(){
-        wx.showLoading();
-      },800)   
-      return;
-    };
-    self.data.skuData = {};
-    self.data.id = '';
-    
-    self.data.count = 1;
-    delete self.data.totalPrice;
-    var id = api.getDataSet(e,'id');
-    
-    if(self.data.choose_sku_item.indexOf(id)==-1){
-      return;
-    };
-    self.data.choose_sku_item = [];
-    var parentid = api.getDataSet(e,'parentid');
-    var sku = self.data.mainData.label[parentid];
-
-    for(var i=0;i<sku.child.length;i++){
-      if(self.data.sku_item.indexOf(sku.child[i].id)!=-1){
-        self.data.sku_item.splice(self.data.sku_item.indexOf(sku.child[i].id), 1);
+    const callback = (user,res) =>{ 
+        if(self.data.buttonClicked){
+        api.showToast('数据有误请稍等','none');
+        setTimeout(function(){
+          wx.showLoading();
+        },800)   
+        return;
       };
-      self.data.choose_sku_item.push(sku.child[i].id);
-    };
+      self.data.skuData = {};
+      self.data.id = '';
+      
+      self.data.count = 1;
+      delete self.data.totalPrice;
+      var id = api.getDataSet(e,'id');
+      
+      if(self.data.choose_sku_item.indexOf(id)==-1){
+        return;
+      };
+      self.data.choose_sku_item = [];
+      var parentid = api.getDataSet(e,'parentid');
+      var sku = self.data.mainData.label[parentid];
 
+      for(var i=0;i<sku.child.length;i++){
+        if(self.data.sku_item.indexOf(sku.child[i].id)!=-1){
+          self.data.sku_item.splice(self.data.sku_item.indexOf(sku.child[i].id), 1);
+        };
+        self.data.choose_sku_item.push(sku.child[i].id);
+      };
+
+      
+      for (var i = 0; i < self.data.mainData.sku.length; i++) {
+        if(self.data.mainData.sku[i].sku_item.indexOf(parseInt(id))!=-1){
+          self.data.choose_sku_item.push.apply(self.data.choose_sku_item,self.data.mainData.sku[i].sku_item);  
+        };
+      };
+
+      for(var i=0;i<self.data.sku_item.length;i++){
+        if(self.data.choose_sku_item.indexOf(parseInt(self.data.sku_item[i]))==-1){
+          self.data.sku_item.splice(i, 1); 
+        };
+      };
+      self.data.sku_item.push(id);
+
+      for(var i=0;i<self.data.mainData.sku.length;i++){ 
+        if(JSON.stringify(self.data.mainData.sku[i].sku_item.sort())==JSON.stringify(self.data.sku_item.sort())){
+          self.data.id = self.data.mainData.sku[i].id;
+          self.data.skuData = api.cloneForm(self.data.mainData.sku[i]);
+        };   
+      };
+      self.setData({
+        web_totalPrice:'',
+        web_count:self.data.count,
+        web_sku_item:self.data.sku_item,
+        web_skuData:self.data.skuData,
+        web_choose_sku_item:self.data.choose_sku_item,
+      });
+    };
+    api.getAuthSetting(callback);
     
-    for (var i = 0; i < self.data.mainData.sku.length; i++) {
-      if(self.data.mainData.sku[i].sku_item.indexOf(parseInt(id))!=-1){
-        self.data.choose_sku_item.push.apply(self.data.choose_sku_item,self.data.mainData.sku[i].sku_item);  
-      };
-    };
-
-    for(var i=0;i<self.data.sku_item.length;i++){
-      if(self.data.choose_sku_item.indexOf(parseInt(self.data.sku_item[i]))==-1){
-        self.data.sku_item.splice(i, 1); 
-      };
-    };
-    self.data.sku_item.push(id);
-
-    for(var i=0;i<self.data.mainData.sku.length;i++){ 
-      if(JSON.stringify(self.data.mainData.sku[i].sku_item.sort())==JSON.stringify(self.data.sku_item.sort())){
-        self.data.id = self.data.mainData.sku[i].id;
-        self.data.skuData = api.cloneForm(self.data.mainData.sku[i]);
-      };   
-    };
-    self.setData({
-      web_totalPrice:'',
-      web_count:self.data.count,
-      web_sku_item:self.data.sku_item,
-      web_skuData:self.data.skuData,
-      web_choose_sku_item:self.data.choose_sku_item,
-    });
     
   },
 
@@ -352,6 +361,56 @@ Page({
       }
   },
 
+  getMessageData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self); 
+    };
+    const postData = {};
+    postData.paginate = api.cloneForm(self.data.paginate);
+    postData.token = wx.getStorageSync('token');
+    postData.searchItem = {
+      relation_id:self.data.id,
+      type:2
+    };
+    postData.order = {
+      create_time:'desc'
+    };
+    postData.getAfter = {
+      user:{
+        tableName:'user',
+        middleKey:'user_no',
+        key:'user_no',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.messageData.push.apply(self.data.messageData,res.info.data);
+      }else{
+        self.data.isLoadAll = true;
+      
+      };
+      wx.hideLoading();
+      self.setData({
+        web_count:self.data.messageData.length,
+        web_messageData:self.data.messageData,
+      });  
+    };
+    api.messageGet(postData,callback);
+  },
+
+  onReachBottom() {
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+  },
+
 
 
   checkLoadComplete(){
@@ -361,6 +420,14 @@ Page({
       wx.hideLoading();
       self.data.buttonClicked = false;
     };
+  },
+
+  select_this(e){
+    const self = this;
+    self.data.tabCurrent = api.getDataSet(e,'current');
+    self.setData({
+      tabCurrent:self.data.tabCurrent
+    })
   },
 
   intoPath(e){

@@ -39,18 +39,19 @@
             <view class="group flex">
                 <view class="group_left color" style="font-size:30rpx">今日团购</view>
                 <view class="group_right flexRowBetween">
-                    <view class="time1">02</view> <view class="time_center flex">:</view>
-                    <view class="time1">02</view> <view  class="time_center flex">:</view>
-                    <view class="time1">56</view>
+                  <view class="time1">{{web_day}}</view> <view class="time_center flex">:</view>
+                    <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
+                    <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
+                    <view class="time1">{{web_second}}</view>
                 </view>
             </view>
         </view>
-        <image src="/images/index1.png"></image>
-        <view class="font28"><text class="font24 color6"></text>名称名称<text class="color font30"> ¥89</text></view>
+        <image src="{{web_groupData.mainImg[0].url}}"></image>
+        <view class="font28"><text class="font24 color6"></text>{{web_groupData.title}}<text class="color font30"> ¥{{web_groupData.price}}</text></view>
       </view>
     </view>
     <view class="great_right">
-      <view class="great_top" style="border-bottom: solid 1px #e0e0e0">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/product_list/product_list">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">人气美妆区</view>
@@ -72,7 +73,7 @@
             </view>
         </view>
       </view>
-      <view class="great_top">
+      <view class="great_top" bindtap="intoPath" data-path="/pages/product_list/product_list">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">休闲食品区</view>
@@ -125,7 +126,7 @@
           </view>
         </view>
       </view>
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount">
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/score_list/score_list">
         <image src="/images/discout2.png" class="img_bg"></image>
         <view class="activty flex">
           <view class="activty_cont flex">
@@ -133,7 +134,7 @@
                   <image src="/images/discount_icon2.png"></image>
             </view>
             <view class="activty_left activty_right">
-               <view class="font32  color1">相关内容</view>
+               <view class="font32  color1">积分兑换  </view>
                <view class="font28 member_in  color1">了解更多</view>
             </view>
           </view>
@@ -151,15 +152,14 @@
         </view>
         <view class="flexRowBetween" style="flex-wrap: wrap">
           <block wx:for="{{web_mainData}}" wx:key="id">
-            <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+            <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" wx:if="{{item.is_group==0}}">
                 <image src="{{item.mainImg[0].url}}"></image>
                 <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
-                <view class="product_pro font28 flex">
-                  <view class="color price">¥{{item.price}}</view>
-                  <view class="color6 font22 time">开始时间:{{item.create_time}}</view>
+                <view class="product_pro font28 flex" >
+                  <view class="color price" style="width:100%">¥{{item.price}}</view>
                 </view>
                 <view class="product_pro font28 flex">
-                  <view class="color6 price font22">销量:222</view>
+                  <view class="color6 price font22">销量:{{item.saleNum}}</view>
                   <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
                 </view>
             </view>

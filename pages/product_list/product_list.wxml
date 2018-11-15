@@ -1,4 +1,5 @@
 <!--userPoster.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
 <view class="w710">
 	<view id="sort" class="flex">
 		<view class="sort_icon" bindtap="sort_show">
@@ -11,20 +12,20 @@
 	</view>
 </view>
 <view class="menu {{isShow?'sildeIn':'slideOut'}}" >
-	<view class="menu_item  {{web_currentId==0?'active':''}}" catchtap="menuTap" data-id="0">全部</view>
+	<view class="menu_item  {{web_currentId==0?'active':''}}" bindtap="{{!buttonClicked?'menuTap':''}}" data-id="0">全部</view>
   <block wx:for="{{web_labelData}}" wx:key="id">
-	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" catchtap="menuTap">{{item.title}}</view>
+	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" bindtap="{{!buttonClicked?'menuTap':''}}">{{item.title}}</view>
   </block>
 </view>
 
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" wx:if="{{item.is_group==0}}"> 
         <image src="{{item.mainImg[0].url}}"></image>
         <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
         <view class="product_pro font28 flex">
           <view class="color price">¥{{item.price}}</view>
-          <view class="color6 font22 time">开始时间:{{item.create_time}}</view>
+          <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
         </view>
     </view>
   </block>

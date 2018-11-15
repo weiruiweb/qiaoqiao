@@ -10,7 +10,7 @@ const token = new Token();
 Page({
   
   data: {
-  
+    groupData:[],
     labelData:[],
     mainData:[],
     currentId:0,
@@ -19,7 +19,7 @@ Page({
       item:''
     },
     isShow:false,
-  
+    buttonClicked:false
   },
   
   onLoad(options) {
@@ -55,6 +55,7 @@ Page({
     var currentId = e.currentTarget.dataset.id;
     delete self.data.id;
     self.setData({
+      buttonClicked: true,
       web_currentId:currentId,
     });
     console.log(currentId)
@@ -65,6 +66,7 @@ Page({
 
   getMainData(isNew,currentId){
     const self = this;
+    var nowTime = Date.parse(new Date());
     if(isNew){
       api.clearPageIndex(self); 
     };
@@ -84,6 +86,9 @@ Page({
       sku:{
         tableName:'sku',
         middleKey:'product_no',
+        searchItem:{
+          deadline:['>',nowTime]
+        },
         key:'product_no',
         condition:'=',
       } 
@@ -93,8 +98,7 @@ Page({
         for (var i = 0; i < res.info.data.length; i++) {
             self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
         }
-        console.log(self.data.index)
-        
+ 
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
@@ -103,7 +107,8 @@ Page({
       console.log(self.data.mainData)
       self.setData({
 
-        web_mainData:self.data.mainData,
+        buttonClicked: false,
+        web_mainData:self.data.mainData
       });  
     };
     api.productGet(postData,callback);
@@ -119,9 +124,21 @@ Page({
     };
     postData.order = {
       create_time:'normal'
-    }
+    };
+    postData.getBefore = {
+      label:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['商品类别']],
+        },
+        middleKey:'parentid',
+        key:'id',
+        condition:'in'
+      },
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
+
         self.data.labelData.push.apply(self.data.labelData,res.info.data);
       }else{
         self.data.isLoadAll = true;
@@ -136,6 +153,32 @@ Page({
     };
     api.labelGet(postData,callback);   
   },
+
+  onReachBottom() {
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+  },
+
+  changeBind(e){
+    const self = this;
+    api.fillChange(e,self,'sForm');
+    console.log(self.data.sForm);
+    if(self.data.sForm.item){
+      self.data.searchItem.title = ['LIKE',['%'+self.data.sForm.item+'%']],
+      self.data.searchItemOr.description = ['LIKE',['%'+self.data.sForm.item+'%']],
+      self.data.labelData = [],
+      self.getLabelData(true)
+    }else if(self.data.sForm.item==''){
+      delete self.data.searchItem.title,
+      delete self.data.searchItemOr.description,
+      self.data.labelData = [],
+      self.getLabelData(true)
+    }
+  },
+
 
 
 

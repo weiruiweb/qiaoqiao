@@ -1,0 +1,90 @@
+<!--detail.wxml-->
+
+<wxs module="func" src="../../utils/func.wxs" />
+<view id="details">
+<view class="banner">
+	<image src="/images/index1.png"></image>
+</view>
+<view class="detail">
+	<view class="product_top">
+		<view class="price_sale flexRowBetween">
+			<view class="price_left flex">
+				<view class="price color">
+					￥{{web_mainData.price}}元
+				</view>
+				<view  class="font24 color6" style="margin-left: 20rpx;">
+					销量:111
+				</view>
+			</view>
+			<view class="sale">
+				包邮
+			</view>
+		</view>
+		<view class="font28 color6" style="margin-top: 20rpx;">
+			{{web_mainData.title}}
+		</view>
+
+	</view>
+
+	<view class="detail_comment flexRowBetween">
+		<view class="detail  {{tabCurrent == 0?'detail_select':''}}" data-current="0" bindtap="select_this">
+			详情
+		</view>
+		<view class="comment {{tabCurrent == 1?'detail_select':''}}"  data-current="1" bindtap="select_this">
+			评价
+		</view>
+	</view>
+	<view class="detail_show">
+		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
+			<image src="/images/banner.png"></image>
+		</view>
+		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
+			<view class="good_com flexRowBetween">
+				<view class="comment_number">
+					评价({{web_count}})
+				</view>
+			</view>
+			<block wx:for="{{web_messageData}}">
+				<view class="comment_list ">
+					<view class="flexRowBetween" style="align-items:center;">
+						<view class="comment_user" style="display:flex;align-items:center;">
+							<view class="user_img">
+								<image src="{{item.user[0].headImgUrl}}"></image>
+							</view>
+							<view class="txts" style="height:58rpx;">
+								<view class="text1">{{item.user[0].nickname}}</view>
+								<view class="text2">{{item.create_time}}</view>
+							</view>
+						</view>
+					</view>
+					<view class="comment_cont">
+						{{item.content}}
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>
+<view class="{{isShow?'mask':''}}"></view>
+</view>
+<view id="buy">
+	<view class="buy_click">
+		<view class="consult">
+			<image src="/images/kefu.png"></image>
+			<view class="text1">客服</view>
+		</view>
+		<view class="consult collect" bindtap="collect">
+			<image src="{{url}}"></image>
+			<view class="text1">收藏</view>
+		</view>
+		<view class="go_buy flexRowBetween">
+			
+			<view class="go_pay color1" bindtap="intoPath" data-path="/pages/score_confirm/score_confirm?id={{web_mainData.id}}" style="width:100%">
+				立即购买
+			</view>
+		</view>
+	</view>
+</view>
+
+
+

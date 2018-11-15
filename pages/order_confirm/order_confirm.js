@@ -89,9 +89,6 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.orderData.push.apply(self.data.orderData,res.info.data);
-      }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','none');
       }
       self.data.complete_api.push('getOrderData')
       self.setData({
