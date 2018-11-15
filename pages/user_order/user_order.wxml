@@ -43,7 +43,7 @@
             </view>
         </block>
         <view class="order_handle">
-            <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
+            <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='4'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
             <view class="submit_info font28" data-id="{{item.id}}" data-price="{{item.price}}" bindtap="pay" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">去支付</view>  
             <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='5'}}">已成团</view>
             <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='4'}}">未成团</view>  

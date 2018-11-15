@@ -234,7 +234,8 @@ Page({
           balance:self.data.totalPrice.toFixed(2),
         },
         data:{
-        	passage3:self.data.user_no?self.data.user_no:''
+        	passage3:self.data.user_no?self.data.user_no:'',
+        	standard:self.data.mainData[0].product.standard
         },	
         passage1:self.data.submitData.passage1,
         type:1
