@@ -50,7 +50,7 @@ Page({
     self.getMessageData();
     if(wx.getStorageSync('collectData')[self.data.id]){
       self.setData({
-        url: '/images/collect_active.png',
+        url: '/images/collect_a.png',
       });
     }else{
       self.setData({
@@ -93,7 +93,7 @@ Page({
     }else{
       api.footOne(self.data.mainData,'id',100,'collectData');  
       self.setData({
-        url: '/images/collect1.png',
+        url: '/images/collect_a.png',
       });
     };
   },
@@ -241,6 +241,9 @@ Page({
     }else{
       api.showToast('请完善信息','none')
     }
+    this.setData({
+      isShow:false,
+    })
   },
 
   goBuy(){

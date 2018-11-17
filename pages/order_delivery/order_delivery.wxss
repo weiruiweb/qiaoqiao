@@ -95,7 +95,6 @@
 .next_page{
 	width:6%;
 	text-align:right;
-	height:100%;
 }
 .way_left{
 	width:50%;

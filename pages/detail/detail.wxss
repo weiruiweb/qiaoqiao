@@ -190,6 +190,7 @@ line-height:62rpx;}
 	background:#fff;
 	border-radius:30rpx;
 	overflow:hidden;
+	overflow:hidden;
 }
 .shoppingCart{
 	width:50%;
@@ -249,6 +250,7 @@ line-height:62rpx;}
 .close{
 	width:10%;
 	text-align:right;
+	height:100%;
 }
 .close image{
 	width:34rpx;
@@ -320,4 +322,9 @@ line-height:62rpx;}
 	}
 .deliver{
 	margin-left:30rpx;
+}
+.go_buy button{
+	font-weight:normal;
+	font-size:28rpx;
+	border-radius:0;
 }

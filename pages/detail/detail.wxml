@@ -31,7 +31,7 @@
 	</view>
 	<view class="choose flexRowBetween">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
-			基本展示基本展示
+			满299减100优惠活动满299减100优惠活动
 		</view>
 		<view class="next_page" style="width:20%;text-align:right;">	
 			<image src="/images/next_page.png"></image>
@@ -39,7 +39,7 @@
 	</view>
 	<view class="choose flexRowBetween" style="border: none;">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
-			基本展示基本展示
+			满299减100优惠活动满299减100优惠活动
 		</view>
 		<view class="next_page" style="width:20%;text-align:right;">	
 			<image src="/images/next_page.png"></image>
@@ -89,8 +89,8 @@
 <view id="buy">
 	<view class="buy_click">
 		<view class="consult">
-			<image src="/images/kefu.png"></image>
-			<view class="text1">客服</view>
+			<image src="/images/share.png"></image>
+			<view class="text1">分享</view>
 		</view>
 		<view class="consult collect" bindtap="collect">
 			<image src="{{url}}"></image>
@@ -131,7 +131,7 @@
 					{{item.title}}
 				</view>
 				<block wx:for="{{web_labelData[index].child}}" wx:key="id" wx:for-item="c_item">
-					<view class="pro_types" data-id="{{c_item.id}}" data-parentid="{{item.id}}"  bindtap="{{func.inArray(c_item.id,web_choose_sku_item)!=-1?'chooseSku':''}}" style="{{func.inArray(c_item.id,web_choose_sku_item)==-1?'border:1px dashed  #e5e5e5;color:#e5e5e5;':(func.inArray(c_item.id,web_sku_item)!=-1?'border:1px solid #21c3d4;color:#21c3d4;':'')}}">
+					<view class="pro_types" data-id="{{c_item.id}}" data-parentid="{{item.id}}"  bindtap="{{func.inArray(c_item.id,web_choose_sku_item)!=-1?'chooseSku':''}}" style="{{func.inArray(c_item.id,web_choose_sku_item)==-1?'border:1px dashed  #e5e5e5;color:#e5e5e5;':(func.inArray(c_item.id,web_sku_item)!=-1?'border:1px solid #e5747c;color:#e5747c;':'')}}">
 						{{c_item.title}}
 					</view>
 				</block>

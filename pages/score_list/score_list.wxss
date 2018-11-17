@@ -115,7 +115,8 @@ page{
 	text-align: center;
 }
 .search{
-	width:85%;
+	width:100%;
+	margin:0 auto;
 }
 .search input{
 	width:94%;

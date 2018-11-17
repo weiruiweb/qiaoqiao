@@ -6,9 +6,7 @@
 		</view>
 	</view>
 </view>
-
-
-<view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
+<view class="w710 flexRowBetween" style="flex-wrap: wrap;">
   <block wx:for="{{web_mainData}}" wx:key="id">
     <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/score_detail/score_detail?id={{item.id}}">
         <image src="{{item.mainImg[0].url}}"></image>

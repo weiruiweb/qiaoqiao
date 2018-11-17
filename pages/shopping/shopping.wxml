@@ -12,7 +12,7 @@
 				<view class="shopping_name">
 					<text class="text1">{{item.title}}</text>
 					<text class="text2">个性化定制</text>
-					<text class="price">¥{{item.price}}</text>
+					<text class="price color">¥{{item.price}}</text>
 				</view>
 				<view class="edit_number flexRowBetween">
 					<view class="minus" style="font-size:50rpx;line-height:36rpx;" data-index="{{index}}" data-type="-" bindtap="counter">-</view>
