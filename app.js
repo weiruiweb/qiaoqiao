@@ -7,7 +7,7 @@ App({
   onLaunch: function () {
       // 展示本地存储能力
   var token = new Token();
-  token.verify();
+  //token.verify();
 
 },
 

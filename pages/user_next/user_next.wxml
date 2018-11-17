@@ -20,7 +20,7 @@
                             <view class="text  font22" >{{web_startTime}}</view>
                         </view>
                         <view style="width:15%;height:70rpx;">
-                            <image src="/images/up_icon2.png"></image>
+                            <image src="{{web_startTime?'/images/up_icon2':'/images/up_icon1'}}.png"></image>
                         </view>
                     </view> 
                 </picker>
@@ -41,7 +41,7 @@
                             <view class="text  font22" >{{web_endTime}}</view>
                         </view>
                         <view style="width:15%;height:70rpx;">
-                            <image src="/images/up_icon1.png"></image>
+                            <image src="{{web_endTime?'/images/up_icon2':'/images/up_icon1'}}.png"></image>
                         </view>
                     </view>
                 </picker>
@@ -51,26 +51,25 @@
     </view> 
 </view>
 
-
 <view class="team_all">
-    <block wx:for="{{web_mainData}}" wx:key='id'>
-        <view class="team_list">
-            <view class="team_item">
-                <view class="team_left">
-                    <image src="{{item.userInfo.headImgUrl}}" style="border-radius:50%"></image>
-                </view>
-                <view class="team_right">
-                    <view class="team_user flexRowBetween">
-                        <view class="tuser_name" style="{{fonts[4].font}}">{{item.userInfo.nickname}}</view>
-                        <view class="tuser_name" style="{{fonts[2].font}};color:#444;">{{item.create_time}}</view>
-                    </view>
-                    <view class="teat_add" style="{{fonts[1].font}}">
-                        通过微信分享二维码加入团队
-                    </view>
-                </view>
-            </view>
-        </view>
-    </block>
+	<block wx:for="{{web_mainData}}" wx:key='id'>
+		<view class="team_list">
+			<view class="team_item">
+				<view class="team_left">
+					<image src="{{item.userInfo.headImgUrl?item.userInfo.headImgUrl:'/images/headImg.png'}}" style="border-radius:50%"></image>
+				</view>
+				<view class="team_right">
+					<view class="team_user flexRowBetween">
+						<view class="tuser_name" style="{{fonts[4].font}}">{{item.userInfo.nickname?item.userInfo.nickname:'用户暂未授权'}}</view>
+						<view class="tuser_name" style="{{fonts[2].font}};color:#444;">{{item.create_time}}</view>
+					</view>
+					<view class="teat_add" style="{{fonts[1].font}}">
+						通过微信分享二维码加入团队
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
 </view>
 
 

@@ -79,24 +79,26 @@ Page({
     self.run2();
     self.getSliderData();
     self.getLabelData();
-    self.getMainData();
+    
     self.getNoticeData();
-   	if(options.scene){
+    if(options.scene){
       var scene = decodeURIComponent(options.scene)
     };
     if(options.parentNo){
       var scene = options.parentNo
     };
-    console.log(scene)
+   
     if(scene){
       var token = new Token({parent_no:scene});
       token.getUserInfo();
-    };
-
-    if(!wx.getStorageSync('token')){
+    }else if(!wx.getStorageSync('token')){
       var token = new Token();
       token.getUserInfo();
     };
+    
+    self.data.scene = scene;
+ 
+  
 
   },
 
@@ -114,6 +116,7 @@ Page({
       self.setData({
         web_sliderData:self.data.sliderData,
       });
+      self.getMainData();
     };
     api.labelGet(postData,callback);
   },
@@ -241,11 +244,11 @@ Page({
     countDown(){
       const self = this;
       
-      var timer=null;
+      self.data.timer=null;
       console.log(parseInt(self.data.groupData[0].deadline))
       console.log(parseInt(Date.parse(new Date())))
       var times = (parseInt(self.data.groupData[0].deadline)-parseInt(Date.parse(new Date())))/1000;
-      timer=setInterval(function(){
+      self.data.timer=setInterval(function(){
         var day=0,
           hour=0,
           minute=0,
@@ -260,8 +263,8 @@ Page({
         if (hour <= 9) hour = '0' + hour;
         if (minute <= 9) minute = '0' + minute;
         if (second <= 9) second = '0' + second;
-   
         times--;
+        console.log(day+hour+minute+second)
           self.setData({
             web_day:day,
             web_hour:hour,
@@ -270,9 +273,14 @@ Page({
           })
       },1000);
       if(times<=0){
-        clearInterval(timer);
+        clearInterval(self.data.timer);
       }
 
+    },
+
+    onUnload(){
+    	const self = this;
+    	clearInterval(self.data.timer);
     },
 
 

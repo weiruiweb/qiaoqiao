@@ -33,13 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "scene=UB15702912423561"
 				},
 				{
 					"id": 1,
