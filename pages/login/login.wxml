@@ -30,3 +30,5 @@
     登录
   </view>
 </view>
+
+<view class="font22 color6" style="width:100%;text-align:center;position:absolute;bottom:50rpx;left:0;" >技术支持：西安纯粹云科技有限公司</view>
