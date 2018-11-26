@@ -1,31 +1,5 @@
 <!--index3.wxml-->
-<view class="manage w710 flex" wx:if="{{web_addressData.name}}">
-    <view class="manage_cont" bindtap="intoPath" data-path="/pages/user_address/user_address">
-        <view class="user_address flex color3">
-            <view class="address_left flex">
-                <image src="/images/navbar4-a.png"></image>{{web_addressData.name}}
-            </view>
-            <view class="address_right">
-                {{web_addressData.phone}}
-            </view>
-        </view>
-        <view class="address_infor flex">
-            <view class="infor_left flex"><image src="/images/user_icon10.png"></image></view>
-            <view class="infor_right avoidOverflow">{{web_addressData.province+web_addressData.city+web_addressData.country+web_addressData.detail}}</view>
-            <view class="next_page flex"><image src="/images/next_page.png"></image></view>
-        </view>
-    </view>
-</view>
-<view class="confirm w710 flexRowBetween"  style="display:flex;align-items:center;border-bottom:solid 1px #ececec" bindtap="intoPath" data-path="/pages/user_address/user_address" wx:else>
-    <view class="order_user color3">
-        <view class="order_left font28">
-            请选择收货地址
-        </view>
-    </view>
-    <view class="next_page" style="text-align:center;">
-        <image src="/images/next_page.png"></image>
-    </view>
-</view>
+
 <view class="product">
 <block wx:for="{{web_mainData}}" wx:key="id">
     <view class="product_box w710 flexRowBetween">
