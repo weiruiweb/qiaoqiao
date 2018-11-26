@@ -36,6 +36,7 @@ Page({
 
   onLoad(options) {
     const self = this;
+    console.log(options)
     wx.showLoading();
     if(!wx.getStorageSync('token')){
       var token = new Token();
@@ -45,7 +46,7 @@ Page({
     	self.data.group_no=options.group_no;
     	self.setData({
     		web_group_no:self.data.group_no
-    	})
+    	});
     };
      if(options.group_no){
     	self.data.user_no=options.user_no;
