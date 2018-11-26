@@ -127,20 +127,6 @@
           </view>
         </view>
       </view>
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/score_list/score_list">
-        <image src="/images/discout2.png" class="img_bg"></image>
-        <view class="activty flex">
-          <view class="activty_cont flex">
-            <view class="activty_left">
-                  <image src="/images/discount_icon2.png"></image>
-            </view>
-            <view class="activty_left activty_right">
-               <view class="font32  color1">积分兑换  </view>
-               <view class="font28 member_in  color1">了解更多</view>
-            </view>
-          </view>
-        </view>
-      </view>
   </view>
 </view>
 <view class="content_box w710 bg1">
@@ -170,13 +156,13 @@
 <view class="font22 color6" style="text-align:center;">技术支持：西安纯粹云科技有限公司</view>
 <view style="width:100%;height:120rpx;"></view>
 <view class="navbar">
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+    <view class="navbar_item">
         <view class="nav_img">
           <image src="/images/navbar1-a.png"></image>
         </view>
         <view class="text this-text">首页</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user_order/user_order">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/waitGoods/waitGoods">
         <view class="nav_img">
            <image src="/images/navbar2.png"></image>
         </view>

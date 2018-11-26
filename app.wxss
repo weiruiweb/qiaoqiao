@@ -14,7 +14,7 @@ page{
 	align-items:center;
 }
 .avoidOverflow{
-	overflow-y:hidden;
+	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }

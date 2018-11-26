@@ -15,11 +15,12 @@
 							<view class="discount_right">
 								<view class="detail1 font32">元优惠券</view>
 								<view class="detail2 font24">{{item.description}}</view>
+								<view class="discount_bottom avoidOverflow">
+									<view class="discount_time font22 discount_bg1">活动日期{{item.create_time}}-{{func.timestampToTime(item.deadline)}}</view>
+								</view>
 							</view>
 						</view>
-						<view class="discount_bottom">
-							<view class="discount_time font22 discount_bg1">活动日期{{item.create_time}}-{{func.timestampToTime(item.deadline)}}</view>
-						</view>
+						
 					</view>
 				</view>
 	      	</view>

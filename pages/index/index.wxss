@@ -285,13 +285,13 @@ swiper{
 	margin-top: 20rpx;
 }
 .recommend_left1{
-	width:48.5%;
+	width:100%;
 	border-radius: 10rpx;
 	position: relative;
 }
 .recommend_left1 .img_bg{
 	width:100%;
-	height: 160rpx;
+	height: 190rpx;
 }
 
 .product_name1{

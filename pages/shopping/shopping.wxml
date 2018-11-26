@@ -64,13 +64,13 @@
           <view class="text " style="{{fonts[2].font}}">首页</view>
       </view>
     
-    <view class="navbar_item" bindtap="intoPathRedirect" data-path="/pages/user_order/user_order">
+    <view class="navbar_item" bindtap="intoPathRedirect" data-path="/pages/waitGoods/waitGoods">
         <view class="nav_img">
            <image src="/images/navbar2.png"></image>
         </view>
         <view class="text" style="{{fonts[2].font}}">待收货</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
+    <view class="navbar_item"   bindtap="intoPathRedirect">
         <view class="nav_img">
 	        <view class="cart_number" bindtap="onCartTap">
 	            <view class="fiexd-cart {{isShake?'animate':''}}" style="">

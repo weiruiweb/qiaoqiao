@@ -6,11 +6,17 @@ const token = new Token();
 
 Page({
   data: {
-   
+   num:0
   },
   //事件处理函数
   preventTouchMove:function(e) {
 
+  },
+  menuClick: function (e) {
+    const self = this;
+    self.setData({
+      num:e.currentTarget.dataset.num
+    });
   },
   intoPath(e){
     const self = this;

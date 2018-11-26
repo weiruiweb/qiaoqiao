@@ -180,7 +180,7 @@
         </view>
         <view class="text">首页</view>
     </view>
-    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/user_order/user_order">
+    <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/waitGoods/waitGoods">
         <view class="nav_img">
            <image src="/images/navbar2.png"></image>
         </view>
