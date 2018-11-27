@@ -27,9 +27,12 @@
         <view class="input_before1">联系电话:</view>
         <input placeholder="请输入联系电话" data-key="phone" bindblur="changeBind" value="{{web_submitData.phone}}"></input>
     </view>
-    <view class="w710 input_list1 font28 flex">
-        <view class="input_before1">买家留言:</view>
-        <input placeholder="输入买家留言" data-key="message" bindblur="changeBind" value="{{web_submitData.message}}"></input>
+ 
+    <view class="user_message w710">
+        <view class="font28" style="display: flex;">
+            <view class="input_before1">买家留言:</view>
+            <textarea placeholder="输入买家留言" data-key="message" auto-height="true" bindblur="changeBind" value="{{web_submitData.message}}"></textarea>
+        </view>
     </view>
     <view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
     <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
@@ -39,11 +42,11 @@
   
 </view>
 </view>
-<view class="font24 color9">请选择自提点</view>
+<view class="font30 color3 w710 note_get">请选择自提点</view>
 
 <view class="product">
     <block wx:for="{{web_labelData}}" wx:key="id" >
-        <view class="product_box w710 flexRowBetween" style="margin-top:20rpx;{{web_submitData.storeId==item.id?'border:solid 1px red':'border:solid 1px #e0e0e0'}}" bindtap="chooseStore" data-id="{{item.id}}">
+        <view class="product_box w710 flexRowBetween" style="margin-bottom:20rpx;" bindtap="chooseStore" data-id="{{item.id}}">
             <view class="product_left">
                 <image src="{{item.mainImg[0].url}}"></image>
             </view>
@@ -53,6 +56,9 @@
                     <view class="font24 color9 product_top">地址：{{item.description}}</view>
             		<view class="font24 color9 product_top">联系电话：{{item.url}}</view>
                 </view>
+            </view>
+            <view class="product_bottom">
+                <image src="/images/selelct_bottom.png" style="{{web_submitData.storeId==item.id?'display:block':'display:none;'}}"></image>
             </view>
         </view>
     </block>
@@ -65,7 +71,7 @@
         <button class="submit_info" bindtap="intoPathRedi" data-path="/pages/user_order/user_order">确认</button>
     </view>
 </view>
-
+<view style="width:100%;height:120rpx;"></view>
 <view class="confirm_btn flex font30">
    <view class="confirm_left color">合计: ¥{{web_totalPrice}}</view> 
    <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 

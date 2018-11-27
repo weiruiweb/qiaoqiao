@@ -1,17 +1,17 @@
 <!--manageAddress.wxml-->
-<view class="user_input w710" style="padding:0 5%">
+<view class="user_input" style="padding:0 5%;width:90%;">
 	<view class="users_detail flexRowBetween">
 		<view class="input_note font30">收货人:</view>
 		<input placeholder="请输入收货人" value="{{web_mainData.name}}"  data-key="name" bindblur="inputChange"></input>
 	</view>
 </view>
-<view class="user_input w710" style="padding:0 5%">
+<view class="user_input w710" style="padding:0 5%;width:90%;">
 	<view class="users_detail flexRowBetween">
 		<view class="input_note font30">手机号码:</view>
 		<input placeholder="请输入手机号码"  value="{{web_mainData.phone}}"  data-key="phone" bindblur="inputChange"></input>
 	</view>
 </view>
-<view class="user_input w710" style="padding:0 5%">
+<view class="user_input w710" style="padding:0 5%;width:90%;">
 	<view class="users_detail flexRowBetween" bindtap="chooseLocation" style="justify-content:left">
 
 		<text style="line-height:50px;font-size:30rpx">点击选取位置:</text>
@@ -26,7 +26,7 @@
 
 
 
-<view class="user_input flexRowBetween w710" style="padding:0 5%">
+<view class="user_input flexRowBetween w710" style="padding:0 5%;width:90%;">
 	<view class="input_note font30 address_set">设为默认地址</view>
 	<view class="body-view">
 		<switch bindchange="switch2Change" />

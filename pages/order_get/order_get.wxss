@@ -52,8 +52,20 @@
 	height:156rpx;
 }
 .product_right{
-	width:72.5%;
+	width:57.5%;
 	height:156rpx;
+}
+.product_bottom{
+	width:15%;
+	height:156rpx;
+	position:relative;
+}
+.product_bottom image{
+	width:86rpx;
+	height:84rpx;
+	position:absolute;
+	right:0;
+	bottom:0;
 }
 .product_number{
 	width:50%;
@@ -151,6 +163,8 @@
 	position: fixed;
 	bottom: 0;
 	border-top:solid 1px #e0e0e0;
+	background:#fff;
+	z-index:999;
 }
 .confirm_left{
 	width:60%;
@@ -191,4 +205,26 @@
 	left:0;
 	z-index:999;
 	overflow:hidden;
+}
+.text1{
+	font-size:28rpx;
+	color:#262626;
+	width:22%;}
+textarea{
+	width:78%;
+	height:30rpx;
+	font-size:28rpx;
+	color:#999;
+}
+.user_message{
+	padding:30rpx 20rpx;
+	border-bottom:solid 1px #e0e0e0;
+}
+.discount{
+	height:80rpx;
+	border-bottom:solid 1px #e0e0e0;
+}
+.note_get{
+	height:80rpx;
+	line-height:80rpx;
 }

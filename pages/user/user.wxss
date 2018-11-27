@@ -172,8 +172,8 @@ page{
 }
 .cart_number{
 	position:absolute;
-	left:59%;
-	top:3rpx;
+	left:52%;
+	top:-3rpx;
 	height:0rpx;
 	z-index:;
 }

@@ -1,0 +1,54 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"; 
+
+page{
+	width:100%;
+	min-height:100%;
+}
+.cashNow{
+	margin-top:20rpx;
+}
+
+.uploder_all{
+	align-items:center;
+	padding:30rpx 0;
+}
+.uploder_item{
+	width:46.5%;
+	height:304rpx;
+	line-height:160rpx;
+	text-align:center;
+	overflow:hidden;
+	border:solid 1px #b5b5b5;
+	background:#f2f2f2;
+}
+
+.uploader_input{
+	width:100%;
+	height:180rpx;
+	line-height:222rpx;
+	overflow:hidden;
+}
+.uploader_input image{
+	width:100%;
+	height:100%;
+}
+
+.upload_noe{
+	height:82rpx;
+	line-height:82rpx;
+	overflow:hidden;
+	font-size:30rpx;
+	color:#666;
+}
+.confirm_bind{
+	width:100%;
+	height:84rpx;
+	line-height:84rpx;
+	font-size:30rpx;
+	color:#fff;
+	text-align:center;
+	position:fixed;
+	bottom:0;
+}

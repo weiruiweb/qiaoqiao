@@ -177,7 +177,7 @@
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
           <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
-              <view class="fiexd-cart"  style="background:#e71121" >
+              <view class="fiexd-cart"  style="background:#e71121">
                   <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
               </view>
           </view>

@@ -154,3 +154,10 @@ page{
 	transition:all 1s 0.5s;
 	transform:translateX(-220rpx);
 }
+.search {
+	height:70rpx;
+	margin:0 auto;
+}
+.search input{
+	height:100%;
+}

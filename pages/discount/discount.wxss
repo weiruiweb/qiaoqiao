@@ -21,10 +21,10 @@ view{
 	height:100%;
 }
 .discount{
-	width: 80%;
+	width: 90%;
 	height:160rpx;
 	position: absolute;
-	left: 10%;
+	left: 5%;
 	top:0rpx;
 }
 .discount_detail{
@@ -36,12 +36,17 @@ view{
 	top:80%;
 }
 .discount_left{
-	width:30%;
+	width:25%;
 	font-size:54rpx;
 }
 .discount_right{
-	width:68%;
+	width:43%;
 	padding-left: 2%;
+}
+.discount_btn{
+	width:22%;
+	height:100%;
+	padding-left:8%;
 }
 .discount_time{
 	width:100%;
@@ -63,4 +68,13 @@ view{
 	left:25%;
 	top:20rpx;
 	z-index: 999;
+}
+.click_btn{
+	width:100%;
+	height:50rpx;
+	line-height:50rpx;
+	font-size:26rpx;
+}
+.submit_info {
+	margin:0 auto;
 }

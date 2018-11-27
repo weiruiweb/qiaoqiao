@@ -448,7 +448,13 @@ swiper{
 	z-index:;
 }
 .fiexd-cart{
-
 	width:20rpx;height:20rpx;border-radius:50%;background:#21c3d4;margin:0rpx auto;text-align:center;line-height:20rpx;
 	z-index:3;
+}
+.cart_number{
+	position:absolute;
+	left:52%;
+	top:-3rpx;
+	height:0rpx;
+	z-index:;
 }

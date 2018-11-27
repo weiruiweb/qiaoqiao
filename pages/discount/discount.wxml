@@ -19,7 +19,9 @@
 									<view class="discount_time font22 discount_bg1">截至到{{func.timestampToTime(item.deadline)}}</view>
 								</view>
 							</view>
-
+							<view class="discount_btn">
+								<view class="click_btn submit_info">立即领取</view>
+							</view>
 						</view>
 						
 					</view>

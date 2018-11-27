@@ -53,7 +53,7 @@
     </view>
 </view>
 <view class="user_message">
-    <view class="flexRowBetween">
+    <view style="display:flex;">
         <text class="text1">买家留言</text>
         <textarea placeholder="选填:填写内容已和卖家协商确认" auto-height="true" data-key="passage1" bindblur="changeBind" value="{{web_submitData.passage1}}">
         </textarea>
@@ -64,8 +64,6 @@
 
 <view class="confirm_btn flex font30">
    <view class="confirm_left color">合计: ¥{{web_totalPrice}}
-   <span style="font-size:14px" wx:if="{{web_mainData[0].product.is_group=='0'}}"> (优惠券减{{web_couponPrice}}元)
-   </span>
    </view> 
    <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
 </view>

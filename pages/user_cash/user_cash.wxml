@@ -30,3 +30,6 @@
         </view>
     </view>
 </view>
+<view class="cash_button bg font30 color1" bindtap="intoPath" data-path="/pages/userCashNow/userCashNow">
+    立即体现
+</view>
