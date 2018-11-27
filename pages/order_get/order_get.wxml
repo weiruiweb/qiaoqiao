@@ -31,6 +31,13 @@
         <view class="input_before1">买家留言:</view>
         <input placeholder="输入买家留言" data-key="message" bindblur="changeBind" value="{{web_submitData.message}}"></input>
     </view>
+    <view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
+    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
+        <view class="infor_right avoidOverflow font28 color6" style="width:80%;padding: 0;">优惠券抵扣</view>
+        <view class="infor_left flexRowBetween font28" style="width:20%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
+    </view>
+  
+</view>
 </view>
 <view class="font24 color9">请选择自提点</view>
 

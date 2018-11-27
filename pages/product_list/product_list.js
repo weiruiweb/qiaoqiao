@@ -15,11 +15,15 @@ Page({
     mainData:[],
     currentId:0,
     isLoadAll:false,
-    sForm:{
-      item:''
-    },
+    
     isShow:false,
-    buttonClicked:false
+    buttonClicked:false,
+    sForm:{
+      title:''
+    },
+    searchItem:{
+      thirdapp_id:getApp().globalData.thirdapp_id
+    }
   },
   
   onLoad(options) {
@@ -48,6 +52,19 @@ Page({
    
   },
 
+  changeBind(e){
+    const self = this;
+    api.fillChange(e,self,'sForm');
+    console.log(self.data.sForm);
+    if(self.data.sForm.title){  
+      console.log(666)
+      self.data.searchItem.title = ['LIKE',['%'+self.data.sForm.title+'%']];
+      self.getMainData(true,self.data.id,self.data.sForm.title)
+    }else if(self.data.sForm.title==''){
+      self.getMainData(true)
+    }
+  },
+
 
 
   menuTap(e){
@@ -72,9 +89,7 @@ Page({
     };
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
-    postData.searchItem = {
-      thirdapp_id:getApp().globalData.thirdapp_id
-    };
+    postData.searchItem = api.cloneForm(self.data.searchItem);
     if(self.data.id){
       postData.searchItem.category_id = self.data.id
     }else if(currentId==0){

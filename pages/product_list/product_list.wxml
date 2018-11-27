@@ -7,7 +7,7 @@
 			<view class="font24 color6">分类</view>
 		</view>
 		<view class="search flex">
-			<input placeholder="搜索商品名称" class="font28"></input>
+			<input placeholder="搜索商品名称" class="font28" bindconfirm="changeBind" data-key="title"></input>
 		</view>
 	</view>
 </view>

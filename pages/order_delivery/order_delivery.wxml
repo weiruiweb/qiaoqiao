@@ -35,7 +35,7 @@
             <view class="product_right">
                 <view class="product_detail">
                     <view class="font32 color3 product_top">{{item.product.title}}</view>
-                    <view class="font24 color9 product_top">类型一</view>
+                    <view class="font24 color9 product_top">{{item.product.description}}</view>
                     <view class="product_top flex">
                         <view class="font30 color6 product_number">X{{item.count}}</view>
                         <view class="font30 product_price color">¥{{item.product.price}}</view>
@@ -48,10 +48,9 @@
 
 <view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
     <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
-        <view class="infor_right avoidOverflow font28 color6" style="width:80%;padding: 0;">优惠券抵扣</view>
-        <view class="infor_left flexRowBetween font28" style="width:20%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
+        <view class="infor_right avoidOverflow font28 color6" style="width:75%;padding:0;">优惠券抵扣</view>
+        <view class="infor_left flexRowBetween font28" style="width:25%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
     </view>
-  
 </view>
 <view class="user_message">
     <view class="flexRowBetween">
@@ -60,16 +59,13 @@
         </textarea>
     </view>
 </view>
-<view class="credit font32 color6 flexCenter">
-    可抵扣积分：{{web_scorePrice}}积分
-    <image src="{{web_totalPrice==web_paidPrice?'/images/parking4.png':'/images/parking4-a.png'}}"  bindtap="chooseScore"></image>
-</view>
-<view class="credit font32 color6 flexCenter" style="color:#eb0096">
-    可用积分:{{web_userData.info.score}}}积分
-</view>
+
 
 
 <view class="confirm_btn flex font30">
-   <view class="confirm_left color">合计: ¥{{web_paidPrice}}<span style="font-size:14px">(积分抵扣{{web_scorePrice}}元)</span></view> 
+   <view class="confirm_left color">合计: ¥{{web_totalPrice}}
+   <span style="font-size:14px" wx:if="{{web_mainData[0].product.is_group=='0'}}"> (优惠券减{{web_couponPrice}}元)
+   </span>
+   </view> 
    <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
 </view>

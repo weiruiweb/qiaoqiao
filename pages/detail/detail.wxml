@@ -16,7 +16,7 @@
 					(原价：{{web_skuData.o_price}}元)
 				</view>
 				<view  class="font24 color6" style="margin-left: 20rpx;">
-					销量:111
+					销量:{{web_mainData.saleNum}}
 				</view>
 			</view>
 			<view class="sale">
@@ -34,7 +34,7 @@
 	</view>
 	<view class="choose flexRowBetween">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
-			满299减100优惠活动满299减100优惠活动
+			{{web_mainData.passage1}}
 		</view>
 		<view class="next_page" style="width:20%;text-align:right;">	
 			<image src="/images/next_page.png"></image>
@@ -42,7 +42,7 @@
 	</view>
 	<view class="choose flexRowBetween" style="border: none;">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
-			满299减100优惠活动满299减100优惠活动
+			{{web_mainData.passage2}}
 		</view>
 		<view class="next_page" style="width:20%;text-align:right;">	
 			<image src="/images/next_page.png"></image>
@@ -66,7 +66,7 @@
 		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
 			<view class="good_com flexRowBetween">
 				<view class="comment_number">
-					评价({{web_count}})
+					评价({{web_num}})
 				</view>
 			</view>
 			<block wx:for="{{web_messageData}}">
@@ -94,10 +94,10 @@
 </view>
 <view id="buy">
 	<view class="buy_click">
-		<view class="consult">
+		<button class="consult" bindtap="onShareAppMessage"  open-type="share" style="line-height:normal">
 			<image src="/images/share.png"></image>
 			<view class="text1">分享</view>
-		</view>
+		</button>
 		<view class="consult collect" bindtap="collect">
 			<image src="{{url}}"></image>
 			<view class="text1">收藏</view>

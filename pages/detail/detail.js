@@ -413,7 +413,7 @@ Page({
       };
       wx.hideLoading();
       self.setData({
-        web_count:self.data.messageData.length,
+        web_num:self.data.messageData.length,
         web_messageData:self.data.messageData,
       });  
     };

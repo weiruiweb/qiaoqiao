@@ -3,7 +3,7 @@
 <view class="w710">
 	<view id="sort" class="flex">
 		<view class="search flex">
-			<input placeholder="搜索商品名称" class="font28"></input>
+			<input placeholder="搜索商品名称" class="font28" bindconfirm="changeBind" data-key="title"></input>
 		</view>
 	</view>
 </view>

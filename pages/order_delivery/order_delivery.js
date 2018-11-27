@@ -366,11 +366,16 @@ Page({
     console.log(self.data.couponData)
 
       if(self.data.couponData.type==3){
-       
+        if(self.data.couponData.discount>totalPrice){
+          api.showToast('优惠券不可用','none');
+          wx.removeStorageSync('couponId');
+          return;
+        };
         totalPrice = totalPrice-self.data.couponData.discount;
         couponPrice = self.data.couponData.discount;
          console.log(totalPrice)
       }else if(self.data.couponData.type==4){
+     
         totalPrice = totalPrice-totalPrice*self.data.couponData.discount/10;
         couponPrice = totalPrice*self.data.couponData.discount/10
       }; 

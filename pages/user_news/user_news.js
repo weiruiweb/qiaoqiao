@@ -35,10 +35,10 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.data.id = options.id;
     self.getMessageData();
-    self.relationGet()
+ 
   },
 
-  relationGet(){
+/*  relationGet(){
     const self = this;
     const postData = {};
     
@@ -60,7 +60,7 @@ Page({
       });
     };
     api.relationGet(postData,callback);
-  },
+  },*/
 
 
 
@@ -76,6 +76,17 @@ Page({
     };
     postData.searchItemOr = {
       type:5,
+    };
+    postData.getAfter = {
+      relation:{
+        tableName:'relation',
+        middleKey:'id',
+        key:'relation_one',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
@@ -110,8 +121,8 @@ Page({
       }
       console.log(self.data.messageOneData);
      
-      for (var i = 0; i < self.data.idData.length; i++) {
-        if(self.data.id ===  self.data.idData.length[i]){
+      for (var i = 0; i < self.data.messageData.length; i++) {
+        if(self.data.id ==  self.data.messageData[i].id){
            self.data.isRead = true;
         }else{
           self.data.isRead = false;
@@ -126,8 +137,10 @@ Page({
         });  
       };
       wx.hideLoading();
+     
       self.setData({
         web_messageOneData:self.data.messageOneData,
+        is_show:true,
       });   
     };
     api.messageGet(postData,callback);
@@ -136,12 +149,13 @@ Page({
   relationAdd(){
     const self = this;
     const postData = {};
+    postData.token = wx.getStorageSync('token');
     postData.data = {
       relation_one:self.data.messageOneData.id,
       relation_two:wx.getStorageSync('info').user_no,
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:self.data.messageOneData.type
-    }
+    };
     const callback = (res)=>{
       self.data.buttonClicked = false;
       self.setData({
@@ -169,9 +183,7 @@ Page({
     var id = api.getDataSet(e,'id');
     self.data.id = id;
     self.getMessageOne();
-    self.setData({
-      is_show:true,
-    })
+    
 
   },
 

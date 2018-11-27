@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
-<view class="w710" style="background: #fff7f7;" data-path="/pages/user_news/user_news?id={{web_noticeData.id}}" bindtap="intoPath">
+<view class="w710" style="background: #fff7f7;" >
     <view id="marquee" class="flexRowBetween">
       <view class="horn"><image src="/images/horn.png"></image></view>
       <view class="marquee_right">
@@ -52,7 +52,7 @@
       </view>
     </view>
     <view class="great_right">
-      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/product_list/product_list">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/product_list/product_list?id=1">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">人气美妆区</view>
@@ -74,7 +74,7 @@
             </view>
         </view>
       </view>
-      <view class="great_top" bindtap="intoPath" data-path="/pages/product_list/product_list">
+      <view class="great_top" bindtap="intoPath" data-path="/pages/product_list/product_list?id=6">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">休闲食品区</view>

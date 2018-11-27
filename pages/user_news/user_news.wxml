@@ -11,7 +11,7 @@
 <view bindtap="show" data-id="{{item.id}}">点击查看详情
 
 
-<view class="fiexd-cart"  style="background:#e71121" wx:if="{{!func.isInArray(web_idData,item.id)}}">
+<view class="fiexd-cart"  style="background:#e71121" wx:if="{{item.relation.length=='0'}}">
     <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
 </view>
 

@@ -3,7 +3,7 @@
 <view class="w710">
   <view class="recommend flexRowBetween">
   	  <block wx:for="{{web_mainData}}" wx:key="id">
-	      <view class="recommend_left" data-id="{{item.id}}" data-type="{{item.type}}" data-deadline="{{item.deadline}}" bindtap="addOrder">
+	      <view class="recommend_left" data-id="{{item.id}}" data-type="{{item.type}}" data-deadline="{{item.deadline}}" data-price="{{item.price}}" bindtap="addOrder">
 	      	<view class="discount_cont">
 	      		<image src="{{item.mainImg[0].url}}" class="discount_img"></image>
 				<view class="discount flex">
@@ -13,12 +13,13 @@
 								<text class="font22">¥</text>{{item.discount}}
 							</view>
 							<view class="discount_right">
-								<view class="detail1 font32">元优惠券</view>
+								<view class="detail1 font32">{{item.price}}积分兑换</view>
 								<view class="detail2 font24">{{item.description}}</view>
 								<view class="discount_bottom avoidOverflow">
-									<view class="discount_time font22 discount_bg1">活动日期{{item.create_time}}-{{func.timestampToTime(item.deadline)}}</view>
+									<view class="discount_time font22 discount_bg1">截至到{{func.timestampToTime(item.deadline)}}</view>
 								</view>
 							</view>
+
 						</view>
 						
 					</view>

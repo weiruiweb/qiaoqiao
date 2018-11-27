@@ -5,10 +5,7 @@ import {Token} from '../../utils/token.js';
 const token = new Token();
 
 Page({
-  data: {
-    mainData:[],
-    isLoadAll:false
-  },
+
 
  
 
@@ -24,7 +21,8 @@ Page({
     searchItemOr:{},
     sForm:{
       passage2:''
-    }
+    },
+    isLoadAll:false
   },
     
 

@@ -193,7 +193,7 @@
         <view class="nav_img">
            <image src="/images/navbar3.png"></image>
         </view>
-        <view class="text">购物车{{web_readData.total_num}}</view>
+        <view class="text">购物车</view>
     </view>
     <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/user/user">
         <view class="nav_img">
