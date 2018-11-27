@@ -7,53 +7,61 @@
         <text class="{{num == 1?'tab_this':''}}">快递配送</text>
     </view>
 </view>
-<view class="product" wx:if="{{num == 0}}">
-    <view class="order_tlt w710 flexRowBetween ">
-        <view class="tlt_left">订单编号：121121</view>
-        <view class="tlt_left tlt_right">2018-09-20</view>
-    </view>
-    <view class="product_box w710 flexRowBetween">
-        <view class="product_left">
-            <image src="/images/index1.png"></image>
+<block wx:for="{{web_mainData}}" wx:key="id">
+    <view class="product" wx:if="{{num == 0&&item.passage2!=''}}">
+        <view class="order_tlt w710 flexRowBetween ">
+            <view class="tlt_left">订单编号：{{item.order_no}}</view>
+            <view class="tlt_left tlt_right">{{item.create_time}}</view>
         </view>
-        <view class="product_right">
-            <view class="product_detail">
-                <view class="font32 color3 product_top">人气美妆</view>
-                <view class="flexRowBetween" style="height:40%;">
-                    <view class="font30 color6 product_price flex">¥189</view>
-                    <view class="font26 color3">15648546566</view>
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top">{{item.products[0].snap_product.title}}</view>
+                    <view class="flexRowBetween" style="height:40%;">
+                        <view class="font30 color6 product_price flex">¥{{item.products[0].snap_product.price}}</view>
+                        
+                    </view>
+                    <view class="flexRowBetween" style="height:40%;">
+                        <view class="font24 color9 avoidOverflow">自提地址：{{item.store[0].description}}</view>
+                        
+                    </view>
+                    <view class="font26 color3">联系电话:{{item.store[0].url}}</view>
                 </view>
-                <view class="font24 color9 avoidOverflow">陕西省西安市雁塔区</view>
             </view>
         </view>
     </view>
-</view>
-<view class="product" wx:if="{{num == 1}}">
-    <view class="order_tlt w710 flexRowBetween ">
-        <view class="tlt_left">订单编号：121121</view>
-        <view class="tlt_left tlt_right">查看物流</view>
-    </view>
-    <view class="product_box w710 flexRowBetween">
-        <view class="product_left">
-            <image src="/images/index1.png"></image>
+</block>
+
+<block wx:for="{{web_mainData}}" wx:key="id">
+    <view class="product" wx:if="{{num == 1&&item.passage2==''}}">
+        <view class="order_tlt w710 flexRowBetween ">
+            <view class="tlt_left">订单编号：{{item.order_no}}</view>
+            <view class="tlt_left tlt_right">查看物流</view>
         </view>
-        <view class="product_right flex">
-            <view class="product_detail">
-                <view class="font32 color3 product_top" style="height:33.33%;">人气美妆</view>
-                <view class="flexRowBetween" style="height:33.33%;">
-                    <view class="font26 color3">葳蕤收</view>
-                    <view class="font30 color6 product_price flex">18556465465</view>
-                    
-                </view>
-                <view class="flexRowBetween" style="height:33.33%;">
-                    <view class="font26 color3"  style="width:70%;">陕西省西安市雁塔区</view>
-                    <view class="font24 color avoidOverflow" style="width:30%;text-align:center">¥189</view>
-                    
-                </view>
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="/images/index1.png"></image>
             </view>
-        </view> 
+            <view class="product_right flex">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top" style="height:33.33%;">{{item.products[0].snap_product.title}}</view>
+                    <view class="flexRowBetween" style="height:33.33%;">
+                        <view class="font26 color3">{{item.snap_address.name}}收</view>
+                        <view class="font30 color6 product_price flex">18556465465</view>
+                        
+                    </view>
+                    <view class="flexRowBetween" style="height:33.33%;">
+                        <view class="font26 color3"  style="width:70%;">{{item.snap_address.detail}}</view>
+                        <view class="font24 color avoidOverflow" style="width:30%;text-align:center">¥{{item.products[0].snap_product.price}}</view>
+                    </view>
+                </view>
+            </view> 
+        </view>
     </view>
-</view>
+</block>
 <view class="navbar">
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
         <view class="nav_img">
@@ -75,7 +83,12 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
-            <image src="/images/navbar4.png"></image>
+          <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+              <view class="fiexd-cart"  style="background:#e71121" >
+                  <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+              </view>
+          </view>
+          <image src="/images/navbar4.png"></image>
         </view>
         <view class="text">我的</view>
     </view>

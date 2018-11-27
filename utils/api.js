@@ -113,6 +113,55 @@ class Api extends Base{
         this.request(allParams);       
     }
 
+    relationGet(param,callback){
+        var allParams ={
+            url:'Common/Relation/get',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+
+    relationAdd(param,callback){
+        var allParams ={
+            url:'Common/Relation/add',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    relationUpdate(param,callback){
+        var allParams ={
+            url:'Common/Relation/update',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    relationDel(param,callback){
+        var allParams ={
+            url:'Common/Relation/delete',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
     distributionGet(param,callback){
         var allParams ={
             url:'Common/Distribution/Get',
@@ -193,6 +242,18 @@ class Api extends Base{
     signIn(param,callback){
         var allParams ={
             url:'Func/Common/signIn',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    readCheck(param,callback){
+        var allParams ={
+            url:'Func/Common/readCheck',
             type:'post',
             data:param,
             sCallback: function(data) {

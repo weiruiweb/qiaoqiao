@@ -152,7 +152,7 @@ Page({
       }else{
         api.showToast('商品信息有误','none');
       };
-
+      console.log(self.data.skuData)
       self.setData({
         web_skuData:self.data.skuData,
         web_labelData:self.data.labelData,

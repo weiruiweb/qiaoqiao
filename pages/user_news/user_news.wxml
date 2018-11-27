@@ -1,14 +1,33 @@
 <!--userPoster.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
 <view class="news">
 	<image src="/images/news_banner.jpg"></image>
 </view>
+<block wx:for="{{web_messageData}}" wx:key="id">
 <view class="mall_tlt">
     <image src="/images/new_tlt.jpg"></image>
-    <view  class="mall_tlt_txt font28 color1">{{web_mainData.title}}</view>
+    <view  class="mall_tlt_txt font28 color1">{{item.title}}</view>
 </view>
-<view class="w710 font28 color6">
-	<view class="content ql-editor">
-        <import src="../../wxParse/wxParse.wxml"/>
-        <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
-    </view> 
+<view bindtap="show" data-id="{{item.id}}">点击查看详情
+
+
+<view class="fiexd-cart"  style="background:#e71121" wx:if="{{!func.isInArray(web_idData,item.id)}}">
+    <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+</view>
+
+
+</view>
+</block>
+<view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">
+</view>
+<view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">
+    <view class="code_cont">
+        <view class="font32 color3" style="height:120rpx;line-height: 120rpx;text-align: center;">
+        <view class="content ql-editor" >
+            <import src="../../wxParse/wxParse.wxml"/>
+            <template is="wxParse" data="{{wxParseData:web_messageOneData.content}}"/>
+        </view>
+        </view>
+        <button class="submit_info" bindtap="mask">确认</button>
+    </view>
 </view>

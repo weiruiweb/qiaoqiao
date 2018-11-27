@@ -25,7 +25,7 @@ Page({
     };
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-    self.getOrderData()
+   
   },
 
   getMainData(isNew){

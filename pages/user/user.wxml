@@ -25,7 +25,7 @@
 </view>
 <view class="sort flexRowBetween">
     <view class="sort_cont flexRowBetween">    
-        <view class="sort_item"  bindtap="intoPath"  data-path="/pages/userOrder/userOrder">
+        <view class="sort_item"  bindtap="intoPath"  data-path="/pages/user_collect/user_collect">
             <view class="sort_icon">
                 {{web_collectData?web_collectData:'0'}}
             </view>
@@ -33,7 +33,7 @@
                我的收藏
             </view>
         </view>
-        <view class="sort_item">
+        <view class="sort_item" bindtap="intoPath"  data-path="/pages/user_credit/user_credit">
                 <view class="sort_icon">
                     {{web_userData.score?web_userData.score:'网络故障'}}
                 </view>
@@ -60,19 +60,19 @@
 </view>
 <view class="w710 font30 color3 bg2">
     <view class="process flexRowBetween">
-        <view class="peocess_item item_other" bindtap="intoPath" data-path="/pages/user_order/user_order">
+        <view class="peocess_item item_other" bindtap="intoPath" data-path="/pages/user_order/user_order?num=1">
             <image src="/images/process1.png"></image>
             <text>待付款</text>
         </view>
-        <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order">
+        <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order?num=2">
             <image src="/images/process2.png"></image>
             <text>待收货</text>
         </view>
-        <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order">
+        <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order?num=3">
             <image src="/images/process3.png"></image>
             <text>已完成</text>
         </view>
-         <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order">
+         <view class="peocess_item" bindtap="intoPath" data-path="/pages/user_order/user_order?num=4">
             <image src="/images/process4.png"></image>
             <text>已取消</text>
         </view>
@@ -147,6 +147,9 @@
             <image src="/images/user_icon9.png"></image>
             <text>我的消息</text>
         </view>
+         <view class="cart_number" style="left:80%;top:116%" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+            <span style="font-size:25rpx;color:pink" >({{web_readData.total_num-web_readData.total_read_num}}条未读)</span>
+        </view>
         <view class="next_page">
             <image src="/images/next_page.png"></image>
         </view>
@@ -190,10 +193,15 @@
         <view class="nav_img">
            <image src="/images/navbar3.png"></image>
         </view>
-        <view class="text">购物车</view>
+        <view class="text">购物车{{web_readData.total_num}}</view>
     </view>
     <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/user/user">
         <view class="nav_img">
+            <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+                <view class="fiexd-cart"  style="background:#e71121" >
+                    <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+                </view>
+            </view>
             <image src="/images/navbar4-a.png"></image>
         </view>
         <view class="text  this-text">我的</view>

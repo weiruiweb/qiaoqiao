@@ -8,7 +8,7 @@
             <view class="product_right">
                 <view class="product_detail">
                     <view class="font32 color3 product_top">{{item.product.title}}</view>
-                    <view class="font24 color9 product_top">类型一</view>
+                    <view class="font24 color9 product_top">{{item.product.description}}</view>
                     <view class="product_top flex">
                         <view class="font30 color6 product_number">X{{item.count}}</view>
                         <view class="font30 product_price color">¥{{item.product.price}}</view>
@@ -32,7 +32,24 @@
         <input placeholder="输入买家留言" data-key="message" bindblur="changeBind" value="{{web_submitData.message}}"></input>
     </view>
 </view>
+<view class="font24 color9">请选择自提点</view>
 
+<view class="product">
+    <block wx:for="{{web_labelData}}" wx:key="id" >
+        <view class="product_box w710 flexRowBetween" style="margin-top:20rpx;{{web_submitData.storeId==item.id?'border:solid 1px red':'border:solid 1px #e0e0e0'}}" bindtap="chooseStore" data-id="{{item.id}}">
+            <view class="product_left">
+                <image src="{{item.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top">{{item.title}}</view>
+                    <view class="font24 color9 product_top">地址：{{item.description}}</view>
+            		<view class="font24 color9 product_top">联系电话：{{item.url}}</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
 <view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">
 </view>
 <view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">

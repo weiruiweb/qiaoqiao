@@ -56,6 +56,25 @@ Page({
       web_mainData:self.data.mainData
     });
     self.countTotalPrice();
+    self.checkRead()
+  },
+
+
+  checkRead(){
+    const self = this;
+    const postData = {
+      token:wx.getStorageSync('token')
+    };
+    const callback = (res)=>{
+      console.log(res)
+      if(res.solely_code==100000){
+        self.data.readData = res.info
+      };
+      self.setData({
+        web_readData:self.data.readData
+      });
+    };
+    api.readCheck(postData,callback)
   },
 
   counter(e){

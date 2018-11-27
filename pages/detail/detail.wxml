@@ -10,7 +10,10 @@
 		<view class="price_sale flexRowBetween">
 			<view class="price_left flex">
 				<view class="price color">
-					￥{{web_mainData.price}}元
+					￥{{web_skuData.is_group=='1'?web_skuData.price:web_mainData.price}}元
+				</view>
+				<view class="price color" wx:if="{{web_skuData.is_group=='1'}}" style="font-size:12px;text-decoration:line-through">
+					(原价：{{web_skuData.o_price}}元)
 				</view>
 				<view  class="font24 color6" style="margin-left: 20rpx;">
 					销量:111
@@ -55,7 +58,10 @@
 	</view>
 	<view class="detail_show">
 		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
-			<image src="/images/banner.png"></image>
+			<view class="content ql-editor" >
+	            <import src="../../wxParse/wxParse.wxml"/>
+	            <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+	        </view>
 		</view>
 		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
 			<view class="good_com flexRowBetween">

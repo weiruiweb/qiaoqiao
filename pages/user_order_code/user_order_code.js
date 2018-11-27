@@ -6,16 +6,20 @@ const token = new Token();
 
 Page({
   data: {
-    
+    mainData:[],
+    isLoadAll:false
   },
 
  
 
   data: {
     
-    mainData:{},
+    mainData:[],
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
+      user_type:0,
+      transport_status:0,
+      pay_status:1
     },
     searchItemOr:{},
     sForm:{
@@ -29,7 +33,8 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.setData({
       web_mainData:self.data.mainData
-    })
+    });
+    self.getMainData()
   },
 
   changeBind(e){
@@ -37,31 +42,33 @@ Page({
     api.fillChange(e,self,'sForm');
     console.log(self.data.sForm);
     if(self.data.sForm.passage2){  
-      self.orderGet(self.data.sForm.passage2)
+      self.data.searchItem.passage2 = ['LIKE',['%'+self.data.sForm.passage2+'%']];
+      self.getMainData(true,self.data.sForm.passage2)
+      
     }else if(self.data.sForm.passage2==''){
-      self.orderGet()
+      self.getMainData()
     }
 
   },
 
 
 
-  orderGet(Name){
+  getMainData(isNew,Name){
     const self = this;
+    if(isNew){
+      api.clearPageIndex(self)
+    };
     const postData = {
+      paginate:api.cloneForm(self.data.paginate),
       token:wx.getStorageSync('threeToken'),
-      searchItem:{
-        passage2:['LIKE',['%'+Name+'%']],
-        thirdapp_id:getApp().globalData.thirdapp_id,
-        user_type:0,
-        transport_status:0
-      }
+      searchItem:api.cloneForm(self.data.searchItem),
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        self.data.mainData = res.info.data[0]
+        self.data.mainData.push.apply(self.data.mainData,res.info.data)
       }else{
-        api.showToast('没有查询到订单')
+        self.data.isLoadAll = true;
+        api.showToast('没有查询到订单','none');
       }
       self.setData({
         web_mainData:self.data.mainData

@@ -60,8 +60,16 @@
         </textarea>
     </view>
 </view>
-<view >可用积分：{{web_userData.info.score}}</view>
+<view class="credit font32 color6 flexCenter">
+    可抵扣积分：{{web_scorePrice}}积分
+    <image src="{{web_totalPrice==web_paidPrice?'/images/parking4.png':'/images/parking4-a.png'}}"  bindtap="chooseScore"></image>
+</view>
+<view class="credit font32 color6 flexCenter" style="color:#eb0096">
+    可用积分:{{web_userData.info.score}}}积分
+</view>
+
+
 <view class="confirm_btn flex font30">
-   <view class="confirm_left color">合计: ¥{{web_totalPrice}}<span style="font-size:14px">(积分抵扣{{web_scorePrice}}元)</span></view> 
+   <view class="confirm_left color">合计: ¥{{web_paidPrice}}<span style="font-size:14px">(积分抵扣{{web_scorePrice}}元)</span></view> 
    <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
 </view>

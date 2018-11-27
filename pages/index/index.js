@@ -29,6 +29,7 @@ Page({
     size: 14,
     orientation: 'left',
     interval1: 20,
+    isLoadAll:false,
   },
   run2: function () {
     var self = this;
@@ -63,6 +64,11 @@ Page({
     })
   },
 
+  onShow(){
+  	const self = this;
+  	self.getSliderData();
+    self.checkRead();
+  },
 
   onLoad(options) {
     const self = this;
@@ -77,7 +83,7 @@ Page({
       marquee2_margin: length < windowWidth ? windowWidth - length : self.data.marquee2_margin
     });
     self.run2();
-    self.getSliderData();
+
     self.getLabelData();
     
     self.getNoticeData();
@@ -264,7 +270,7 @@ Page({
         if (minute <= 9) minute = '0' + minute;
         if (second <= 9) second = '0' + second;
         times--;
-        console.log(day+hour+minute+second)
+ 
           self.setData({
             web_day:day,
             web_hour:hour,
@@ -278,7 +284,32 @@ Page({
 
     },
 
-    onUnload(){
+    checkRead(){
+      const self = this;
+      const postData = {
+        token:wx.getStorageSync('token')
+      };
+      const callback = (res)=>{
+        console.log(res)
+        if(res.solely_code==100000){
+          self.data.readData = res.info
+        };
+        self.setData({
+          web_readData:self.data.readData
+        });
+      };
+      api.readCheck(postData,callback)
+    },
+
+    onReachBottom() {
+      const self = this;
+      if(!self.data.isLoadAll){
+        self.data.paginate.currentPage++;
+        self.getMainData();
+      };
+    },
+
+    onHide (){
     	const self = this;
     	clearInterval(self.data.timer);
     },

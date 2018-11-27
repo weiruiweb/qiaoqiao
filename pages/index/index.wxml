@@ -100,7 +100,7 @@
 </view>
 <view class="menu flexRowBetween font30 color6">
   <block wx:for="{{web_labelData}}" wx:key="id">
-    <view class="menu_item" bindtap="intoPath" data-path="/pages/product_list/product_list?id={{item.id}}">
+    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30||item.id==34?'/pages/group_list/group_list?id='+item.id:'/pages/product_list/product_list?id='+item.id}}">
       <view><image src="{{item.mainImg[0].url}}"></image></view>
       <view class="font24">{{item.title}}</view>
     </view>
@@ -176,7 +176,12 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
-            <image src="/images/navbar4.png"></image>
+          <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+              <view class="fiexd-cart"  style="background:#e71121" >
+                  <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+              </view>
+          </view>
+          <image src="/images/navbar4.png"></image>
         </view>
         <view class="text">我的</view>
     </view>

@@ -81,10 +81,15 @@
         </view>
         <view class="text this-text" style="{{fonts[2].font}}">购物车</view>
     </view>
-    <view class="navbar_item" bindtap="intoPathRedirect" data-path="/pages/user/user">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
-            <image src="/images/navbar4.png"></image>
+          <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+              <view class="fiexd-cart"  style="background:#e71121" >
+                  <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+              </view>
+          </view>
+          <image src="/images/navbar4.png"></image>
         </view>
-        <view class="text" style="{{fonts[2].font}}">我的</view>
+        <view class="text">我的</view>
     </view>
 </view>

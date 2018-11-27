@@ -64,7 +64,14 @@ var inArray= function(value,array){
     return  array.indexOf(parseInt(value));
 }
 
-
+var isInArray= function(arr,value){
+    for(var i = 0; i < arr.length; i++){
+        if(value === arr[i]){
+            return true;
+        }
+    }
+    return false;
+}
 
 var getArrayByTarget = function(array,targetName,target){
   var getItemsBytarget =function(array,targetName,target){
@@ -111,7 +118,7 @@ module.exports = {
   integer: integer,
   getArrayByTarget: getArrayByTarget,
   inArray:inArray
-
+  isInArray:isInArray
  
  
 };

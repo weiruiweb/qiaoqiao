@@ -158,3 +158,85 @@ textarea{
 	font-size:28rpx;
 	color:#999;
 }
+.tab{
+	height:90rpx;
+}
+.tab_item{
+	width:50%;
+	text-align:center;
+	height:90rpx;
+	line-height:90rpx;
+}
+.tab_this{
+	color:#eb0096;
+	border-bottom:solid 1px #eb0096;
+}
+.record{
+	height:360rpx;
+	border-radius:20rpx;
+	background:#f9e175;
+	margin-top:20rpx;
+}
+.record_cont{
+	width:100%;
+}
+.record_list{
+	width:100%;
+	height:66rpx;
+}
+.record_left{
+	width:30%;
+}
+.record_right{
+	width:70%;
+}
+.record_left image{
+	width:34rpx;
+	height:34rpx;
+	margin-right: 16rpx;
+}
+.payment{
+	width:288rpx;
+	height:102rpx;
+	margin:48rpx  auto 70rpx auto;
+	display: flex;
+}
+.pay_mark{
+	width:42rpx;
+	height:100%;
+	color:#fff;
+}
+.pay_mark1{
+	width:42rpx;
+	height:42rpx;
+	border-radius: 50%;
+	line-height: 42rpx;
+	text-align: center;
+}
+.pay_number{
+	color:#f9d948;
+	font-size: 70rpx;
+	border-bottom: solid 1px #f9d948;
+	width:196rpx;
+	text-align: center;
+}
+.pay_unit{
+	width: 50rpx;
+	height: 100%;
+	color:#f9e175;
+}
+.pay_unit1{
+	width: 100%;
+	height:100%;
+	color:#f9e175;
+	font-size: 24rpx;
+}
+.credit image{
+	width:56rpx;
+	height:56rpx;
+	margin-left: 20rpx;
+}
+.submit_info{
+	margin-top: 120rpx;
+	margin-bottom: 50rpx;
+}

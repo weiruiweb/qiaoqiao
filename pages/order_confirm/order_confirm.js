@@ -54,7 +54,7 @@ Page({
     		web_user_no:self.data.user_no
     	})
     };
-
+    console.log(self.data.group_no)
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.setData({
 

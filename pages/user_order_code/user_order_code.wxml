@@ -4,27 +4,28 @@
     <input placeholder="请输入取货码" bindconfirm="changeBind" data-key="passage2"></input>
     <view class="code_btn"><button class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
 </view>
-
-    <view class="product" wx:if="{{web_mainData.id}}">
+<block wx:for="{{web_mainData}}" wx:key="id">
+     <view class="product" wx:if="{{item.passage2!=''}}">
         <view class="order_tlt w710 flexRowBetween ">
-            <view class="tlt_left" style="width:100%">交易时间:{{web_mainData.create_time}}</view>
+            <view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
         </view>
         <view class="product_box w710 flexRowBetween">
             <view class="product_left">
-                <image src="{{web_mainData.products[0].snap_product.mainImg[0].url}}"></image>
+                <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
             </view>
             <view class="product_right">
-                <view class="product_detail">
-                    <view class="font32 color3 product_top avoidOverflow">{{web_mainData.products[0].snap_product.title}}</view>
-                    <view class="font24 color9">{{web_mainData.products[0].snap_product.description}}</view>
-                    <view class="font30 color6  flex" style="height:50%;">
-                        <view class="product_number">X{{web_mainData.count}}</view>
-                        <view class="product_price color">¥{{web_mainData.price}}</view>
-                    </view>
+            <view class="product_detail">
+            <view class="font32 color3 product_top avoidOverflow">{{item.products[0].snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
+                <view class="font24 color9">{{item.products[0].snap_product.description}}</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X{{item.count}}</view>
+                    <view class="product_price color">¥{{item.price}}</view>
                 </view>
+            </view>
             </view>
         </view>
         <view class="order_handle">
             <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdate">确认取货</view>
         </view>
     </view>
+</block>

@@ -11,7 +11,11 @@ Page({
   
   data: {
   
-
+    searchItem:{
+     
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      is_group:1
+    },
     mainData:[],
 
     isLoadAll:false,
@@ -22,6 +26,7 @@ Page({
   
   onLoad(options) {
     const self = this;
+    var nowTime = Date.parse(new Date());
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     wx.showLoading();
     if(!wx.getStorageSync('token')){
@@ -31,9 +36,12 @@ Page({
     this.setData({
       fonts:app.globalData.font
     });
- 
+    if(options.id==30){
+      self.data.searchItem.deadline =['>',nowTime]
+    }else if(options.id==34){
+      self.data.searchItem.deadline =['<',nowTime]
+    };
     self.getMainData()
-
   },
 
 
@@ -44,17 +52,13 @@ Page({
 
   getMainData(isNew){
     const self = this;
-    var nowTime = Date.parse(new Date());
+    
     if(isNew){
       api.clearPageIndex(self); 
     };
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
-    postData.searchItem = {
-      deadline:['>',nowTime],
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      is_group:1
-    };
+    postData.searchItem = api.cloneForm(self.data.searchItem);
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.info.data);
