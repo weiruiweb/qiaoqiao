@@ -39,7 +39,7 @@
     <view class="product" wx:if="{{num == 1&&item.passage2==''}}">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left">订单编号：{{item.order_no}}</view>
-            <view class="tlt_left tlt_right">查看物流</view>
+            <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}">查看物流</view>
         </view>
         <view class="product_box w710 flexRowBetween">
             <view class="product_left">

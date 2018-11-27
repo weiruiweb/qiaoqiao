@@ -46,7 +46,7 @@ Page({
       fonts:app.globalData.font,
     });
     getApp().globalData.address_id = '';
- 
+    self.getLabelData();
     self.createCode()
   },
 
@@ -88,6 +88,7 @@ Page({
 
   getLabelData(){
     const self = this;
+   
     const postData = {};
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
@@ -150,7 +151,7 @@ Page({
         web_mainData:self.data.mainData,
       });
       console.log(self.data.mainData)
-      self.getLabelData();
+      
       self.countTotalPrice();
       self.checkLoadComplete()   
     };

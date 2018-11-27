@@ -9,6 +9,16 @@ Page({
 
 
   data: {
+
+    indicatorDots: true,
+    vertical: false,
+    autoplay: true,
+    circular: true,
+    interval: 2000,
+    duration: 500,
+    previousMargin: 0,
+    nextMargin: 0,
+    swiperIndex:0,
     messageData:[],
     mainData:[],
     chooseId:[],
@@ -332,6 +342,13 @@ Page({
     api.getAuthSetting(callback);
     
     
+  },
+
+  swiperChange(e) {
+    const that = this;
+    that.setData({
+      swiperIndex: e.detail.current,
+    })
   },
 
   onShareAppMessage(res){

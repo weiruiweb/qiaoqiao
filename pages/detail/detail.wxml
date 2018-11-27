@@ -2,9 +2,25 @@
 
 <wxs module="func" src="../../utils/func.wxs" />
 <view id="details">
-<view class="banner">
-	<image src="/images/index1.png"></image>
+<view class="page-body">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+         autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="swiperChange">
+        <block wx:for="{{web_mainData.bannerImg}}" wx:index="{{index}}" wx:key="id">
+          <swiper-item>
+            <image src="{{item.url}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots"> 
+      <block wx:for="{{web_sliderData.mainImg}}" wx:key="unique"> 
+        <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
+      </block> 
+    </view>
+    </view>
 </view>
+
 <view class="detail">
 	<view class="product_top">
 		<view class="price_sale flexRowBetween">
@@ -35,17 +51,11 @@
 	<view class="choose flexRowBetween">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
 			{{web_mainData.passage1}}
-		</view>
-		<view class="next_page" style="width:20%;text-align:right;">	
-			<image src="/images/next_page.png"></image>
-		</view>
+		</view>	
 	</view>
 	<view class="choose flexRowBetween" style="border: none;">
 		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
 			{{web_mainData.passage2}}
-		</view>
-		<view class="next_page" style="width:20%;text-align:right;">	
-			<image src="/images/next_page.png"></image>
 		</view>
 	</view>
 	<view class="detail_comment flexRowBetween">

@@ -38,36 +38,17 @@ Page({
  
   },
 
-/*  relationGet(){
+
+
+
+
+  getMessageData(isNew){
     const self = this;
-    const postData = {};
-    
-    postData.searchItem = {
-   
-      relation_two:wx.getStorageSync('info').user_no,
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      
-    }
-    const callback = (res)=>{
-      if(res.info.data.length>0){
-        self.data.relationData.push.apply(self.data.relationData,res.info.data);
-        for (var i = 0; i < self.data.relationData.length; i++) {
-          self.data.idData.push(self.data.relationData[i].id)
-        };
-      };
-      self.setData({
-        web_relationData:self.data.relationData
-      });
+    if(isNew){
+      api.clearPageIndex(self);  
     };
-    api.relationGet(postData,callback);
-  },*/
-
-
-
-  getMessageData(){
-    const self = this;
     const postData = {};
-    postData.paginate = self.data.paginate;
+    postData.paginate = api.cloneForm(self.data.paginate);
     postData.token=wx.getStorageSync('token');
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
@@ -83,7 +64,8 @@ Page({
         middleKey:'id',
         key:'relation_one',
         searchItem:{
-          status:1
+          status:1,
+          relation_two:wx.getStorageSync('info').user_no 
         },
         condition:'='
       }
@@ -114,21 +96,26 @@ Page({
       id:self.data.id,
       user_type:['in',[0,2]]
     };
+ 
+    postData.getAfter = {
+      relation:{
+        tableName:'relation',
+        middleKey:'id',
+        key:'relation_one',
+        searchItem:{
+          status:1,
+          relation_two:wx.getStorageSync('info').user_no 
+        },
+        condition:'='
+      }
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.messageOneData = res.info.data[0];
         self.data.messageOneData.content = api.wxParseReturn(res.info.data[0].content).nodes;
-      }
-      console.log(self.data.messageOneData);
-     
-      for (var i = 0; i < self.data.messageData.length; i++) {
-        if(self.data.id ==  self.data.messageData[i].id){
-           self.data.isRead = true;
-        }else{
-          self.data.isRead = false;
-        };  
       };
-      if(!self.data.isRead){
+      console.log(self.data.messageOneData);
+      if(self.data.messageOneData.relation.length==0){
         self.relationAdd()
       }else{
         self.data.buttonClicked = false;
@@ -167,10 +154,13 @@ Page({
 
   mask:function(e){
     const self = this;
-     self.setData({
+    self.data.messageData = [];
+    self.getMessageData(true);
+    self.setData({
       is_show:false,
-     })
-   },
+    });
+    
+  },
 
 
   show:function(e){
