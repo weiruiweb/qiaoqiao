@@ -101,7 +101,7 @@ Page({
         url: '/images/collect.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectData');  
+      api.footOne(self.data.skuData,'id',100,'collectData');  
       self.setData({
         url: '/images/collect_a.png',
       });
@@ -135,6 +135,7 @@ Page({
         key:'product_no',
         condition:'=',
         searchItem:{
+          
           status:['in',[1]]
         },
       } 

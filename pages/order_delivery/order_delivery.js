@@ -232,7 +232,11 @@ Page({
           }, 1000)         
         }; 
         self.data.order_id = res.info.id
-        self.pay(self.data.order_id);     
+        self.pay(self.data.order_id);  
+        for (var i = 0; i < self.data.mainData.length; i++) {  
+          console.log('self.data.mainData[i].id',self.data.mainData[i].id)        
+          api.deleteFootOne(self.data.mainData[i].id ,'cartData')   
+        };   
       };
       api.addOrder(postData,callback);
     }else{
@@ -260,7 +264,7 @@ Page({
     };
    
     if(self.data.totalPrice>0){
-        postData.wxPay = self.data.paidPrice.toFixed(2);
+        postData.wxPay = self.data.totalPrice.toFixed(2);
       	postData.wxPayStatus = 0;
     };
      
@@ -375,7 +379,7 @@ Page({
         couponPrice = self.data.couponData.discount;
          console.log(totalPrice)
       }else if(self.data.couponData.type==4){
-     
+
         totalPrice = totalPrice-totalPrice*self.data.couponData.discount/10;
         couponPrice = totalPrice*self.data.couponData.discount/10
       }; 

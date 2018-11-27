@@ -17,7 +17,9 @@ Page({
       is_group:1
     },
     mainData:[],
-
+    sForm:{
+    	title:''
+    },
     isLoadAll:false,
   
   
@@ -60,17 +62,17 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = api.cloneForm(self.data.searchItem);
     const callback = (res)=>{
-      if(res.info.data.length>0){
-        self.data.mainData.push.apply(self.data.mainData,res.info.data);
-      }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','none');
-      }
-      wx.hideLoading();
-      console.log(self.data.mainData)
-      self.setData({
-        web_mainData:self.data.mainData,
-      });  
+    if(res.info.data.length>0){
+      self.data.mainData.push.apply(self.data.mainData,res.info.data);
+    }else{
+      self.data.isLoadAll = true;
+      api.showToast('没有更多了','none');
+    }
+    wx.hideLoading();
+    console.log(self.data.mainData)
+    self.setData({
+      web_mainData:self.data.mainData,
+    });  
     };
     api.skuGet(postData,callback);
   },
@@ -81,6 +83,20 @@ Page({
       self.data.paginate.currentPage++;
       self.getMainData();
     };
+  },
+
+   changeBind(e){
+    const self = this;
+    api.fillChange(e,self,'sForm');
+    console.log(self.data.sForm);
+    if(self.data.sForm.title){  
+      console.log(666)
+      self.data.searchItem.title = ['LIKE',['%'+self.data.sForm.title+'%']];
+      self.getMainData(true)
+    }else{
+      delete self.data.searchItem.title;
+      self.getMainData(true)
+    }
   },
 
 

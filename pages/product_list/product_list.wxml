@@ -14,7 +14,7 @@
 <view class="menu {{isShow?'sildeIn':'slideOut'}}" >
 	<view class="menu_item  {{web_currentId==0?'active':''}}" bindtap="{{!buttonClicked?'menuTap':''}}" data-id="0">全部</view>
   <block wx:for="{{web_labelData}}" wx:key="id">
-	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" bindtap="{{!buttonClicked?'menuTap':''}}">{{item.title}}</view>
+	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" bindtap="{{!buttonClicked?'menuTap':''}}" wx:if="{{item.id!='30'&&item.id!='34'}}">{{item.title}}</view>
   </block>
 </view>
 

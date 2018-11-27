@@ -59,8 +59,9 @@ Page({
     if(self.data.sForm.title){  
       console.log(666)
       self.data.searchItem.title = ['LIKE',['%'+self.data.sForm.title+'%']];
-      self.getMainData(true,self.data.id,self.data.sForm.title)
-    }else if(self.data.sForm.title==''){
+      self.getMainData(true)
+    }else{
+      delete self.data.searchItem.title;
       self.getMainData(true)
     }
   },
@@ -177,22 +178,6 @@ Page({
     };
   },
 
-  changeBind(e){
-    const self = this;
-    api.fillChange(e,self,'sForm');
-    console.log(self.data.sForm);
-    if(self.data.sForm.item){
-      self.data.searchItem.title = ['LIKE',['%'+self.data.sForm.item+'%']],
-      self.data.searchItemOr.description = ['LIKE',['%'+self.data.sForm.item+'%']],
-      self.data.labelData = [],
-      self.getLabelData(true)
-    }else if(self.data.sForm.item==''){
-      delete self.data.searchItem.title,
-      delete self.data.searchItemOr.description,
-      self.data.labelData = [],
-      self.getLabelData(true)
-    }
-  },
 
 
 

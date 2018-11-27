@@ -110,13 +110,14 @@ Page({
   pay(e){
     const self = this;
     var id = api.getDataSet(e,'id');
-    var balance = api.getDataSet(e,'price')
+    var price = api.getDataSet(e,'price')
     const postData = {
       token:wx.getStorageSync('token'),
       searchItem:{
         id:id
       },
-      balance:balance
+      wxPay:price,
+      wxPayStatus:0
     };
     const callback = (res)=>{
       wx.hideLoading();

@@ -1,6 +1,6 @@
 <!--index3.wxml-->
 <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="product">
+    <view class="product" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
         <view class="product_box w710 flexRowBetween">
             <view class="product_left">
                 <image src="{{item.mainImg[0].url}}"></image>

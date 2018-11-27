@@ -6,7 +6,7 @@ const app = getApp();
 Page({
   data: {
     windowWidth: wx.getSystemInfoSync().windowWidth,
-   windowHeight: wx.getSystemInfoSync().windowHeight,
+    windowHeight: wx.getSystemInfoSync().windowHeight,
        hiddenSmallImg:true,
         countsArray:[1,2,3,4,5,6,7,8,9,10],
         productCounts:1,
@@ -81,38 +81,7 @@ Page({
     const self = this;
     const index = api.getDataSet(e,'index');
     if(api.getDataSet(e,'type')=='+'){  
-        var touches=e.touches[0];
-        var diff={
-                x:-touches.clientX*0.3+'px',
-                y:25+self.data.windowHeight-touches.clientY-140+'px',
-
-            },
-
-            style = 'display: block;-webkit-transform:translate('+diff.x+','+diff.y+') rotate(350deg) scale(0.3); opacity: 1;',  //移动距离
-            style1 = '-webkit-transform:scale(1.1)'
-          
-            self.setData({
-                flayTo:e.target.dataset.num,
-                //isFly:events.target.dataset.num,
-                translateStyle:style,
-                shoppingStyle:style1,
-            });
-        
-        setTimeout(()=>{
-            self.setData({
-                flayTo:false,
-                translateStyle:'-webkit-transform: none;',  //恢复到最初状态
-                isShake:true,
-                
-            });
-            setTimeout(()=>{
-                var counts=self.data.cartTotalCounts+self.data.productCounts;
-                self.setData({
-                    isShake:false,
-                    cartTotalCounts:counts
-                });
-            },200);
-        },500);
+       
       self.data.mainData[index].count++;
     }else{
       if(self.data.mainData[index].count > '1'){

@@ -42,6 +42,7 @@ Page({
     postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem.type = ['in',[3,4]];
     postData.searchItem.user_no = wx.getStorageSync('info').user_no;
+    postData.searchItem.pay_status = 1;
     postData.order = {
       create_time:'desc'
     }
@@ -85,8 +86,10 @@ Page({
     if(num=='0'){
       
     }else if(num=='1'){
+      self.data.searchItem.deadline = ['>',endTime]
       self.data.searchItem.order_step = '0';
     }else if(num=='2'){
+      self.data.searchItem.deadline = ['>',endTime]
       self.data.searchItem.order_step = '1'
     }else if(num=='3'){
       self.data.searchItem.deadline = ['<',endTime]

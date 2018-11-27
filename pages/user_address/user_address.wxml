@@ -1,6 +1,6 @@
 <!--index2.wxml-->
 <block wx:for="{{web_mainData}}" wx:key="id">
-<view class="manage w710 flex" bindtap="choose" data-id="{{item.id}}" style="padding:0 5%;width:90%;">
+<view class="manage flex" bindtap="choose" data-id="{{item.id}}" style="padding:0 5%;width:90%;">
 	<view class="manage_cont" style="width:95%">
 		<view class="user_address flex color3">
 			<view class="address_left">

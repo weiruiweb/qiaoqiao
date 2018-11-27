@@ -10,8 +10,8 @@
 <block wx:for="{{web_mainData}}" wx:key="id">
     <view class="product" wx:if="{{num == 0&&item.passage2!=''}}">
         <view class="order_tlt w710 flexRowBetween ">
-            <view class="tlt_left">订单编号：{{item.order_no}}</view>
-            <view class="tlt_left tlt_right">{{item.create_time}}</view>
+            <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
+            <view class="tlt_left tlt_right" style="width:38%;">{{item.create_time}}</view>
         </view>
         <view class="product_box w710 flexRowBetween">
             <view class="product_left">
@@ -19,12 +19,12 @@
             </view>
             <view class="product_right">
                 <view class="product_detail">
-                    <view class="font32 color3 product_top">{{item.products[0].snap_product.title}}</view>
-                    <view class="flexRowBetween" style="height:40%;">
+                    <view class="font32 color3" style="height:30%;">{{item.products[0].snap_product.title}}</view>
+                    <view class="flexRowBetween" style="height:25%;">
                         <view class="font30 color6 product_price flex">¥{{item.products[0].snap_product.price}}</view>
                         
                     </view>
-                    <view class="flexRowBetween" style="height:40%;">
+                    <view class="flexRowBetween" style="height:25%;">
                         <view class="font24 color9 avoidOverflow">自提地址：{{item.store[0].description}}</view>
                         
                     </view>
@@ -38,8 +38,8 @@
 <block wx:for="{{web_mainData}}" wx:key="id">
     <view class="product" wx:if="{{num == 1&&item.passage2==''}}">
         <view class="order_tlt w710 flexRowBetween ">
-            <view class="tlt_left">订单编号：{{item.order_no}}</view>
-            <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}">查看物流</view>
+            <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
+            <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" style="width:38%;">查看物流</view>
         </view>
         <view class="product_box w710 flexRowBetween">
             <view class="product_left">
