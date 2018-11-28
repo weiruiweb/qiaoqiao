@@ -192,13 +192,12 @@ Page({
 
             self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
         };
-        if(res.info.data.length>4){
-          self.data.mainData = self.data.mainData.slice(0,4) 
-        }
+      
         for (var i = 0; i < self.data.mainData.length; i++) {
           if(self.data.mainData[i].is_group==1){
             self.data.groupData.push(self.data.mainData[i])
-          }
+          };
+          console.log(self.data.mainData)
           console.log(self.data.groupData)
         }; 
       }else{

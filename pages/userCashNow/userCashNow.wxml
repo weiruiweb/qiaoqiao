@@ -4,12 +4,12 @@
     <view style="height:100rpx;line-height:100rpx;font-size:28rpx;color:#444;">请输入体现金额</view>
     <view class="flexRowBetween">
       <view style="width:91%;height:80rpx;border:solid 1px #ce0000;border-radius:10rpx;padding:0 2%;">
-        <input style="height:80rpx;line-height:80rpx;font-size:30rpx;"></input>
+        <input style="height:80rpx;line-height:80rpx;font-size:30rpx;" value="{{web_submitData.score}}" bindblur="changeBind"  data-key="score"></input>
       </view>
       <view style="font-size:24rpx;color:#666;width:5%;">元</view>
     </view>
   </view>
 </view>
-<view class="confirm_bind bg"   bindtap="intoPathRedi" data-path="/pages/user_cash/user_cash">
-  确认体现
+<view class="confirm_bind bg"   bindtap="submit">
+  确认提现
 </view>

@@ -11,7 +11,7 @@
 				</view>
 				<view class="shopping_name">
 					<text class="text1">{{item.title}}</text>
-					<text class="text2">{{item.description}}</text>
+					<text class="text2 avoidOverflow">{{item.description}}</text>
 					<text class="price color">¥{{item.price}}</text>
 				</view>
 				<view class="edit_number flexRowBetween">

@@ -1,101 +1,110 @@
 import {Api} from '../../utils/api.js';
 var api = new Api();
-const app = getApp();
+
 import {Token} from '../../utils/token.js';
 const token = new Token();
 
 Page({
   data: {
-     todayData:[],
-    artData:[],
-    mainImg:[],
+
     submitData:{
-      content:'',
-      passage1:'',
-      type:3,
-      mainImg:[]
-    },
-    searchItem:{
-      thirdapp_id:'59',
-      passage1:1,
-      user_type:0
+      score:'',
+      
     }
 
-    },
 
-  onLoad(options){
-     const self = this;
-    self.setData({
-      fonts:getApp().globalData.font
-    });
-    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
-    self.getArtData();
-    self.setData({
-      web_imgData:self.data.submitData.mainImg
-    });
+
   },
-  upLoadImg: function (){
-    var self = this;
 
-    if(self.data.submitData.mainImg.length>2){
-      api.showToast('仅限3张','fail');
-      return;
-    };
-    wx.showLoading({
-      mask: true,
-      title: '图片上传中',
-    });
-    var mainImg = self.data.mainImg
-    wx.chooseImage({
-      count:1,
-      success: function(res) {
-        console.log(res);
-        var tempFilePaths = res.tempFilePaths
-        
-        wx.uploadFile({
-          url: 'https://dmgnm.com/scoreshop/public/index.php/api/v1/Base/FtpImage/upload ',
-          filePath:tempFilePaths[0],
-          name: 'file',
-          formData: {
-            token:wx.getStorageSync('token')
-          },
-          success: function(res){
-            res = JSON.parse(res.data);
-            self.data.submitData.mainImg.push({url:res.info.url})
-            self.setData({
-              web_imgData:self.data.submitData.mainImg
-            });
-            wx.hideLoading()
 
-          },
-          fail: function(err){
-            wx.hideLoading();
-            api.showToast('上传失败','fail')
-          }
-        })
-      },
-      fail: function(err){
-        wx.hideLoading();
-      }
-    })
+
+  onLoad(){
+    const self = this;
+    self.getUserInfoData();
   },
- 
+
+
+
+
+
+  changeBind(e){
+    const self = this;
+    api.fillChange(e,self,'submitData');
+
+    console.log(self.data.submitData);
+    self.setData({
+      web_submitData:self.data.submitData,
+    }); 
+  },
+
 
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
-  intoPathRedi(e){
+
+  flowLogAdd(){
     const self = this;
-    wx.navigateBack({
-      delta:1
-    })
+    const postData = {
+        token:wx.getStorageSync('token'),
+        data:{
+          user_no:wx.getStorageSync('info').user_no,
+          count:-self.data.submitData.score,
+          
+          trade_info:'提现',
+          status:0,
+          type:2
+        }
+    };
+    const callback = (res)=>{
+      api.showToast('申请成功','none'); 
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        },300);
+       
+    };
+    api.flowLogAdd(postData,callback)
+  },
+
+  getUserInfoData(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.userData = res.info.data[0].balance
+      }
+      wx.hideLoading();
+    };
+    api.userInfoGet(postData,callback);   
   },
   
 
+  submit(){
+    const self = this;
+    var num = self.data.submitData.score;
+    const pass = api.checkComplete(self.data.submitData);
+    if(pass){  
+      console.log(self.data.userData)
+      if(self.data.userData&&parseInt(self.data.userData)>=num){
+        if(!(/(^[1-9]\d*$)/.test(num))){
+         api.showToast('请输入正整数','none')
+        }else{
+          self.flowLogAdd();
+        }   
+      }else{
+        api.showToast('佣金不足','none');  
+      }   
+    }else{
+      api.showToast('请补全信息','none');
+    };
+  },
 
- 
+
+
+
+
 })
-
-  

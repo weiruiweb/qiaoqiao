@@ -15,12 +15,15 @@ Page({
     num:0
   },
   //事件处理函数
-
+  onShow(){
+    const self = this;
+    self.getMainData();
+  },
 
   onLoad(options){
   	const self = this;
   	self.data.paginate =  self.data.paginate = api.cloneForm(getApp().globalData.paginate);
-  	self.getMainData();
+  	
   	self.setData({
   		num: self.data.num
   	})

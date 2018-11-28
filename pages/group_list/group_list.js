@@ -12,7 +12,6 @@ Page({
   data: {
   
     searchItem:{
-     
       thirdapp_id:getApp().globalData.thirdapp_id,
       is_group:1
     },

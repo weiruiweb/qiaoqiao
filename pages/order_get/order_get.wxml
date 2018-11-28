@@ -5,7 +5,7 @@
             <view class="product_left">
                 <image src="{{item.product.mainImg[0].url}}"></image>
             </view>
-            <view class="product_right">
+            <view class="product_right" style="width:72.5%">
                 <view class="product_detail">
                     <view class="font32 color3 product_top">{{item.product.title}}</view>
                     <view class="font24 color9 product_top">{{item.product.description}}</view>
