@@ -120,7 +120,7 @@
             <view class="activty_left">
               <image src="/images/discount_icon1.png"></image>
             </view>
-            <view class="activty_left activty_right">
+            <view class="activty_right">
                <view class="font32 color1">优惠券</view>
                <view class="font28 member_in color1">红包抢到手软</view>
             </view>

@@ -18,6 +18,14 @@ page{
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }
+.avoidOverflow2{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2; 
+}
 .flex{
 	display:flex;
 	align-items:center;

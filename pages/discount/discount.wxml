@@ -13,13 +13,13 @@
 								<text class="font22">¥</text>{{item.discount}}
 							</view>
 							<view class="discount_right">
-								<view class="detail1 font32">{{item.price}}积分兑换</view>
-								<view class="detail2 font24">{{item.description}}</view>
-								<view class="discount_bottom avoidOverflow">
+								<view class="detail1 font32" style="height:30%;">{{item.price}}积分兑换</view>
+								<view class="detail2 font24 avoidOverflow2" style="height:45%;">{{item.description}}积分兑换积分兑换积分兑换积分兑换积分兑换积分兑换积分兑换</view>
+								<view class="discount_bottom avoidOverflow"  style="height:25%;">
 									<view class="discount_time font22 discount_bg1">截至到{{func.timestampToTime(item.deadline)}}</view>
 								</view>
 							</view>
-							<view class="discount_btn">
+							<view class="discount_btn flex">
 								<view class="click_btn submit_info" data-id="{{item.id}}" data-type="{{item.type}}" data-deadline="{{item.deadline}}" data-price="{{item.price}}" bindtap="addOrder">立即领取</view>
 							</view>
 						</view>

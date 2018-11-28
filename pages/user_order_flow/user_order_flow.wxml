@@ -1,8 +1,8 @@
 <!--index3.wxml-->
 <view class="product">
     <view class="order_tlt w710 flexRowBetween ">
-        <view class="tlt_left">交易时间:{{web_mainData.create_time}}</view>
-        <view class="tlt_left tlt_right color">等待收货</view>
+        <view class="tlt_left" style="width:70%;">交易时间:{{web_mainData.create_time}}</view>
+        <view class="tlt_left tlt_right color"  style="width:30%;">等待收货</view>
     </view>
     <view class="product_box w710 flexRowBetween">
         <view class="product_left">

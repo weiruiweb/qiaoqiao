@@ -14,21 +14,21 @@
             <view class="tlt_left tlt_right" style="width:38%;">{{item.create_time}}</view>
         </view>
         <view class="product_box w710 flexRowBetween">
-            <view class="product_left">
+            <view class="product_left" style="width:25%;">
                 <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
             </view>
-            <view class="product_right">
+            <view class="product_right" style="width:75%;">
                 <view class="product_detail">
-                    <view class="font32 color3" style="height:30%;">{{item.products[0].snap_product.title}}</view>
-                    <view class="flexRowBetween" style="height:25%;">
-                        <view class="font30 color6 product_price flex">¥{{item.products[0].snap_product.price}}</view>
+                    
+                    <view class="flexRowBetween" style="height:30%;">
+                        <view class="font32 color3">{{item.products[0].snap_product.title}}</view>
+                        <view class="font30 color product_price flex">¥{{item.products[0].snap_product.price}}</view>
+                    </view>
+                    <view class="flexRowBetween" style="height:45%;">
+                        <view class="font24 color3 avoidOverflow">自提地址：{{item.store[0].description}}</view>
                         
                     </view>
-                    <view class="flexRowBetween" style="height:25%;">
-                        <view class="font24 color9 avoidOverflow">自提地址：{{item.store[0].description}}</view>
-                        
-                    </view>
-                    <view class="font26 color3">联系电话:{{item.store[0].url}}</view>
+                    <view class="font26 color6" style="height:25%;">联系电话:{{item.store[0].url}}</view>
                 </view>
             </view>
         </view>
@@ -42,20 +42,22 @@
             <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" style="width:38%;">查看物流</view>
         </view>
         <view class="product_box w710 flexRowBetween">
-            <view class="product_left">
+            <view class="product_left"  style="width:25%;">
                 <image src="/images/index1.png"></image>
             </view>
-            <view class="product_right flex">
+            <view class="product_right flex"  style="width:75%;">
                 <view class="product_detail">
-                    <view class="font32 color3 product_top" style="height:33.33%;">{{item.products[0].snap_product.title}}</view>
-                    <view class="flexRowBetween" style="height:33.33%;">
+                    <view class="flexRowBetween" style="height:30%;">
+                        <view class="font32 color3">{{item.products[0].snap_product.title}}</view>
+                        <view class="font24 color avoidOverflow" style="text-align:center">¥{{item.products[0].snap_product.price}}</view>
+                    </view>
+                    <view class="flexRowBetween" style="height:40%;">
                         <view class="font26 color3">{{item.snap_address.name}}收</view>
-                        <view class="font30 color6 product_price flex">18556465465</view>
+                        <view class="font30 color9 product_price flex">18556465465</view>
                         
                     </view>
-                    <view class="flexRowBetween" style="height:33.33%;">
-                        <view class="font26 color3"  style="width:70%;">{{item.snap_address.detail}}</view>
-                        <view class="font24 color avoidOverflow" style="width:30%;text-align:center">¥{{item.products[0].snap_product.price}}</view>
+                    <view class="flexRowBetween font26 color3 avoidOverflow" style="height:30%;">
+                        {{item.snap_address.detail}}
                     </view>
                 </view>
             </view> 

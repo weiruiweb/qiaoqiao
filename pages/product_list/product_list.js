@@ -79,7 +79,12 @@ Page({
     console.log(currentId)
     self.getMainData(true,currentId)
   },
-
+  mask(e){
+    const self =this;
+    self.setData({
+      isShow: false,
+    });
+  },
 
 
   getMainData(isNew,currentId){

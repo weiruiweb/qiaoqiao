@@ -28,7 +28,7 @@
 }
 .product_detail{
 	width:100%;
-	height:140rpx;
+	height:100%;
 }
 .product_left{
 	width:27.5%;
