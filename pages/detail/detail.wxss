@@ -219,19 +219,10 @@ line-height:62rpx;}
 	height:596rpx;
 	width:100%;
 	position:fixed;
-	bottom:-596rpx;
+	bottom:-100%;
 	background:#fff;
 	z-index:99;
-}
-.sildeIn{
 	transition:all 1s;
-	transform:translateY(-101%);
-
-}
-.slideOut{
-	transition:all 1s;
-	transform:translateY(100%);
-
 }
 .pricity{
 	margin-bottom:55rpx;
@@ -289,6 +280,7 @@ line-height:62rpx;}
 	background:#f7f7f7;
 	border-radius:3rpx;
 	margin-left: 30rpx;
+	flex-wrap:wrap
 }
 .choose_number{
 	height:126rpx;
