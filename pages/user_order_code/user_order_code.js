@@ -39,14 +39,21 @@ Page({
     const self = this;
     api.fillChange(e,self,'sForm');
     console.log(self.data.sForm);
-    if(self.data.sForm.passage2){  
-      self.data.searchItem.passage2 = ['LIKE',['%'+self.data.sForm.passage2+'%']];
+    self.setData({
+      web_sForm:self.data.sForm
+    })
+  },
+
+  search(){
+  	const self = this;
+  	if(self.data.sForm.passage2){  
+      self.data.searchItem.passage2 = self.data.sForm.passage2;
       self.getMainData(true,self.data.sForm.passage2)
       
     }else if(self.data.sForm.passage2==''){
+    	delete self.data.searchItem.passage2;
       self.getMainData()
     }
-
   },
 
 
@@ -71,7 +78,7 @@ Page({
       self.setData({
         web_mainData:self.data.mainData
       })
-      console.log(self.data.mainData)
+      console.log('getMainData',self.data.sForm)
     };
     api.orderGet(postData,callback);
   },
@@ -89,10 +96,18 @@ Page({
       user_type:0
     };
 
-    const callback  = res=>{
-      api.showToast('已提货','none');
-
-  
+    const callback  = (res)=>{
+      if(res.solely_code==100000){
+      	api.showToast('已提货','none');	
+      }else{
+      	api.showToast(res.msg,'none')
+      }
+      self.data.mainData = [];
+      self.data.sForm.title='';
+      self.setData({
+      	web_sForm:self.data.sForm,
+      	web_mainData:self.data.mainData
+      })	
     };
     api.orderUpdate(postData,callback);
   },
