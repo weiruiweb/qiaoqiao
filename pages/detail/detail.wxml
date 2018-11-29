@@ -142,7 +142,8 @@
 			</view>
 		</view>
 		<scroll-view scroll-Y style="height:180rpx;">
-		<block wx:for="{{web_labelData}}" wx:key="id" >
+		<block wx:for="{{web_labelData}}" wx:key="id">
+			<view  style="margin-top:20rpx;">
 			<view id="type" class="flexRowBetween" style="justify-content:flex-start">
 				<view class="pro_type"  >	
 					{{item.title}}
@@ -153,6 +154,7 @@
 					</view>
 				</block>
 			</view>
+		</view>
 		</block>
 		</scroll-view>
 		<view class="choose_number flexRowBetween">

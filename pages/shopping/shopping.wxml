@@ -42,7 +42,6 @@
 			<view class="submit_shopping bg" style="margin:0rpx auto;">
 				<view class="pay_note" bindtap="pay">
 					<text class="text1">结算</text>
-					<text class="number_pay">(1)</text>
 				</view>
 			</view>
 		</view>
