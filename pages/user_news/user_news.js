@@ -174,7 +174,7 @@ Page({
     self.data.id = id;
     self.getMessageOne();
     
-
+    
   },
 
   onReachBottom() {

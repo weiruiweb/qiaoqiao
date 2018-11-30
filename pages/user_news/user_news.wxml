@@ -4,18 +4,17 @@
 	<image src="/images/news_banner.jpg"></image>
 </view>
 <block wx:for="{{web_messageData}}" wx:key="id">
-<view class="mall_tlt">
-    <image src="/images/new_tlt.jpg"></image>
-    <view  class="mall_tlt_txt font28 color1">{{item.title}}</view>
-</view>
-<view bindtap="show" data-id="{{item.id}}">点击查看详情
-
-
-<view class="fiexd-cart"  style="background:#e71121" wx:if="{{item.relation.length=='0'}}">
-    <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
-</view>
-
-
+<view class="flexRowBetween">
+    <view class="mall_tlt">
+        <image src="/images/new_tlt.jpg"></image>
+        <view  class="mall_tlt_txt font28 color1">{{item.title}}</view>
+    </view>
+    <view bindtap="show" class="read" data-id="{{item.id}}">
+        <view class="font26 click_read">点击查看</view>
+        <view class="fiexd-cart"  style="background:#e71121" wx:if="{{item.relation.length=='0'}}">
+            <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+        </view>
+    </view>
 </view>
 </block>
 <view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">

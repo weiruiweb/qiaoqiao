@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -124,6 +124,11 @@
 					"name": "index",
 					"pathName": "pages/detail/detail",
 					"query": "user_no=UB15702912423561&id=1"
+				},
+				{
+					"id": -1,
+					"name": "我的消息",
+					"pathName": "pages/user_news/user_news"
 				}
 			]
 		}
