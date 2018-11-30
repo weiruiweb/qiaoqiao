@@ -120,8 +120,17 @@ Page({
       wxPayStatus:0
     };
     const callback = (res)=>{
-      wx.hideLoading();
-      self.getMainData(true)   
+      if(res.solely_code==100000){
+  	   const payCallback=(payData)=>{
+        if(payData==1){
+        	api.showToast('支付成功','none');
+        	self.getMainData(true) 
+        };   
+
+      };
+      api.realPay(res.info,payCallback);
+      }
+        
     };
     api.pay(postData,callback);
   },
@@ -129,6 +138,7 @@ Page({
 
   menuClick: function (e) {
     const self = this;
+    wx.showLoading();
     self.setData({
       buttonClicked:true
     });
@@ -149,7 +159,7 @@ Page({
       self.data.searchItem.order_step = '0';
     }else if(num=='2'){
       self.data.searchItem.pay_status = '1';
-      self.data.searchItem.transport_status = '0';
+      self.data.searchItem.transport_status = ['in',[0,1]];
       self.data.searchItem.order_step = '0';
     }else if(num=='3'){
       self.data.searchItem.pay_status = '1';

@@ -79,7 +79,7 @@ Page({
     if(options.user_no){
     	self.data.user_no = options.user_no
     };
-    console.log(self.data.scene)
+    console.log(self.data.user_no)
   	
   },
 
@@ -368,7 +368,7 @@ Page({
         self.data.shareBtn = false;
       }
       return {
-        title: '纯粹科技',
+        title: '巧巧爱家',
         path: 'pages/detail/detail?id='+self.data.id+'&&user_no='+wx.getStorageSync('info').user_no,
         success: function (res){
           console.log(res);

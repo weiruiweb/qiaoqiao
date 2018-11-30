@@ -51,7 +51,10 @@
             <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.order_step == '0'}}">去评价</view>
             <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
 
-            <view class="submit_info font28" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
+
+             <view class="submit_info font28"  wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'未发货'}}</view>
+
+            <view class="submit_info font28" bindtap="{{item.passage2==''?'intoPath':''}}" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
 
         </view>
     </view>

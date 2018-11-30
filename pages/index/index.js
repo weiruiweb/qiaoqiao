@@ -83,13 +83,14 @@ Page({
       marquee2_margin: length < windowWidth ? windowWidth - length : self.data.marquee2_margin
     });
     self.run2();
-
+   	self.getMessageData();
     self.getLabelData();
     self.getMainData();
     self.getNoticeData();
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
     };
+    
     if(options.parentNo){
       var scene = options.parentNo
     };
@@ -103,9 +104,29 @@ Page({
     };
     
     self.data.scene = scene;
- 
-  
+  },
 
+
+  getMessageData(){
+    const self = this;
+   
+    const postData = {};
+ 
+    postData.token=wx.getStorageSync('token');
+    postData.searchItem = {
+      user_type:2,
+      type:5,
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.messageData = res.info.data[0]
+      }
+      console.log(self.data.messageData);
+      self.setData({
+        web_messageData:self.data.messageData,
+      });   
+    };
+    api.messageGet(postData,callback);
   },
 
   getSliderData(){

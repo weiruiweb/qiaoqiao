@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -116,7 +116,14 @@
 				{
 					"id": -1,
 					"name": "优惠券",
-					"pathName": "pages/discount/discount"
+					"pathName": "pages/discount/discount",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "index",
+					"pathName": "pages/detail/detail",
+					"query": "user_no=UB15702912423561&id=1"
 				}
 			]
 		}

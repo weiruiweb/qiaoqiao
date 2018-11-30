@@ -130,12 +130,41 @@ Page({
   			web_userData:self.data.userData
   		});
 
-  		self.getMainData()
+  		self.distributionGet()
   	}
   	api.userGet(postData,callback)
   },
 
+  distributionGet(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.searchItem = {
+      child_no:wx.getStorageSync('info').user_no,
+    };
+    postData.getAfter = {
+      userInfo:{
+        tableName:'UserInfo',
+        middleKey:'parent_no',
+        key:'user_no',
+        searchItem:{
+          status:1
+        },
+        condition:'=',
+      }
+    };
+    const callback = (res)=>{
+      if(res){
+        self.data.distributionData = res.info.data[0];
+        self.setData({
+          web_distributionData:self.data.distributionData,
+        });
+        self.getMainData();
+      };
+    };
+    api.distributionGet(postData,callback);
 
+  },
 
 
   getMainData(){
@@ -249,6 +278,7 @@ Page({
 
   pay(order_id){
     const self = this;
+    console.log(self.data.distributionData)
     var order_id = self.data.order_id;
     const postData = {
       token:wx.getStorageSync('token'),
@@ -294,6 +324,21 @@ Page({
             count:self.data.realTotalPrice/self.data.userData.highUser[0].balance_ratio,
             trade_info:'分享奖励',
             user_no:self.data.user_no,
+            type:2,
+            thirdapp_id:getApp().globalData.thirdapp_id
+          }
+        }
+      );
+    };
+    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].balance_ratio&&self.data.distributionData.userInfo[0].balance_ratio>0){
+      postData.payAfter.push(
+        {
+          tableName:'FlowLog',
+          FuncName:'add',
+          data:{
+            count:self.data.realTotalPrice/self.data.distributionData.userInfo[0].balance_ratio,
+            trade_info:'下级消费奖励',
+            user_no:self.data.distributionData.userInfo[0].user_no,
             type:2,
             thirdapp_id:getApp().globalData.thirdapp_id
           }

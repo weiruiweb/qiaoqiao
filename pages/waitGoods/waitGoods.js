@@ -114,6 +114,7 @@ Page({
     postData.searchItem.id = api.getDataSet(e,'id');
     const callback  = res=>{
       api.showToast('已确认收货','none');
+      self.data.mainData = [];
       self.getMainData(true);
     };
     api.orderUpdate(postData,callback);

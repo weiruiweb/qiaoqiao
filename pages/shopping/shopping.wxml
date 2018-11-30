@@ -1,5 +1,5 @@
 <!--shopping.wxml-->
-<view id="shopping" wx:if="{{web_mainData[0].title}}">
+<view id="shopping" wx:if="{{web_mainData}}">
 	<block wx:for="{{web_mainData}}" wx:key="id" >
 		<view class="shopping_item">
 			<view class="flexRowBetween" style="align-items:center;">
@@ -48,7 +48,7 @@
 	</view>
 </view>
 
-<view id="shoppingEmpty" wx:else>
+<view wx:if="{{web_mainData.length==0}}">
 	<view class="shopping_cart flex">
 		<view class="" style="width:104rpx;height:96rpx;margin:0 auto;{{img}};background-position: 0px -100px;"></view>
 	</view>

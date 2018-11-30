@@ -242,8 +242,8 @@ Page({
         passage2:self.data.code,
         type:1
       };
-      if(self.data.submitData.storeId==''){
-        api.showToast('请选择自提地点','none')
+      if(!api.checkComplete(self.data.submitData)){
+        api.showToast('请补全信息或选择自提点','none')
         self.data.buttonClicked = false;
         return;
       };
@@ -415,22 +415,7 @@ Page({
 
 
   
-  countTotalPrice(){
-    const self = this;
-    var totalPrice = 0;
 
-    var couponPrice = 0;
-    var productsArray = self.data.mainData;
-    for(var i=0;i<productsArray.length;i++){
-      totalPrice += productsArray[i].product.price*productsArray[i].count;
-    };
-    self.data.totalPrice = totalPrice;
-    console.log(self.data.totalPrice)
-    self.setData({
-      web_totalPrice:totalPrice.toFixed(2)
-    });
-
-  },
 
   intoPath(e){
     const self = this;

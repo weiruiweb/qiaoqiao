@@ -1,19 +1,6 @@
 <!--index.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
-<view class="w710" style="background: #fff7f7;" >
-    <view id="marquee" class="flexRowBetween">
-      <view class="horn"><image src="/images/horn.png"></image></view>
-      <view class="marquee_right">
-        <view class="marquee_box">
-          <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
-            <text>{{web_noticeData.description}}</text>
-            <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
-          </view>
-        </view>
-      </view>
-      <view class="next_page flex"><image src="/images/next_page.png"></image></view>
-  </view>
-</view>
+<view class="product_name1 font30 avoidOverflow">{{web_noticeData.description}}</view>
 <view class="page-body">
     <view class="page-section page-section-spacing swiper">
       <swiper
@@ -32,7 +19,20 @@
     </view>
     </view>
 </view>
-
+<view class="w710" style="background: #fff7f7;" >
+    <view id="marquee" class="flexRowBetween" data-path="/pages/user_news/user_news" bindtap="intoPath">
+      <view class="horn"><image src="/images/horn.png"></image></view>
+      <view class="marquee_right">
+        <view class="marquee_box">
+          <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
+            <text>{{web_messageData.title}}</text>
+            <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="next_page flex"><image src="/images/next_page.png"></image></view>
+  </view>
+</view>
 <view class="great flex">
     <view class="great_left flex" bindtap="intoPath" data-path="/pages/group_list/group_list">
       <view class="left_cont">

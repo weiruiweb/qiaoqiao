@@ -48,13 +48,13 @@ Page({
     		web_group_no:self.data.group_no
     	});
     };
-     if(options.group_no){
+     if(options.user_no){
     	self.data.user_no=options.user_no;
     	self.setData({
     		web_user_no:self.data.user_no
     	})
     };
-    console.log(self.data.group_no)
+    console.log(self.data.user_no)
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.setData({
 
@@ -339,7 +339,12 @@ Page({
 
   },
 
-  intoPath(e){
+  intoPathRedi(e){
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+  },
+
+   intoPathRedi(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },

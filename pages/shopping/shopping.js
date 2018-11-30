@@ -48,6 +48,7 @@ Page({
 
   onShow() {
     const self = this;
+    wx.showLoading();
     self.data.mainData = api.jsonToArray(wx.getStorageSync('cartData'),'unshift');
     console.log(self.data.mainData)
     self.checkChooseAll()
@@ -166,6 +167,7 @@ Page({
         cartTotalCounts += self.data.mainData[i].count;
       }
     };
+    wx.hideLoading();
     self.setData({
       web_cartTotalCounts:cartTotalCounts,
       web_totalPrice:totalPrice.toFixed(2),
