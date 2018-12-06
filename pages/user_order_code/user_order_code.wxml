@@ -9,7 +9,7 @@
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
         </view>
-        <view class="product_box w710 flexRowBetween">
+        <view class="product_box w710 flexRowBetween bg1">
             <view class="product_left">
                 <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
             </view>
@@ -24,16 +24,28 @@
             </view>
             </view>
         </view>
-        <view class="order_handle">
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">确认取货</view>
-        </view>
-        <view class="order_handle" style="height:200rpx;display:flex">
+      <!--   <view class="order_handle" style="height:200rpx;display:flex">
             <view >
-                头像：<image src="{{item.user[0].headImgUrl}}" class="user_img"/>
+                头像：
             </view>
             <view class="font28">微信名：{{item.user[0].nickname}}</view>
-            <view class="font28">收货人姓名：{{item.snap_address.name}}</view>
-            <view class="font28">收货人电话：{{item.snap_address.phone}}</view>
+             
+        </view>-->
+        <view class="getUser flex bg1">
+            <view class="user_left">
+                <view class="user_img">
+                    <image src="{{item.user[0].headImgUrl}}"/>
+                </view>
+                <view class="font24">{{item.user[0].nickname}}</view>
+            </view>
+            <view class="user_right">
+                <view class="font28" style="height:80rpx;line-height:80rpx;">
+                    <text class="font28 color3">收货人姓名：</text>{{item.snap_address.name}}</view>
+            <view class="font28"><text class="font28 color3">收货人电话：</text>{{item.snap_address.phone}}</view>
+            </view>
+        </view>
+        <view class="order_handle">
+            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">确认取货</view>
         </view>
     </view>
 </block>

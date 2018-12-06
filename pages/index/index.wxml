@@ -122,7 +122,21 @@
             </view>
             <view class="activty_right">
                <view class="font32 color1">优惠券</view>
-               <view class="font28 member_in color1">积分兑换优惠券</view>
+               <view class="font24 member_in color1">积分兑换优惠券</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
+        <image src="/images/discout2.png" class="img_bg" ></image>
+        <view class="activty flex" >
+          <view class="activty_cont flex">
+            <view class="activty_left">
+              <image src="/images/discount_icon1.png"></image>
+            </view>
+            <view class="activty_right">
+               <view class="font32 color1">优惠券</view>
+               <view class="font24 member_in color1">积分兑换优惠券</view>
             </view>
           </view>
         </view>
