@@ -30,7 +30,8 @@
     "pages/score_list/score_list",
     "pages/score_detail/score_detail",
     "pages/score_confirm/score_confirm",
-    "pages/userCashNow/userCashNow"
+    "pages/userCashNow/userCashNow",
+    "pages/todayGroup/todayGroup"
   ],
   "window": {
     "backgroundTextStyle": "light",

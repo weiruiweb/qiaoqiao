@@ -34,7 +34,7 @@
   </view>
 </view>
 <view class="great flex">
-    <view class="great_left flex" bindtap="intoPath" data-path="/pages/group_list/group_list">
+    <view class="great_left flex" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
       <view class="left_cont">
         <view class="color">
             <view class="group flex">
@@ -47,8 +47,8 @@
                 </view>
             </view>
         </view>
-        <image src="{{web_groupData.mainImg[0].url}}"></image>
-        <view class="font28"><text class="font24 color6"></text>{{web_groupData.title}}<text class="color font30"> ¥{{web_groupData.price}}</text></view>
+        <image src="{{web_groupData[0].mainImg[0].url}}"></image>
+        <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
       </view>
     </view>
     <view class="great_right">
@@ -112,17 +112,17 @@
         <image src="/images/tlt_bg.png"></image>
         <view  class="mall_tlt_txt font30 color3">优惠大厅</view>
     </view>
-  <view class="recommend1 flexRowBetween">
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount">
-        <image src="/images/discout1.png" class="img_bg"></image>
-        <view class="activty flex">
+  <view class="recommend1 flexRowBetween" >
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
+        <image src="/images/discout1.png" class="img_bg" ></image>
+        <view class="activty flex" >
           <view class="activty_cont flex">
             <view class="activty_left">
               <image src="/images/discount_icon1.png"></image>
             </view>
             <view class="activty_right">
                <view class="font32 color1">优惠券</view>
-               <view class="font28 member_in color1">红包抢到手软</view>
+               <view class="font28 member_in color1">积分兑换优惠券</view>
             </view>
           </view>
         </view>
@@ -153,7 +153,7 @@
           </block>
         </view>
 </view>
-<view class="font22 color6" style="text-align:center;">技术支持：西安纯粹云科技有限公司</view>
+
 <view style="width:100%;height:120rpx;"></view>
 <view class="navbar">
     <view class="navbar_item">

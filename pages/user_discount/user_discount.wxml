@@ -13,6 +13,7 @@
         <text class="{{web_num == 3?'tab_this':''}}">已过期</text>
     </view>
 </view>
+	
 <block wx:for="{{web_mainData}}" wx:key="id">
 	<view class="ticket" bindtap="choose" data-id="{{item.id}}">
 		<view class="ticket_bg">

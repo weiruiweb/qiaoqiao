@@ -18,14 +18,22 @@
             <view class="font32 color3 product_top avoidOverflow">{{item.products[0].snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
                 <view class="font24 color9">{{item.products[0].snap_product.description}}</view>
                 <view class="font30 color6  flex" style="height:50%;">
-                    <view class="product_number">X{{item.count}}</view>
+                    <view class="product_number">X{{item.products[0].count}}</view>
                     <view class="product_price color">¥{{item.price}}</view>
                 </view>
             </view>
             </view>
         </view>
         <view class="order_handle">
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdate">确认取货</view>
+            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">确认取货</view>
+        </view>
+        <view class="order_handle" style="height:200rpx;display:flex">
+            <view >
+                头像：<image src="{{item.user[0].headImgUrl}}" class="user_img"/>
+            </view>
+            <view class="font28">微信名：{{item.user[0].nickname}}</view>
+            <view class="font28">收货人姓名：{{item.snap_address.name}}</view>
+            <view class="font28">收货人电话：{{item.snap_address.phone}}</view>
         </view>
     </view>
 </block>

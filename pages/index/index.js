@@ -83,9 +83,10 @@ Page({
       marquee2_margin: length < windowWidth ? windowWidth - length : self.data.marquee2_margin
     });
     self.run2();
+    self.getMainData();
    	self.getMessageData();
     self.getLabelData();
-    self.getMainData();
+    
     self.getNoticeData();
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
@@ -201,7 +202,8 @@ Page({
         tableName:'sku',
         middleKey:'product_no',
         searchItem:{
-          deadline:['>',nowTime]
+          deadline:['>',nowTime],
+          status:1
         },
         key:'product_no',
         condition:'=',
@@ -214,24 +216,17 @@ Page({
             self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
         };
       
-        for (var i = 0; i < self.data.mainData.length; i++) {
-          if(self.data.mainData[i].is_group==1){
-            self.data.groupData.push(self.data.mainData[i])
-          };
-          console.log(self.data.mainData)
-          console.log(self.data.groupData)
-        }; 
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
       };
       wx.hideLoading();
-      
+      self.getGroupData();
       self.setData({
-        web_groupData:self.data.groupData[0],
+
         web_mainData:self.data.mainData,
       });  
-      self.countDown()
+      
     };
     api.productGet(postData,callback);
   },
@@ -268,14 +263,67 @@ Page({
     api.articleGet(postData,callback);
   },
 
+  getGroupData(){
+    const self = this;
+    var nowTime = Date.parse(new Date());
+    const postData = {};
+    postData.paginate = api.cloneForm(self.data.paginate);
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      type:1
+    };
+    postData.getBefore = {
+      label:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['今日团购']],
+        },
+        middleKey:'category_id',
+        key:'id',
+        condition:'in'
+      },
+    };
+    postData.getAfter={
+      sku:{
+        tableName:'sku',
+        middleKey:'product_no',
+        searchItem:{
+          deadline:['>',nowTime],
+          status:1
+        },
+        key:'product_no',
+        condition:'=',
+      } 
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        for (var i = 0; i < res.info.data.length; i++) {
+
+            self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
+        };
+      
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','none');
+      };
+      wx.hideLoading();
+      self.countDown();
+      self.setData({
+        
+        web_groupData:self.data.groupData,
+      });  
+      
+    };
+    api.productGet(postData,callback);
+  },
+
 
 
     countDown(){
       const self = this;
       
       self.data.timer=null;
-      console.log(parseInt(self.data.groupData[0].deadline))
-      console.log(parseInt(Date.parse(new Date())))
+    
       var times = (parseInt(self.data.groupData[0].deadline)-parseInt(Date.parse(new Date())))/1000;
       self.data.timer=setInterval(function(){
         var day=0,

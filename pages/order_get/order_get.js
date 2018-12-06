@@ -60,10 +60,10 @@ Page({
   createCode() {
     const self = this;
     var code = '';
-    var codeLength = 4;
-    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    var codeLength = 6;
+    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     for (var i = 0; i < codeLength; i++) {
-      var index = Math.floor(Math.random() * 36);
+      var index = Math.floor(Math.random() * 9);
       code += random[index];
     };
     self.data.code = code;
@@ -242,7 +242,11 @@ Page({
         passage2:self.data.code,
         type:1
       };
-      if(!api.checkComplete(self.data.submitData)){
+      var newObject = api.cloneForm(self.data.submitData);
+
+      delete newObject.message;
+
+      if(!api.checkComplete(self.data.newObject)){
         api.showToast('请补全信息或选择自提点','none')
         self.data.buttonClicked = false;
         return;

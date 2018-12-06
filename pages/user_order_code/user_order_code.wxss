@@ -85,3 +85,10 @@ page{
 .code_btn{
 	width:28%;
 }
+.user_img{
+	width:140rpx;
+	height:140rpx;
+	border-radius:50%;
+	overflow:hidden;
+	margin:0px auto;
+}

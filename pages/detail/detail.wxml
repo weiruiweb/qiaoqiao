@@ -43,6 +43,34 @@
 			{{web_mainData.title}}
 		</view>
 	</view>
+<view class="group" wx:if="{{web_skuData.is_group=='1'}}">
+	<view class="w710 detail_text flex" style="height:78rpx;line-height: 78rpx;border-bottom:solid 1px #e0e0e0;">
+		<view class="font24 color6" style="width:90%">
+			48人在拼单,可直接参与
+		</view>
+		<view class="next_page">
+			<image src="/images/next_page.jpg"></image>
+		</view>
+	</view>
+	<view class="w710">
+		<block wx:for="{{web_orderData}}" wx:key="id">
+			<view class="group_one flex" >
+				<view class="group_left">
+					<view class="user_img">
+	                  <image class="user_img" src="{{item.user[0].headImgUrl}}"></image>
+	                </view>
+				</view>
+				<view class="group_name font28 color6">{{item.user[0].nickname}}</view>
+				<view class="group_number">
+					<view class="font26 color3">还差<text class="color">2</text>人拼成</view>
+				</view>
+				<view class="group_btn"  bindtap="group">
+					<view class="submit_info color1">去拼单</view>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
 	<view class="choose flexRowBetween" style="margin-top: 20rpx;">
 		<view class="choose_left font28" style="width:80%;overflow:hidden;">
 			活动介绍
@@ -112,12 +140,18 @@
 			<image src="{{url}}"></image>
 			<view class="text1">收藏</view>
 		</button>
-		<view class="go_buy flexRowBetween">
+		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0&&web_skuData.start_time<web_nowTiem}}">
 			<view class="shoppingCart color1" bindtap="selectModel" data-type="addCart" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
 			</view>
 			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='1'?'goBuy':'selectModel'}}" data-type="buy" style="{{web_skuData.is_group=='1'?'width:100%':''}}">
-				立即购买
+				{{web_skuData.is_group=='1'?'我要开团':'立即购买'}}
+			</button>
+		</view>
+		<view class="go_buy flexRowBetween" wx:else>
+		
+			<button class="go_pay color1" style="width:100%">
+				活动未开始
 			</button>
 		</view>
 	</view>

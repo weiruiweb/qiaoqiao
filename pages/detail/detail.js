@@ -9,7 +9,7 @@ Page({
 
 
   data: {
-
+    orderData:[],
     indicatorDots: true,
     vertical: false,
     autoplay: true,
@@ -58,6 +58,7 @@ Page({
     };
     self.getMainData();
     self.getMessageData();
+    self.orderGet();
     if(wx.getStorageSync('collectData')[self.data.id]){
       self.setData({
         url: '/images/collect_a.png',
@@ -110,6 +111,7 @@ Page({
 
   getMainData(){
     const self = this;
+    var nowTime = Date.parse(new Date());
     const postData = {};
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
@@ -138,8 +140,10 @@ Page({
           
           status:['in',[1]]
         },
-      } 
+      },
+
     };
+
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.mainData = res.info.data[0];
@@ -165,6 +169,7 @@ Page({
       };
       console.log(self.data.skuData)
       self.setData({
+        web_nowTiem:nowTime,
         web_skuData:self.data.skuData,
         web_labelData:self.data.labelData,
         web_mainData:self.data.mainData,
@@ -177,6 +182,54 @@ Page({
     api.productGet(postData,callback);
   },
 
+
+  orderGet(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.searchItem = {
+      user_type:0,
+      type:1,
+      group_leader:'true'
+    };
+    postData.getBefore = {
+      OrderItem:{
+        tableName:'OrderItem',
+        searchItem:{
+          product_id:['in',[self.data.id]],
+          status:['in',[1]]
+        },
+        fixSearchItem:{
+          status:1
+        },
+        key:'order_no',
+        middleKey:'order_no',
+        condition:'in',
+      }, 
+    };
+    postData.getAfter = {
+      user:{
+        tableName:'user',
+        middleKey:'user_no',
+        key:'user_no',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      },
+    };
+
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.orderData.push.apply(self.data.orderData,res.info.data)
+      };
+      self.setData({
+        web_orderData:self.data.orderData
+      });
+      console.log(self.data.orderData)
+    }
+    api.orderGet(postData,callback)
+  },
 
 
   counter(e){

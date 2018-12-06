@@ -26,7 +26,30 @@ Page({
     };
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+    self.getUserInfoData()
    
+  },
+
+  getUserInfoData(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    const callback = (res)=>{
+      if(res.solely_code==100000){
+        if(res.info.data.length>0){
+          self.data.userData = res.info.data[0]; 
+        }
+        self.setData({
+          web_userData:self.data.userData,
+        });  
+      }else{
+        api.showToast('网络故障','none')
+      }
+      self.checkRead();
+     
+      wx.hideLoading();
+    };
+    api.userInfoGet(postData,callback);   
   },
 
   getMainData(isNew){

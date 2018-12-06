@@ -129,7 +129,7 @@ Page({
   		self.setData({
   			web_userData:self.data.userData
   		});
-
+     
   		self.distributionGet()
   	}
   	api.userGet(postData,callback)
@@ -239,7 +239,8 @@ Page({
       };
       console.log('addOrder',self.data.addressData)
       if(self.data.mainData[0].product.is_group==1){
-        postData.isGroup=true
+          postData.isGroup=true
+
       };
       if(self.data.group_no&&self.data.group_no!="undefined"){
       	postData.group_no=self.data.group_no

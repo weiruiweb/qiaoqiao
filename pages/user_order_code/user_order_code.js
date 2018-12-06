@@ -68,6 +68,17 @@ Page({
       token:wx.getStorageSync('threeToken'),
       searchItem:api.cloneForm(self.data.searchItem),
     };
+    postData.getAfter = {
+      user:{
+        tableName:'user',
+        middleKey:'user_no',
+        key:'user_no',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.info.data)
@@ -83,7 +94,11 @@ Page({
     api.orderGet(postData,callback);
   },
 
-  orderUpdate(e){
+
+
+
+
+  orderUpdate(id){
     const self = this;
     const postData = {};
     postData.token = wx.getStorageSync('threeToken');
@@ -92,13 +107,13 @@ Page({
       order_step:3
     }
     postData.searchItem = {
-      id:api.getDataSet(e,'id'),
+      id:id,
       user_type:0
     };
 
     const callback  = (res)=>{
-      if(res.solely_code==100000){
-      	api.showToast('已提货','none');	
+      if(res.solely_code==100000){	
+        api.showToast('已确认提货','none')
       }else{
       	api.showToast(res.msg,'none')
       }
@@ -126,7 +141,29 @@ Page({
     };
   },
  
-
+showModel(e){
+  const self = this;
+  var id = api.getDataSet(e,'id');
+    wx.showModal({
+       title: '确认提货',
+       content: '请确保此订单已提货',
+       showCancel: true,//是否显示取消按钮
+       cancelText:"取消",//默认是“取消”
+       cancelColor:'red',//取消文字的颜色
+       confirmText:"确定",//默认是“确定”
+       confirmColor: 'red',//确定文字的颜色
+       success: function (res) {
+          if (res.cancel) {
+             //点击取消,默认隐藏弹框
+          } else {
+             //点击确定
+             self.orderUpdate(id)
+          }
+       },
+       fail: function (res) { },//接口调用失败的回调函数
+       complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+    })
+  }
  
 })
 

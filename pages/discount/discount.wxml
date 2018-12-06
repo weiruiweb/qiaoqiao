@@ -1,11 +1,13 @@
 <!--userPoster.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
+
+<view style="color:red">我的可使用积分:{{web_userData.score}}</view>
 <view class="w710">
-  <view class="recommend flexRowBetween">
+  <view class="recommend " >
   	  <block wx:for="{{web_mainData}}" wx:key="id">
-	      <view class="recommend_left" >
+	      <view class="recommend_left" style="margin-top:20rpx">
 	      	<view class="discount_cont">
-	      		<image src="{{item.mainImg[0].url}}" class="discount_img"></image>
+	      		<image src="/images/discout2.png" class="discount_img"></image>
 				<view class="discount flex">
 					<view class="discount_detail">
 						<view class="discount_top flex">
@@ -14,7 +16,7 @@
 							</view>
 							<view class="discount_right">
 								<view class="detail1 font32" style="height:30%;">{{item.price}}积分兑换</view>
-								<view class="detail2 font24 avoidOverflow2" style="height:45%;">{{item.description}}积分兑换积分兑换积分兑换积分兑换积分兑换积分兑换积分兑换</view>
+								<view class="detail2 font24 avoidOverflow2" style="height:45%;">{{item.description}}</view>
 								<view class="discount_bottom avoidOverflow"  style="height:25%;">
 									<view class="discount_time font22 discount_bg1">截至到{{func.timestampToTime(item.deadline)}}</view>
 								</view>

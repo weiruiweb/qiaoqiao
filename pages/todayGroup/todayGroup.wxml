@@ -1,0 +1,30 @@
+  <!--userPoster.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
+<view class="w710">
+	<view id="sort" class="flex">
+		<view class="search flex">
+			<input placeholder="搜索商品名称" class="font28" bindconfirm="changeBind" data-key="title"></input>
+		</view>
+	</view>
+</view>
+
+
+<view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
+  <block wx:for="{{web_mainData}}" wx:key="id">
+    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+        <image src="{{item.mainImg[0].url}}"></image>
+        <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
+        <view class="product_pro font28 flex">
+          <view class="color price">¥{{item.price}}</view>
+          <view class="color6 font22 time">开始时间:{{func.timestampToTime(item.start_time)}}</view>
+         
+        </view>
+        <view class="product_pro font28 flex">
+          <view class="color price"></view>
+          <view class="color6 font22 time" >结束时间:{{func.timestampToTime(item.deadline)}}</view>
+         
+        </view>
+    
+    </view>
+  </block>
+ </view>
