@@ -100,9 +100,9 @@
 </view>
 <view class="menu flexRowBetween font30 color6">
   <block wx:for="{{web_labelData}}" wx:key="id">
-    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30||item.id==34?'/pages/group_list/group_list?id='+item.id:'/pages/product_list/product_list?id='+item.id}}">
+    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30||item.id==34?'/pages/group_list/group_list?id='+item.id:'/pages/product_list/product_list?id='+item.id}}" wx:if="{{item.id!=38}}">
       <view><image src="{{item.mainImg[0].url}}"></image></view>
-      <view class="font24">{{item.title}}</view>
+      <view class="font24" >{{item.title}}</view>
     </view>
   </block>
 </view>
@@ -127,7 +127,7 @@
           </view>
         </view>
       </view>
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/freeDiscount/freeDiscount" >
         <image src="/images/discout2.png" class="img_bg" ></image>
         <view class="activty flex" >
           <view class="activty_cont flex">
@@ -136,7 +136,7 @@
             </view>
             <view class="activty_right">
                <view class="font32 color1">优惠券</view>
-               <view class="font24 member_in color1">积分兑换优惠券</view>
+               <view class="font24 member_in color1">免费领取优惠券</view>
             </view>
           </view>
         </view>

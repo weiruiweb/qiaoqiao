@@ -140,6 +140,7 @@ page{
 button{
 	border: none;
 	background: none;
+	line-height:normal
 }
  button::after{
 	width:100%;

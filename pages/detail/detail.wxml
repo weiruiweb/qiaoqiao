@@ -46,7 +46,7 @@
 <view class="group" wx:if="{{web_skuData.is_group=='1'}}">
 	<view class="w710 detail_text flex" style="height:78rpx;line-height: 78rpx;border-bottom:solid 1px #e0e0e0;">
 		<view class="font24 color6" style="width:90%">
-			48人在拼单,可直接参与
+			{{web_orderData.length}}人在拼单,可直接参与
 		</view>
 		<view class="next_page">
 			<image src="/images/next_page.jpg"></image>
@@ -60,12 +60,12 @@
 	                  <image class="user_img" src="{{item.user[0].headImgUrl}}"></image>
 	                </view>
 				</view>
-				<view class="group_name font28 color6">{{item.user[0].nickname}}</view>
-				<view class="group_number">
-					<view class="font26 color3">还差<text class="color">2</text>人拼成</view>
+				<view class="group_name font28 color6" style="width:25%">{{item.user[0].nickname}}</view>
+				<view class="group_number" style="width:50%">
+					<view class="font26 color3" >还未成团，点击即可参与</view>
 				</view>
-				<view class="group_btn"  bindtap="group">
-					<view class="submit_info color1">去拼单</view>
+				<view class="group_btn"  bindtap="groupData" data-id="{{item.id}}" data-group_no="{{item.group_no}}" style="width:25%">
+					<view class="submit_info color1" >去拼单</view>
 				</view>
 			</view>
 		</block>
@@ -144,8 +144,8 @@
 			<view class="shoppingCart color1" bindtap="selectModel" data-type="addCart" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
 			</view>
-			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='1'?'goBuy':'selectModel'}}" data-type="buy" style="{{web_skuData.is_group=='1'?'width:100%':''}}">
-				{{web_skuData.is_group=='1'?'我要开团':'立即购买'}}
+			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_hasGroup==true?'':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':(web_hasGroup==true?'background-color:#e5e5e5;width:100%':'width:100%')}}">
+				{{web_skuData.is_group=='0'?'立即购买':(web_hasGroup==true?'已参加团购':'我要开团')}}
 			</button>
 		</view>
 		<view class="go_buy flexRowBetween" wx:else>
@@ -207,6 +207,26 @@
 		<view class="shoppingCart" style="width:100%;height:80rpx;line-height:80rpx;color:#fff;position:absolute;left:0;bottom:0;">
 			确    认
 		</view>
+	</view>
+</view>
+<view id="group2" wx:if="{{web_isShow}}"  catchtouchmove="true">
+	<view class="group1 group2">
+		<view class="close" bindtap="showGroupMember"><image src="/images/close_icon.png"></image></view>
+		<view class="font32 color3">参与{{web_groupData.user[0].nickname}}的拼团</view>
+		<view class="font28 color6">仅剩<text>{{web_groupData.standard-web_groupData.groupMember.length}}个</text>名额</view>
+		<view class="group_member flexCenter;">
+			<view class="member">
+				<view class="member_cont">
+					<view class="group_leader font22 color1">拼主</view>
+					<view class="user_img">
+	                  <image class="user_img" src="{{web_groupData.user[0].headImgUrl}}"></image>
+	                </view>
+				</view>
+			</view>
+		</view>
+		
+		<button class="submit_info" bindtap="addOrder"  style="width:100%;margin:50rpx auto 0;{{web_isMember==true?'background-color:e5e5e5':''}}">{{web_isMember==true?'已参与':'参与拼团'}}</button>
+
 	</view>
 </view>
 

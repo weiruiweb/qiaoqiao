@@ -15,6 +15,7 @@ Page({
     orderData:[],
     couponData:[],
     couponId:[],
+    groupData:[],
     searchItem:{
       isdefault:1
     },
@@ -253,6 +254,8 @@ Page({
         self.data.buttonClicked = false;
         return;
       };
+      console.log('postData',postData);
+      console.log('self.data.mainData[0].product.standard',self.data.mainData[0].product.standard);
       const callback = (res)=>{
         if(res&&res.solely_code==100000){
           wx.removeStorageSync('payPro');

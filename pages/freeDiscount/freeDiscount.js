@@ -10,7 +10,8 @@ Page({
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:['in',[3,4]],
-      price:['>',0]
+      price:0
+
     },
     buttonClicked:false,
     isLoadAll:false,
@@ -44,8 +45,7 @@ Page({
         });  
       }else{
         api.showToast('网络故障','none')
-      }
-     
+      } 
       wx.hideLoading();
     };
     api.userInfoGet(postData,callback);   
@@ -61,6 +61,17 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.deadline=['>',endTime];
+    postData.getAfter = {
+      orderItem:{
+        tableName:'orderItem',
+        middleKey:'id',
+        key:'product_id',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.info.data);
@@ -80,8 +91,43 @@ Page({
     api.productGet(postData,callback);
   },
 
+
+/*  checkPick(e){
+    const self = this;
+   self.data.id = api.getDataSet(e,'id');
+   self.data.type = api.getDataSet(e,'type');
+   self.data.deadline = api.getDataSet(e,'deadline');
+    const postData = {};
+    postData.searchItem = {
+      id:self.data.id,
+    };
+    postData.getAfter = {
+      orderItem:{
+        tableName:'orderItem',
+        middleKey:'id',
+        key:'product_id',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
+    };
+    const callback = (res) =>{
+      if(res.info.data.length>0){
+        self.data.pickData.push.apply(self.data.pickData,res.info.data);
+        self.setData({
+          web_pickData:self.data.pickData
+        })
+      }
+    }
+    api.productGet(postData,callback);
+  },*/
+
   addOrder(e){
     const self = this;
+    self.data.id = api.getDataSet(e,'id');
+   self.data.type = api.getDataSet(e,'type');
+   self.data.deadline = api.getDataSet(e,'deadline');
     if(!self.data.order_id){
     wx.showLoading();
     if(self.data.buttonClicked){
@@ -92,19 +138,17 @@ Page({
       return;
     }
     self.data.buttonClicked = true;
-    var id = api.getDataSet(e,'id');
-    var type = api.getDataSet(e,'type');
-    var deadline = api.getDataSet(e,'deadline');
+    
     self.data.price =  api.getDataSet(e,'price');
 
     const postData = {
       token:wx.getStorageSync('token'),
       product:[
-        {id:id,count:1}
+        {id:self.data.id,count:1}
       ],
-      pay:{score:self.data.price},
-      type:type,
-      deadline:deadline
+      pay:{score:0},
+      type:self.data.type,
+      deadline:self.data.deadline
     };
     const callback = (res)=>{
       if(res&&res.solely_code==100000){
@@ -119,7 +163,7 @@ Page({
     } 
   },
 
-    
+     
 
   pay(order_id){
     const self = this;
@@ -129,13 +173,13 @@ Page({
       searchItem:{
         id:order_id
       },
-      score:self.data.price
+      score:0
     };
     const callback = (res)=>{
      
        wx.hideLoading();
       if(res.solely_code==100000){
-        api.showToast('兑换成功','none')
+        api.showToast('领取成功','none')
       }else{
         api.showToast(res.msg,'none')
       }

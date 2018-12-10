@@ -36,6 +36,8 @@ Page({
     buttonType:'',
     buttonClicked:true,
     img:"background:url('/images/small.png')",
+    hasGroup:false,
+    isMember:false,
   },
   
   onLoad(options){
@@ -190,7 +192,9 @@ Page({
     postData.searchItem = {
       user_type:0,
       type:1,
-      group_leader:'true'
+      group_leader:'true',
+      order_step:4,
+      pay_status:1
     };
     postData.getBefore = {
       OrderItem:{
@@ -218,19 +222,157 @@ Page({
         condition:'='
       },
     };
-
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.orderData.push.apply(self.data.orderData,res.info.data)
+        for (var i = 0; i < self.data.orderData.length; i++) {
+          if(self.data.orderData[i].user_no==wx.getStorageSync('info').user_no){
+            self.data.hasGroup = true;
+          }
+        }
       };
       self.setData({
+        web_hasGroup:self.data.hasGroup,
         web_orderData:self.data.orderData
       });
-      console.log(self.data.orderData)
+      console.log('orderGet',self.data.orderData)
     }
     api.orderGet(postData,callback)
   },
 
+  groupData(e){
+    const self = this;
+    self.data.id1 = api.getDataSet(e,'id');
+    self.data.group_no1 = api.getDataSet(e,'group_no')
+    const postData ={};
+    postData.token = wx.getStorageSync('token');  
+    postData.searchItem = {
+      user_type:0,
+      id:self.data.id1
+    };
+    postData.getAfter = {
+      groupMember:{
+        tableName:'order',
+        middleKey:'group_no',
+        key:'group_no',
+        searchItem:{
+          status:1,
+
+        },
+        condition:'='
+      },
+      user:{
+        tableName:'user',
+        middleKey:'user_no',
+        key:'user_no',
+        searchItem:{
+          status:1
+        },
+        condition:'='
+      }
+    };
+
+    const callback = (res) =>{
+      if(res.info.data.length>0){
+        self.data.groupData = res.info.data[0];
+        for (var i = 0; i < self.data.groupData.groupMember.length; i++) {
+           if(self.data.groupData.groupMember[i].user_no==wx.getStorageSync('info').user_no){
+            self.data.isMember = true;
+           }
+        }
+        self.showGroupMember();
+      };
+      console.log('666',self.data.isMember )
+      self.setData({
+        web_isMember:self.data.isMember,
+        web_groupData:self.data.groupData
+      })
+    }
+    api.orderGet(postData,callback)
+  },
+
+  addOrder(){
+    const self = this;
+    if(!self.data.order_id){
+   
+      if(self.data.isMember){
+        api.showToast('请勿重复参团','none');
+        return;
+      };
+      console.log(777)
+      const postData = {
+        token:wx.getStorageSync('token'),
+        sku:[
+          {id:self.data.skuData.id,count:1}
+        ],
+        pay:{wxPay:self.data.skuData.price,wxPayStatus:0},
+        type:1,
+
+      };
+      if(self.data.skuData.is_group==1){
+            postData.isGroup=true
+      };
+      if(self.data.group_no1 &&self.data.group_no1!="undefined"){
+        postData.group_no=self.data.group_no1
+      };
+      const callback = (res)=>{
+        if(res&&res.solely_code==100000){
+          self.data.order_id = res.info.id
+          self.pay(self.data.order_id);  
+          self.showGroupMember();
+        }; 
+      };
+      api.addOrder(postData,callback);  
+    }else{
+      self.pay(self.data.order_id)
+    }  
+  },
+
+  pay(order_id){
+    const self = this;
+   
+    var order_id = self.data.order_id;
+    const postData = {
+      token:wx.getStorageSync('token'),
+      searchItem:{
+        id:order_id,
+      },
+      wxPay:self.data.skuData.price,
+      wxPayStatus:0
+    };
+     
+    if(self.data.skuData.is_group==1){
+      postData.searchItem.status = ['in',[0,1]]
+    };
+    const callback = (res)=>{
+      wx.hideLoading();
+      if(res.solely_code==100000){
+      if(res.info){
+        const payCallback=(payData)=>{
+            if(payData==1){
+              setTimeout(function(){
+                api.pathTo('/pages/user_order/user_order','redi');
+              },800)  
+            };   
+          };
+          api.realPay(res.info,payCallback);      
+      }
+      }else{
+        api.showToast('支付失败','none')
+      }
+         
+    };
+    api.pay(postData,callback);
+  },
+
+
+  showGroupMember(){
+    const self = this;
+    self.data.isShow = !self.data.isShow
+    self.setData({
+      web_isShow:self.data.isShow
+    })
+  },
 
   counter(e){
     const self = this;
@@ -522,6 +664,8 @@ Page({
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
+
+
 
   close(){
     const self = this;

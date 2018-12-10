@@ -31,7 +31,8 @@
     "pages/score_detail/score_detail",
     "pages/score_confirm/score_confirm",
     "pages/userCashNow/userCashNow",
-    "pages/todayGroup/todayGroup"
+    "pages/todayGroup/todayGroup",
+    "pages/freeDiscount/freeDiscount"
   ],
   "window": {
     "backgroundTextStyle": "light",

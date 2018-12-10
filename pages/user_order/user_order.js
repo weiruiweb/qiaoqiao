@@ -161,6 +161,8 @@ Page({
       self.data.searchItem.pay_status = '1';
       self.data.searchItem.transport_status = ['in',[0,1]];
       self.data.searchItem.order_step = '0';
+      self.data.searchItem.order_step = '4';
+      self.data.searchItem.order_step = '5';
     }else if(num=='3'){
       self.data.searchItem.pay_status = '1';
       self.data.searchItem.transport_status = '2';

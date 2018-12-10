@@ -267,7 +267,6 @@ Page({
     const self = this;
     var nowTime = Date.parse(new Date());
     const postData = {};
-    postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:1
@@ -298,14 +297,9 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         for (var i = 0; i < res.info.data.length; i++) {
-
-            self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
+          self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
         };
-      
-      }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','none');
-      };
+      }
       wx.hideLoading();
       self.countDown();
       self.setData({
