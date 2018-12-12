@@ -144,8 +144,8 @@
 			<view class="shoppingCart color1" bindtap="selectModel" data-type="addCart" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
 			</view>
-			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_hasGroup==true?'':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':(web_hasGroup==true?'background-color:#e5e5e5;width:100%':'width:100%')}}">
-				{{web_skuData.is_group=='0'?'立即购买':(web_hasGroup==true?'已参加团购':'我要开团')}}
+			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_orderData.length>0?'addOrder':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':'width:100%'}}">
+				{{web_skuData.is_group=='0'?'立即购买':(web_orderData.length>0?'我要参团':'我要开团')}}
 			</button>
 		</view>
 		<view class="go_buy flexRowBetween" wx:else>
@@ -213,7 +213,8 @@
 	<view class="group1 group2">
 		<view class="close" bindtap="showGroupMember"><image src="/images/close_icon.png"></image></view>
 		<view class="font32 color3">参与{{web_groupData.user[0].nickname}}的拼团</view>
-		<view class="font28 color6">仅剩<text>{{web_groupData.standard-web_groupData.groupMember.length}}个</text>名额</view>
+		<view class="font28 color6" wx:if="{{web_groupData.standard>web_groupData.groupMember.length}}">还差<text>{{web_lessNum}}人</text>成团</view>
+		<view class="font28 color6" wx:else>已成团,{{web_groupData.groupMember.length}}人在参团</view>
 		<view class="group_member flexCenter;">
 			<view class="member">
 				<view class="member_cont">
@@ -225,7 +226,7 @@
 			</view>
 		</view>
 		
-		<button class="submit_info" bindtap="addOrder"  style="width:100%;margin:50rpx auto 0;{{web_isMember==true?'background-color:e5e5e5':''}}">{{web_isMember==true?'已参与':'参与拼团'}}</button>
+		<button class="submit_info" bindtap="addOrder"  style="width:100%;margin:50rpx auto 0;{{web_isMember==true?'background-color:e5e5e5':''}}">参与拼团</button>
 
 	</view>
 </view>

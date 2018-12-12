@@ -302,6 +302,8 @@ Page({
       }
       wx.hideLoading();
       self.countDown();
+      self.countDownTwo();
+      self.countDownThree();
       self.setData({
         
         web_groupData:self.data.groupData,
@@ -341,6 +343,78 @@ Page({
             web_hour:hour,
             web_minute:minute,
             web_second:second
+          })
+      },1000);
+      if(times<=0){
+        clearInterval(self.data.timer);
+      }
+
+    },
+
+    countDownTwo(){
+      const self = this;
+      
+      self.data.timer=null;
+    
+      var times = (parseInt(self.data.groupData[1].deadline)-parseInt(Date.parse(new Date())))/1000;
+      self.data.timer1=setInterval(function(){
+        var day=0,
+          hour=0,
+          minute=0,
+          second=0;//时间默认值       
+        if(times > 0){
+          day = Math.floor(times / (60 * 60 * 24));
+          hour = Math.floor(times / (60 * 60)) - (day * 24);
+          minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+        }
+        if (day <= 9) day = '0' + day;
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        times--;
+ 
+          self.setData({
+            web_day1:day,
+            web_hour1:hour,
+            web_minute1:minute,
+            web_second1:second
+          })
+      },1000);
+      if(times<=0){
+        clearInterval(self.data.timer);
+      }
+
+    },
+
+    countDownThree(){
+      const self = this;
+      
+      self.data.timer=null;
+    
+      var times = (parseInt(self.data.groupData[2].deadline)-parseInt(Date.parse(new Date())))/1000;
+      self.data.timer2=setInterval(function(){
+        var day=0,
+          hour=0,
+          minute=0,
+          second=0;//时间默认值       
+        if(times > 0){
+          day = Math.floor(times / (60 * 60 * 24));
+          hour = Math.floor(times / (60 * 60)) - (day * 24);
+          minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+        }
+        if (day <= 9) day = '0' + day;
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        times--;
+ 
+          self.setData({
+            web_day2:day,
+            web_hour2:hour,
+            web_minute2:minute,
+            web_second2:second
           })
       },1000);
       if(times<=0){

@@ -199,6 +199,7 @@ line-height:62rpx;}
 	}
 .go_pay{
 	width:50%;
+	
 	background:#e50112;
 	text-align:center;	
 }

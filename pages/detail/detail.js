@@ -60,6 +60,7 @@ Page({
     };
     self.getMainData();
     self.getMessageData();
+    self.getAddressData();
     self.orderGet();
     if(wx.getStorageSync('collectData')[self.data.id]){
       self.setData({
@@ -184,6 +185,25 @@ Page({
     api.productGet(postData,callback);
   },
 
+  getAddressData(){
+    const self = this;
+    const postData = {}
+    postData.token = wx.getStorageSync('token');
+    postData.searchItem = {
+      isdefault:1
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.addressData = res.info.data[0]; 
+      };
+      console.log('getAddressData',self.data.addressData)
+      self.setData({
+        web_addressData:self.data.addressData,
+      });
+    };
+    api.addressGet(postData,callback);
+  },
+
 
   orderGet(){
     const self = this;
@@ -224,15 +244,10 @@ Page({
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        self.data.orderData.push.apply(self.data.orderData,res.info.data)
-        for (var i = 0; i < self.data.orderData.length; i++) {
-          if(self.data.orderData[i].user_no==wx.getStorageSync('info').user_no){
-            self.data.hasGroup = true;
-          }
-        }
+        self.data.orderData.push.apply(self.data.orderData,res.info.data);
+        self.data.group_no1 = self.data.orderData[0].group_no
       };
       self.setData({
-        web_hasGroup:self.data.hasGroup,
         web_orderData:self.data.orderData
       });
       console.log('orderGet',self.data.orderData)
@@ -275,17 +290,13 @@ Page({
     const callback = (res) =>{
       if(res.info.data.length>0){
         self.data.groupData = res.info.data[0];
-        for (var i = 0; i < self.data.groupData.groupMember.length; i++) {
-           if(self.data.groupData.groupMember[i].user_no==wx.getStorageSync('info').user_no){
-            self.data.isMember = true;
-           }
-        }
+       
         self.showGroupMember();
       };
       console.log('666',self.data.isMember )
       self.setData({
-        web_isMember:self.data.isMember,
-        web_groupData:self.data.groupData
+        web_groupData:self.data.groupData,
+        web_lessNum:self.data.groupData.standard - self.data.groupData.groupMember.length
       })
     }
     api.orderGet(postData,callback)
@@ -295,10 +306,6 @@ Page({
     const self = this;
     if(!self.data.order_id){
    
-      if(self.data.isMember){
-        api.showToast('请勿重复参团','none');
-        return;
-      };
       console.log(777)
       const postData = {
         token:wx.getStorageSync('token'),
@@ -314,6 +321,9 @@ Page({
       };
       if(self.data.group_no1 &&self.data.group_no1!="undefined"){
         postData.group_no=self.data.group_no1
+      };
+       if(self.data.addressData){
+        postData.snap_address = self.data.addressData;
       };
       const callback = (res)=>{
         if(res&&res.solely_code==100000){

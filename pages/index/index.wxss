@@ -170,11 +170,11 @@ swiper{
 	margin:0 auto;
 }
 .great_tLeft{
-	width:50%;
+	width:60%;
 	text-align: center;
 }
 .great_tRight{
-	width:50%;
+	width:40%;
 	text-align: center;
 }
 

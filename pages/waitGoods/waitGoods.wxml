@@ -1,9 +1,9 @@
 <!--index1.wxml-->
 <view class="tab font30 flexRowBetween color6">
-    <view class="tab_item " data-num="0" bindtap="menuClick">
+    <view class="tab_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 0?'tab_this':''}}">上门自提</text>
     </view>
-    <view class="tab_item " data-num="1" bindtap="menuClick">
+    <view class="tab_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
         <text class="{{num == 1?'tab_this':''}}">快递配送</text>
     </view>
 </view>
@@ -28,7 +28,8 @@
                         <view class="font24 color3 avoidOverflow">自提地址：{{item.store[0].description}}</view>
                         
                     </view>
-                    <view class="font26 color6" style="height:25%;">联系电话:{{item.store[0].url}}</view>
+                    <view class="font26 color6" style="height:25%;" data-index ="{{index}}" bindtap="phoneCallOne">联系电话:{{item.store[0].url}}</view>
+                    
                 </view>
             </view>
         </view>
@@ -51,9 +52,9 @@
                         <view class="font32 color3">{{item.products[0].snap_product.title}}</view>
                         <view class="font24 color avoidOverflow" style="text-align:center">¥{{item.products[0].snap_product.price}}</view>
                     </view>
-                    <view class="flexRowBetween" style="height:40%;">
+                    <view class="flexRowBetween" style="height:40%;" bindtap="phoneCallTwo" data-index="{{index}}">
                         <view class="font26 color3">{{item.snap_address.name}}收</view>
-                        <view class="font30 color9 product_price flex">{{item.snap_address.phone}}</view>
+                        <view class="font30 color9 product_price flex" >{{item.snap_address.phone}}</view>
                         
                     </view>
                     <view class="flexRowBetween font26 color3 avoidOverflow" style="height:30%;">

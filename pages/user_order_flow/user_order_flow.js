@@ -47,6 +47,16 @@ Page({
     };
     api.orderGet(postData,callback);
   },
+
+  copyTBL:function(e){
+    var self=this;
+    wx.setClipboardData({
+      data: self.data.mainData.express_info,
+      success: function(res) {
+        
+      }
+    });
+  },
  
   intoPath(e){
     const self = this;

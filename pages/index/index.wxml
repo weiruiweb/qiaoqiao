@@ -41,9 +41,9 @@
                 <view class="group_left color" style="font-size:30rpx">今日团购</view>
                 <view class="group_right flexRowBetween">
                   <view class="time1">{{web_day}}</view> <view class="time_center flex">:</view>
-                    <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
-                    <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
-                    <view class="time1">{{web_second}}</view>
+                  <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second}}</view>
                 </view>
             </view>
         </view>
@@ -52,46 +52,46 @@
       </view>
     </view>
     <view class="great_right">
-      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/product_list/product_list?id=1">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
-              <view class="font30" style="color:#ff9b0e;">人气美妆区</view>
-              <view class="font26 color6" style="font-weight: 700">特惠不打烊</view>
+              <view class="font30" style="color:#ff9b0e;">{{web_groupData[1].title}}</view>
+              <view class="font26 color6" style="font-weight: 700">¥{{web_groupData[1].price}}</view>
           </view>
           <view class="great_tRight flex">
-              <image src="/images/hot1.png"></image>
+              <image src="{{web_groupData[1].mainImg[0].url}}"></image>
           </view>
         </view>
         <view class="right_bottom">
-            <view class="group flex">
-                <view class="group_left color3 font24">限时秒杀</view>
+            <view class="group flex" style="justify-content:center">
                 <view class="group_right flexRowBetween">
-                    <view class="font24 color3" style="width:28%;">还剩:</view>
-                    <view class="time1">02</view> <view class="time_center flex">:</view>
-                    <view class="time1">02</view> <view  class="time_center flex">:</view>
-                    <view class="time1">56</view>
+                  <view class="time1">{{web_day1}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_hour1}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute1}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second1}}</view>
                 </view>
             </view>
         </view>
       </view>
-      <view class="great_top" bindtap="intoPath" data-path="/pages/product_list/product_list?id=6">
+      <view class="great_top" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
-              <view class="font30" style="color:#ff9b0e;">休闲食品区</view>
-              <view class="font26 color6" style="font-weight: 700">特惠不止5折</view>
+              <view class="font30" style="color:#ff9b0e;">{{web_groupData[2].title}}</view>
+              <view class="font26 color6" style="font-weight: 700">¥{{web_groupData[2].price}}</view>
           </view>
           <view class="great_tRight flex">
-              <image src="/images/hot2.png"></image>
+              <image src="{{web_groupData[2].mainImg[0].url}}"></image>
           </view>
         </view>
         <view class="right_bottom">
-            <view class="group flex">
-                <view class="group_left color3 font24">限时秒杀</view>
+            <view class="group flex" style="justify-content:center">
                 <view class="group_right flexRowBetween">
-                    <view class="font24 color3" style="width:28%;">还剩:</view>
-                    <view class="time1">02</view> <view class="time_center flex">:</view>
-                    <view class="time1">02</view> <view  class="time_center flex">:</view>
-                    <view class="time1">56</view>
+                  
+                  <view class="time1">{{web_day2}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_hour2}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute2}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second2}}</view>
+         
                 </view>
             </view>
         </view>

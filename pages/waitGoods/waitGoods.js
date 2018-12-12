@@ -100,7 +100,22 @@ Page({
     api.orderGet(postData,callback);
   },
 
+  phoneCallOne(e) {
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    console.log(e)
+    wx.makePhoneCall({
+      phoneNumber: self.data.mainData[index].store[0].url,
+    })
+  },
 
+  phoneCallTwo(e) {
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    wx.makePhoneCall({
+      phoneNumber: self.data.mainData[index].snap_address.phone,
+    })
+  },
 
   orderUpdate(e){
     const self = this;

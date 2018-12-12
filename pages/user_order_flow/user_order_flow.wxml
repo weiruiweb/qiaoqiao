@@ -21,8 +21,9 @@
     </view>
 </view>
 <view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
-    快递公司:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.express?web_mainData.express:''}}</text>
+    快递公司:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.passage3}}</text>
 </view>
 <view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
-    快递单号:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.express_info==null?'':web_mainData.express_info}}</text>
+    快递单号:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.express_info}}</text>
+    <text  bindtap="copyTBL" style="font-size:15px;color:red;text-align:right" wx:if="{{web_mainData.express_info}}">复制</text>
 </view>
