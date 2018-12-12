@@ -199,9 +199,10 @@ line-height:62rpx;}
 	}
 .go_pay{
 	width:50%;
-	
+	height:100%;
 	background:#e50112;
 	text-align:center;	
+	line-height:70rpx;
 }
 .mask{
 	position:absolute;
