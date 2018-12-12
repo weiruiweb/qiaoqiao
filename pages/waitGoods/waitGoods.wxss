@@ -1,6 +1,11 @@
 /**index.wxss**/
 
 @import "../../wxParse/wxParse.wxss"; 
+page{
+	width:100%;
+	min-height:100%;
+	background:#f2f2f2;
+}
 .tab{
 	height:80rpx;
 	border-bottom:solid 1px #e0e0e0;
@@ -22,6 +27,8 @@
 }
 .product{
 	border-bottom:solid 1px #e0e0e0;
+	background:#fff;
+	margin-bottom:24rpx;
 }
 .product_box{
 	height:230rpx;
