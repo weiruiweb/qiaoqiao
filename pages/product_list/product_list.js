@@ -22,7 +22,8 @@ Page({
       title:''
     },
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id
+      thirdapp_id:getApp().globalData.thirdapp_id,
+
     }
   },
   
@@ -77,8 +78,10 @@ Page({
       web_currentId:currentId,
     });
     console.log(currentId)
+    self.data.mainData = [];
     self.getMainData(true,currentId)
   },
+
   mask(e){
     const self =this;
     self.setData({
@@ -96,6 +99,8 @@ Page({
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = api.cloneForm(self.data.searchItem);
+    postData.searchItem.deadline=['>',nowTime];
+    postData.searchItem.is_group = 0;
     if(self.data.id){
       postData.searchItem.category_id = self.data.id
     }else if(currentId==0){
@@ -103,23 +108,9 @@ Page({
     }else{
       postData.searchItem.category_id = currentId
     }
-    postData.getAfter={
-      sku:{
-        tableName:'sku',
-        middleKey:'product_no',
-        searchItem:{
-          deadline:['>',nowTime]
-        },
-        key:'product_no',
-        condition:'=',
-      } 
-    };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        for (var i = 0; i < res.info.data.length; i++) {
-            self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
-        }
- 
+          self.data.mainData.push.apply(self.data.mainData,res.info.data);
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
@@ -132,7 +123,7 @@ Page({
         web_mainData:self.data.mainData
       });  
     };
-    api.productGet(postData,callback);
+    api.skuGet(postData,callback);
   },
 
 
