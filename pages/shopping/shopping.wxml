@@ -10,7 +10,7 @@
 					<image src="{{item.mainImg[0].url}}"></image>
 				</view>
 				<view class="shopping_name">
-					<text class="text1">{{item.title}}</text>
+					<text class="text1 avoidOverflow">{{item.title}}</text>
 					<text class="text2 avoidOverflow">{{item.description}}</text>
 					<text class="price color">¥{{item.price}}</text>
 				</view>
@@ -55,6 +55,7 @@
 	<view class="note">空空如也购物车没有任何商品</view>
 	<view class="goShopping" bindtap="intoPath" data-path="/pages/product_list/product_list">去逛逛</view>
 </view>
+<view style="width:100%;height:200rpx;"></view>
 <view class="navbar">
       <view class="navbar_item"  bindtap="intoPathRedirect" data-path="/pages/index/index">
           <view class="nav_img">

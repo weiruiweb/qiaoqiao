@@ -8,7 +8,7 @@
             <view class="product_right">
                 <view class="product_detail">
                     <view class="font32 color3 product_top avoidOverflow">{{item.title}}</view>
-                    <view class="font24 color9">{{item.description}}</view>
+                    <view class="font24 color9 avoidOverflow">{{item.description}}</view>
                     <view class="font30 color6  flex" style="height:50%;">
                         <view class="product_number color">¥{{item.price}}</view>
                         <view class="product_price color"><view class="submit_info font28" data-id="{{item.id}}" bindtap="cancel">移除收藏</view></view>

@@ -75,7 +75,7 @@
 	left:0rpx;
 	align-items:center;
 	background:#f2f2f2;
-
+	z-index:999;
 }
 .all_select image{
 	width:29rpx;

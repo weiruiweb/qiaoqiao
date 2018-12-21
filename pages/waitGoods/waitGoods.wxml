@@ -19,9 +19,8 @@
             </view>
             <view class="product_right" style="width:75%;">
                 <view class="product_detail">
-                    
                     <view class="flexRowBetween" style="height:30%;">
-                        <view class="font32 color3">{{item.products[0].snap_product.title}}<span class="font24 color">(取货码:{{item.passage2}})</span></view>
+                        <view class="font32 color3 avoidOverflow">{{item.products[0].snap_product.title}}<span class="font24 color">(取货码:{{item.passage2}})</span></view>
                         <view class="font30 color product_price flex">¥{{item.products[0].snap_product.price}}</view>
                     </view>
                     <view class="flexRowBetween" style="height:45%;">
@@ -49,7 +48,7 @@
             <view class="product_right flex"  style="width:75%;">
                 <view class="product_detail">
                     <view class="flexRowBetween" style="height:30%;">
-                        <view class="font32 color3">{{item.products[0].snap_product.title}}</view>
+                        <view class="font32 color3 avoidOverflow">{{item.products[0].snap_product.title}}</view>
                         <view class="font24 color avoidOverflow" style="text-align:center">¥{{item.products[0].snap_product.price}}</view>
                     </view>
                     <view class="flexRowBetween" style="height:40%;" bindtap="phoneCallTwo" data-index="{{index}}">
