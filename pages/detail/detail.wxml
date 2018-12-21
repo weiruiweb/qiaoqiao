@@ -62,9 +62,9 @@
 				</view>
 				<view class="group_name font28 color6" style="width:25%">{{item.user[0].nickname}}</view>
 				<view class="group_number" style="width:50%">
-					<view class="font26 color3" >还未成团，点击即可参与</view>
+					<view class="font26 color3" >点击即可参与</view>
 				</view>
-				<view class="group_btn"  bindtap="groupData" data-id="{{item.id}}" data-group_no="{{item.group_no}}" style="width:25%">
+				<view class="group_btn"  bindtap="showGroupMember" data-id="{{item.id}}" data-group_no="{{item.group_no}}" style="width:25%">
 					<view class="submit_info color1" >去拼单</view>
 				</view>
 			</view>
@@ -140,15 +140,15 @@
 			<image src="{{url}}"></image>
 			<view class="text1">收藏</view>
 		</button>
-		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0&&web_skuData.start_time<web_nowTiem}}">
+		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0||web_skuData.start_time<web_nowTiem}}">
 			<view class="shoppingCart color1" bindtap="selectModel" data-type="addCart" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
 			</view>
-			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_orderData.length>0?'addOrder':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':'width:100%'}}">
-				{{web_skuData.is_group=='0'?'立即购买':(web_orderData.length>0?'我要参团':'我要开团')}}
+			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_orderData.length>0?'showGroupMember':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':'width:100%'}}">
+				{{web_skuData.is_group=='0'?(web_category_id?'立即开团':'立即购买'):(web_orderData.length>0?'我要参团':'我要开团')}}
 			</button>
 		</view>
-		<view class="go_buy flexRowBetween" wx:else>
+		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time>web_nowTiem}}">
 		
 			<button class="go_pay color1" style="width:100%">
 				活动未开始

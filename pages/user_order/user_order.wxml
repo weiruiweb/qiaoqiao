@@ -32,7 +32,7 @@
                 </view>
                 <view class="product_right">
                     <view class="product_detail">
-                        <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000" wx:if="{{item.snap_address.message}}">(自提单取货码:{{item.passage2}})</span></view>
+                        <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000" wx:if="{{item.passage2}}">(自提单取货码:{{item.passage2}})</span></view>
                         <view class="font24 color9">{{c_item.snap_product.description}}</view>
                         <view class="font30 color6  flex" style="height:50%;">
                             <view class="product_number">X{{c_item.count}}</view>

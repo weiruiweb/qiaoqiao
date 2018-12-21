@@ -223,7 +223,7 @@ line-height:62rpx;}
 	position:fixed;
 	bottom:-100%;
 	background:#fff;
-	z-index:99;
+	z-index:999;
 	transition:all 1s;
 }
 .pricity{
@@ -245,10 +245,7 @@ line-height:62rpx;}
 	text-align:right;
 	height:100%;
 }
-.close image{
-	width:34rpx;
-	height:34rpx;
-}
+
 .pro_name{
 	font-size:28rpx;
 	color:#333;
@@ -407,11 +404,11 @@ line-height:62rpx;}
 	background:#dd3b30;
 }
 .close{
-	width:72rpx;
-	height: 72rpx;
+	width:50rpx;
+	height: 50rpx;
 	position: absolute;
-	top:-36rpx;
-	right:-36rpx;
+	top:0rpx;
+	right:20rpx;
 }
 .close image{
 	width:100%;

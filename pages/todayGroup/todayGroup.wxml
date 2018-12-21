@@ -11,7 +11,7 @@
 
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}&&category_id={{item.category_id}}">
         <image src="{{item.mainImg[0].url}}"></image>
         <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
         <view class="product_pro font28 flex">

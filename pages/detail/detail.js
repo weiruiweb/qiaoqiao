@@ -43,6 +43,10 @@ Page({
   onLoad(options){
     const self = this;
     console.log(self.data.skuData);
+    if(options.category_id&&options.category_id!='undefined'){
+      self.data.category_id = options.category_id
+    };
+    console.log(self.data.category_id)
     self.data.paginate = getApp().globalData.paginate;
     wx.showLoading();
     if(!wx.getStorageSync('token')){
@@ -51,17 +55,21 @@ Page({
     };
     self.setData({
       fonts:app.globalData.font,
-      web_count:self.data.count
+      web_count:self.data.count,
+      
     });
     if(options.id){
       self.data.id = options.id
     }else if(options.product_id){
     	self.data.id = options.product_id
     };
+    
     self.getMainData();
     self.getMessageData();
     self.getAddressData();
+
     self.orderGet();
+
     if(wx.getStorageSync('collectData')[self.data.id]){
       self.setData({
         url: '/images/collect_a.png',
@@ -178,6 +186,7 @@ Page({
         web_mainData:self.data.mainData,
         web_sku_item:self.data.sku_item,
         web_choose_sku_item:self.data.choose_sku_item,
+        web_category_id:self.data.category_id
       });
       console.log('self.data.labelData',self.data.labelData)
       self.checkLoadComplete();
@@ -213,18 +222,14 @@ Page({
       user_type:0,
       type:1,
       group_leader:'true',
-      order_step:4,
+      order_step:['in',[4,5]],
       pay_status:1
     };
     postData.getBefore = {
       OrderItem:{
         tableName:'OrderItem',
         searchItem:{
-          product_id:['in',[self.data.id]],
-          status:['in',[1]]
-        },
-        fixSearchItem:{
-          status:1
+          product_id:['=',[self.data.id]],
         },
         key:'order_no',
         middleKey:'order_no',
@@ -250,6 +255,7 @@ Page({
       self.setData({
         web_orderData:self.data.orderData
       });
+      self.groupData();
       console.log('orderGet',self.data.orderData)
     }
     api.orderGet(postData,callback)
@@ -257,13 +263,11 @@ Page({
 
   groupData(e){
     const self = this;
-    self.data.id1 = api.getDataSet(e,'id');
-    self.data.group_no1 = api.getDataSet(e,'group_no')
     const postData ={};
     postData.token = wx.getStorageSync('token');  
     postData.searchItem = {
       user_type:0,
-      id:self.data.id1
+      id:self.data.orderData[0].id
     };
     postData.getAfter = {
       groupMember:{
@@ -290,8 +294,6 @@ Page({
     const callback = (res) =>{
       if(res.info.data.length>0){
         self.data.groupData = res.info.data[0];
-       
-        self.showGroupMember();
       };
       console.log('666',self.data.isMember )
       self.setData({
@@ -329,8 +331,9 @@ Page({
         if(res&&res.solely_code==100000){
           self.data.order_id = res.info.id
           self.pay(self.data.order_id);  
-          self.showGroupMember();
-        }; 
+        }else{
+          api.showToast(res.msg,'none')
+        }
       };
       api.addOrder(postData,callback);  
     }else{

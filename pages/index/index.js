@@ -195,7 +195,8 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:1
+      type:1,
+      category_id:['NOT IN',[38]]
     };
     postData.getAfter={
       sku:{
@@ -299,13 +300,17 @@ Page({
         for (var i = 0; i < res.info.data.length; i++) {
           self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
         };
+        self.countDown();
       }
       wx.hideLoading();
-      self.countDown();
-      self.countDownTwo();
-      self.countDownThree();
-      self.setData({
-        
+      if(res.info.data.length>1){
+        self.countDownTwo();
+      };
+      if(res.info.data.length>2){
+        self.countDownThree();
+      };
+      
+      self.setData({   
         web_groupData:self.data.groupData,
       });  
       

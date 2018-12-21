@@ -71,7 +71,7 @@ Page({
       })
       }, 1000)
       }else{
-        api.showToast('认证失败','none');
+        api.showToast('评价失败','none');
       };
     };
     api.messageAdd(postData,callback);  

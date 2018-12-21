@@ -52,7 +52,7 @@
       </view>
     </view>
     <view class="great_right">
-      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}&&category_id={{web_groupData[1].category_id}}">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">{{web_groupData[1].title}}</view>
@@ -73,7 +73,7 @@
             </view>
         </view>
       </view>
-      <view class="great_top" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
+      <view class="great_top" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[2].id}}&&category_id={{web_groupData[2].category_id}}">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">{{web_groupData[2].title}}</view>

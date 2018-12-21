@@ -70,6 +70,7 @@ Page({
     self.setData({
       web_code:self.data.code
     })
+    console.log('6666',self.data.code)
   },
 
   onShow(){
@@ -238,8 +239,10 @@ Page({
         pay:{
           wxPay:self.data.totalPrice.toFixed(2),
         },
+        data:{
+          passage2:self.data.code,
+        },
         snap_address:self.data.submitData,
-        passage2:self.data.code,
         type:1
       };
       var newObject = api.cloneForm(self.data.submitData);
