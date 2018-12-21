@@ -17,7 +17,7 @@
 	   <view class="menu_item {{web_currentId == item.id?'active':''}}"  data-id="{{item.id}}" bindtap="{{!buttonClicked?'menuTap':''}}" wx:if="{{item.id!='30'&&item.id!='34'}}">{{item.title}}</view>
   </block>
 </view>
-<view class="mask" style="{{isShow?'width:100%':'width:0%'}}" bindtap="mask"></view>
+<view class="mask" style="{{isShow?'display:block':'display:none'}}" bindtap="mask"></view>
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">
     <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" wx:if="{{item.is_group==0}}"> 
