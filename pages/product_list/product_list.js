@@ -107,7 +107,10 @@ Page({
       
     }else{
       postData.searchItem.category_id = currentId
-    }
+    };
+    postData.order = {
+      listorder:'desc'
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
           self.data.mainData.push.apply(self.data.mainData,res.info.data);
