@@ -2,7 +2,7 @@
 
 <wxs module="func" src="../../utils/func.wxs" />
 <view id="details">
-<view class="page-body" style="height:400rpx">
+<view class="page-body banner" style="height:400rpx">
     <view class="page-section page-section-spacing swiper">
       <swiper
          autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
@@ -91,7 +91,7 @@
 			评价
 		</view>
 	</view>
-	<view class="detail_show">
+	<view class="detail_show w710">
 		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
 			<view class="content ql-editor" >
 	            <import src="../../wxParse/wxParse.wxml"/>

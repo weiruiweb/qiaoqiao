@@ -5,6 +5,16 @@ page{
 	min-height:100%;
 	background:#f1eff6;
 }
+.banner{
+	width:100%;
+	height:420rpx;
+	overflow:hidden;
+}
+swiper{
+	width:100%;
+	height:420rpx;
+	overflow:hidden;
+}
 .banner image{
 	width:100%;
 	height:420rpx;
@@ -101,6 +111,11 @@ line-height:62rpx;}
 }
 #detail{
 	text-align:center;
+	overflow:hidden;
+}
+#detail image{
+	width:100%;
+	height:100%;
 }
 .good_percent image{
 	width:11rpx;

@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
-<view class="swiper" style="height:120rpx">
+<!--<view class="swiper" style="height:120rpx">
   <image src="/images/banner.jpg" />
-</view>
+</view>-->
 <view class="page-body">
     <view class="page-section page-section-spacing swiper">
       <swiper

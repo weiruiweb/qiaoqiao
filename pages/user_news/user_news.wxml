@@ -7,7 +7,7 @@
 <view class="flexRowBetween">
     <view class="mall_tlt">
         <image src="/images/new_tlt.jpg"></image>
-        <view  class="mall_tlt_txt font28 color1">{{item.title}}</view>
+        <view  class="mall_tlt_txt font28 color1 avoidOverflow">{{item.title}}</view>
     </view>
     <view bindtap="show" class="read" data-id="{{item.id}}">
         <view class="font26 click_read">点击查看</view>
