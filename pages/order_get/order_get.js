@@ -318,8 +318,9 @@ Page({
       postData.searchItem.status = ['in',[0,1]]
     };
     postData.payAfter = [];
-    if(wx.getStorageSync('info').thirdApp.custom_rule[0]&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio>0){
-      postData.payAfter.push({
+    if(self.data.userData&&self.data.userData.info.level==0){
+      if(wx.getStorageSync('info').thirdApp.custom_rule[0]&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio>0){
+        postData.payAfter.push({
           tableName:'FlowLog',
           FuncName:'add',
           data:{
@@ -330,8 +331,10 @@ Page({
             thirdapp_id:getApp().globalData.thirdapp_id
           }
         });
+      }; 
     };
-    if(self.data.user_no&&self.data.userData.highUser[0]&&self.data.userData.highUser[0].balance_ratio&&self.data.userData.highUser[0].balance_ratio>0){
+    
+    /*if(self.data.user_no&&self.data.userData.highUser[0]&&self.data.userData.highUser[0].balance_ratio&&self.data.userData.highUser[0].balance_ratio>0){
       postData.payAfter.push(
         {
           tableName:'FlowLog',
@@ -340,6 +343,37 @@ Page({
             count:self.data.realTotalPrice/self.data.userData.highUser[0].balance_ratio,
             trade_info:'分享奖励',
             user_no:self.data.user_no,
+            type:2,
+            thirdapp_id:getApp().globalData.thirdapp_id
+          }
+        }
+      );
+    };*/
+
+    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].level&&self.data.distributionData.userInfo[0].level==1){
+      postData.payAfter.push(
+        {
+          tableName:'FlowLog',
+          FuncName:'add',
+          data:{
+            count:self.data.firstBalance,
+            trade_info:self.data.userData.nickname+'消费获得佣金',
+            user_no:self.data.distributionData.userInfo[0].user_no,
+            type:2,
+            thirdapp_id:getApp().globalData.thirdapp_id
+          }
+        }
+      );
+    };
+    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].level&&self.data.distributionData.userInfo[0].level==2){
+      postData.payAfter.push(
+        {
+          tableName:'FlowLog',
+          FuncName:'add',
+          data:{
+            count:self.data.secondBalance,
+            trade_info:self.data.userData.nickname+'消费获得佣金',
+            user_no:self.data.distributionData.userInfo[0].user_no,
             type:2,
             thirdapp_id:getApp().globalData.thirdapp_id
           }
@@ -376,20 +410,30 @@ Page({
     };
   },
 
-   countTotalPrice(){
+
+
+  
+
+
+  countTotalPrice(){
     const self = this;
     var totalPrice = 0;
-
+    var firstBalance = 0;
+    var secondBalance = 0;
     var couponPrice = 0;
     var productsArray = self.data.mainData;
     for(var i=0;i<productsArray.length;i++){
       totalPrice += productsArray[i].product.price*productsArray[i].count;
+      firstBalance += productsArray[i].count*productsArray[i].product.firstBalance;
+      secondBalance += productsArray[i].count*productsArray[i].product.secondBalance;
     };
     self.data.realTotalPrice = totalPrice; 
+    self.data.secondBalance = secondBalance;
+    self.data.firstBalance = firstBalance;
     console.log(self.data.couponData)
 
       if(self.data.couponData.type==3){
-       if(self.data.couponData.discount>totalPrice){
+        if(self.data.couponData.discount>totalPrice){
           api.showToast('优惠券不可用','none');
           wx.removeStorageSync('couponId');
           return;
@@ -398,26 +442,28 @@ Page({
         couponPrice = self.data.couponData.discount;
          console.log(totalPrice)
       }else if(self.data.couponData.type==4){
+
         totalPrice = totalPrice-totalPrice*self.data.couponData.discount/10;
         couponPrice = totalPrice*self.data.couponData.discount/10
       }; 
 
-  
+
 
     
     self.data.totalPrice = totalPrice;
+    /*self.data.paidPrice = totalPrice;*/
     self.data.couponPrice = couponPrice;
 
     console.log(self.data.couponPrice)
     console.log(self.data.totalPrice)
     self.setData({
- 
+
       web_couponPrice:couponPrice.toFixed(2),
-      web_totalPrice:totalPrice.toFixed(2)
+      web_totalPrice:totalPrice.toFixed(2),
+      /*web_paidPrice:totalPrice.toFixed(2),*/
     });
 
   },
-
 
 
 

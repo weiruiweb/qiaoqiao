@@ -50,7 +50,8 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem.type = 1;
-    postData.searchItem.status = ['in',[0,1]]
+    postData.searchItem.status = ['in',[0,1]];
+    postData.searchItem.user_no = wx.getStorageSync('info').user_no;
     postData.order = {
       create_time:'desc'
     }

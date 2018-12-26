@@ -2,7 +2,7 @@
 
 <wxs module="func" src="../../utils/func.wxs" />
 <view id="details">
-<view class="page-body">
+<view class="page-body" style="height:400rpx">
     <view class="page-section page-section-spacing swiper">
       <swiper
          autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
@@ -26,17 +26,14 @@
 		<view class="price_sale flexRowBetween">
 			<view class="price_left flex">
 				<view class="price color">
-					￥{{web_skuData.is_group=='1'?web_skuData.price:web_mainData.price}}元
+					￥{{web_skuData.price?web_skuData.price:web_mainData.price}}元
 				</view>
-				<view class="price color" wx:if="{{web_skuData.is_group=='1'}}" style="font-size:12px;text-decoration:line-through">
+				<view class="price color" style="font-size:12px;text-decoration:line-through">
 					(原价：{{web_skuData.o_price}}元)
 				</view>
 				<view  class="font24 color6" style="margin-left: 20rpx;">
 					销量:{{web_mainData.saleNum}}
 				</view>
-			</view>
-			<view class="sale">
-				包邮
 			</view>
 		</view>
 		<view class="font28 color6" style="margin-top: 20rpx;">

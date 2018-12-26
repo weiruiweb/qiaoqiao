@@ -22,7 +22,7 @@ Page({
 
   onLoad(options){
   	const self = this;
-  	self.data.paginate =  self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+  	self.data.paginate  = api.cloneForm(getApp().globalData.paginate);
   	
   	self.setData({
   		num: self.data.num

@@ -92,8 +92,8 @@ Page({
       var scene = decodeURIComponent(options.scene)
     };
     
-    if(options.parentNo){
-      var scene = options.parentNo
+    if(options.parent_no){
+      var scene = options.parent_no
     };
    
     if(scene){
@@ -303,10 +303,10 @@ Page({
         self.countDown();
       }
       wx.hideLoading();
-      if(res.info.data.length>1){
+      if(self.data.groupData.length>1){
         self.countDownTwo();
       };
-      if(res.info.data.length>2){
+      if(self.data.groupData.length>2){
         self.countDownThree();
       };
       

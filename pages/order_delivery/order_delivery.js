@@ -109,20 +109,6 @@ Page({
   	const self = this;
   	const postData = {};
   	postData.token = wx.getStorageSync('token');
-  	if(self.data.user_no){
-  		postData.getAfter = {
-  			highUser:{
-  				tableName:'UserInfo',
-  				middleKey:'status',
-  				key:'status',
-  				searchItem:{
-  					status:1,
-  					user_no:self.data.user_no
-  				},
-  				condition:'='
-  			}
-  		};
-  	};
   	const callback = (res)=>{
   		if(res.info.data.length>0){
   			self.data.userData = res.info.data[0]
@@ -306,8 +292,9 @@ Page({
       postData.searchItem.status = ['in',[0,1]]
     };
     postData.payAfter = [];
-    if(wx.getStorageSync('info').thirdApp.custom_rule[0]&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio>0){
-    	postData.payAfter.push({
+    if(self.data.userData&&self.data.userData.info.level==0){
+      if(wx.getStorageSync('info').thirdApp.custom_rule[0]&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio&&wx.getStorageSync('info').thirdApp.custom_rule[0].getScoreRatio>0){
+        postData.payAfter.push({
           tableName:'FlowLog',
           FuncName:'add',
           data:{
@@ -318,8 +305,10 @@ Page({
             thirdapp_id:getApp().globalData.thirdapp_id
           }
         });
+      }; 
     };
-    if(self.data.user_no&&self.data.userData.highUser[0]&&self.data.userData.highUser[0].balance_ratio&&self.data.userData.highUser[0].balance_ratio>0){
+    
+    /*if(self.data.user_no&&self.data.userData.highUser[0]&&self.data.userData.highUser[0].balance_ratio&&self.data.userData.highUser[0].balance_ratio>0){
       postData.payAfter.push(
         {
           tableName:'FlowLog',
@@ -333,15 +322,31 @@ Page({
           }
         }
       );
-    };
-    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].balance_ratio&&self.data.distributionData.userInfo[0].balance_ratio>0){
+    };*/
+
+    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].level&&self.data.distributionData.userInfo[0].level==1){
       postData.payAfter.push(
         {
           tableName:'FlowLog',
           FuncName:'add',
           data:{
-            count:self.data.realTotalPrice/self.data.distributionData.userInfo[0].balance_ratio,
-            trade_info:'下级消费奖励',
+            count:self.data.firstBalance,
+            trade_info:self.data.userData.nickname+'消费获得佣金',
+            user_no:self.data.distributionData.userInfo[0].user_no,
+            type:2,
+            thirdapp_id:getApp().globalData.thirdapp_id
+          }
+        }
+      );
+    };
+    if(self.data.distributionData&&self.data.distributionData.userInfo[0]&&self.data.distributionData.userInfo[0].level&&self.data.distributionData.userInfo[0].level==2){
+      postData.payAfter.push(
+        {
+          tableName:'FlowLog',
+          FuncName:'add',
+          data:{
+            count:self.data.secondBalance,
+            trade_info:self.data.userData.nickname+'消费获得佣金',
             user_no:self.data.distributionData.userInfo[0].user_no,
             type:2,
             thirdapp_id:getApp().globalData.thirdapp_id
@@ -408,14 +413,18 @@ Page({
   countTotalPrice(){
     const self = this;
     var totalPrice = 0;
-
+    var firstBalance = 0;
+    var secondBalance = 0;
     var couponPrice = 0;
     var productsArray = self.data.mainData;
     for(var i=0;i<productsArray.length;i++){
       totalPrice += productsArray[i].product.price*productsArray[i].count;
+      firstBalance += productsArray[i].count*productsArray[i].product.firstBalance;
+      secondBalance += productsArray[i].count*productsArray[i].product.secondBalance;
     };
     self.data.realTotalPrice = totalPrice; 
-
+    self.data.secondBalance = secondBalance;
+    self.data.firstBalance = firstBalance;
     console.log(self.data.couponData)
 
       if(self.data.couponData.type==3){

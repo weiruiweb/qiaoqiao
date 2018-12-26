@@ -15,7 +15,7 @@ Page({
     startTime:'',
     endTime:'',
     searchItem:{
-      thirdapp_id:getApp().globalData.mall_thirdapp_id,
+      thirdapp_id:getApp().globalData.thirdapp_id,
       parent_no:wx.getStorageSync('info').user_no
     }
 
@@ -24,7 +24,7 @@ Page({
 
   onLoad(){
     const self = this;
-    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.data.paginate = getApp().globalData.paginate;
     wx.showLoading();
     if(self.data.searchItem.parent_no&&self.data.searchItem.parent_no!=undefined){
       self.getMainData();

@@ -82,6 +82,9 @@ getMainData(){
         condition:'=',
       } 
     };
+    postData.order = {
+      listorder:'desc'
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         for (var i = 0; i < res.info.data.length; i++) {

@@ -20,7 +20,7 @@
     <view class="product">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left">交易时间:{{item.create_time}}</view>
-            <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.transport_status =='0'}}">待商家发货</view>
+        
             <view class="tlt_left1 tlt_right color"  wx:if="{{item.pay_status == '0'}}">等待买家付款</view>
             <view class="tlt_left1 tlt_right color" wx:if="{{item.order_step=='3'}}">已完成</view>
             <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.order_step=='0'&&item.transport_status =='1'}}">物流配送中</view>
@@ -52,7 +52,7 @@
             <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
 
 
-             <view class="submit_info font28"  wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'未发货'}}</view>
+             <view class="submit_info font28"  wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':''}}</view>
 
             <view class="submit_info font28" bindtap="{{item.passage2==''?'intoPath':''}}" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">{{item.passage2!=""?'待领取':'查看物流'}}</view>
 

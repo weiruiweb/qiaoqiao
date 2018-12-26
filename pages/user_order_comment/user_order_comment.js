@@ -9,7 +9,7 @@ Page({
     currentId:0,
     submitData:{
       content:'',
-      type:2,
+      type:1,
     }
   },
   //事件处理函数
