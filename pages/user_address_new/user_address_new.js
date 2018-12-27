@@ -8,26 +8,22 @@ Page({
 
 
   data: {
-    region: ['陕西省', '西安市', '雁塔区'],
     sForm:{
       name:'',
       latitude:'',
       longitude:'',
       phone:'',
       detail:'',
+      city:'',
+
     },
     id:'',
+    
   },
 
   onLoad(options) {
     const self=this;
-    if(!wx.getStorageSync('token')){
-      var token = new Token();
-      token.getUserInfo();
-    };
-    self.setData({
-      fonts:app.globalData.font
-    });
+    api.commonInit(self);
     if(options.id){
       self.data.id = options.id
       self.getMainData(self.data.id); 
@@ -36,29 +32,33 @@ Page({
         web_region:self.data.region
       })
     };
+    wx.hideLoading();
+    
   },
 
   getMainData(id){
     const self = this;
+    wx.showLoading();
     const postData = {};
     postData.searchItem = {};
     postData.searchItem.id = id;
-    postData.token = wx.getStorageSync('token');
+    postData.tokenFuncName = 'getProjectToken';
     const callback = (res)=>{
       console.log(res);
       self.data.mainData = res;
       self.data.sForm.phone = res.info.data[0].phone;
       self.data.sForm.name = res.info.data[0].name;
       self.data.sForm.detail = res.info.data[0].detail;
-      const newRegion = [];
-      newRegion.push(res.info.data[0].province);
-      newRegion.push(res.info.data[0].city);
-      newRegion.push(res.info.data[0].country);
-      self.data.region = newRegion;
+      self.data.sForm.latitude = res.info.data[0].latitude;
+      self.data.sForm.longitude = res.info.data[0].longitude;
+      self.data.sForm.city = res.info.data[0].city;
+      self.data.isdefault = res.info.data[0].isdefault;
+      console.log('self.data.isdefault',self.data.isdefault)
       self.setData({
+        web_isdefault:self.data.isdefault,
         web_mainData:self.data.sForm,
-        web_region:self.data.region
       })
+      wx.hideLoading();
     };
     api.addressGet(postData,callback);
   },
@@ -72,29 +72,23 @@ Page({
     });  
   },
 
-  bindRegionChange: function (e) {
-    const self = this;
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    self.data.sForm.province = e.detail.value[0];
-    self.data.sForm.city = e.detail.value[1];
-    self.data.sForm.country = e.detail.value[2];
-    self.setData({
-      web_region: e.detail.value
-    })
-  },
+
 
 
   addressUpdate(){
     const self = this;
     const postData = {};
-    postData.token = wx.getStorageSync('token');
+    postData.tokenFuncName = 'getProjectToken';
     postData.searchItem = {};
     postData.searchItem.id = self.data.id;
     postData.data = {};
     postData.data = api.cloneForm(self.data.sForm);
+    postData.data.isdefault = self.data.isdefault;
     const callback = (data)=>{
-      wx.hideLoading();
-      api.dealRes(data);
+      if(data){
+        api.dealRes(data);
+      };
+      api.buttonCanClick(self,true); 
     };
     api.addressUpdate(postData,callback);
   },
@@ -103,12 +97,15 @@ Page({
   addressAdd(){
     const self = this;
     const postData = {};
-    postData.token = wx.getStorageSync('token');
+    postData.tokenFuncName = 'getProjectToken';
     postData.data = {};
     postData.data = api.cloneForm(self.data.sForm);
+    postData.data.isdefault = self.data.isdefault;
     const callback = (data)=>{
-      wx.hideLoading();
-      api.dealRes(data);
+      if(data){
+        api.dealRes(data);
+      };
+       api.buttonCanClick(self,true); 
     };
     api.addressAdd(postData,callback);
   },
@@ -116,8 +113,10 @@ Page({
 
   submit(){
     const self = this;
+    api.buttonCanClick(self,true);
     var phone = self.data.sForm.phone;
     const pass = api.checkComplete(self.data.sForm);
+    console.log('self.data.sForm',self.data.sForm)
     if(pass){
       if(phone.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(phone)){
         api.showToast('手机格式不正确','fail')
@@ -147,6 +146,7 @@ Page({
         self.data.sForm.detail = res.address,
         self.data.sForm.longitude = res.longitude,
         self.data.sForm.latitude = res.latitude,
+        self.data.sForm.city = res.name
         self .setData({
           hasLocation:true,
           location:{
@@ -154,7 +154,6 @@ Page({
             latitude:res.latitude
           },
           web_mainData:self.data.sForm,
-          web_name:res.name,
         })
       },
       fail: function() {
@@ -172,9 +171,9 @@ Page({
     const self = this;
     console.log(e)
     if( e.detail.value == true){
-      self.data.sForm.isdefault = 1
+      self.data.isdefault = 1
     }else{
-      self.data.sForm.isdefault = 0
+      self.data.isdefault = 0
     }
     
   }

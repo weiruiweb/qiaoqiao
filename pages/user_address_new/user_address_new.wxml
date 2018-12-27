@@ -29,7 +29,7 @@
 <view class="user_input flexRowBetween" style="padding:0 5%;width:90%;">
 	<view class="input_note font30 address_set">设为默认地址</view>
 	<view class="body-view">
-		<switch bindchange="switch2Change" />
+		<switch bindchange="switch2Change" checked="{{web_isdefault==1?true:''}}"/>
 	</view>
 </view>
 
