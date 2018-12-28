@@ -10,7 +10,7 @@
 	border-bottom:solid 1px #e0e0e0;}
 .user_input input{
 	width:78%;
-	color:#b2b2b2;	
+	color:#666;	
 	font-size:28rpx;
 }
 .user_input picker{

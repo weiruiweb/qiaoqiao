@@ -55,3 +55,13 @@ page{
 .tlt_right{
 	text-align:right;
 }
+.submit_info{
+	width:166rpx;
+	height:60rpx;
+	line-height:60rpx;
+	float:right;
+	background:#f7f7f7;
+	border:solid 1px #aeaeae;
+	color:#333;
+	font-size:28rpx;
+}

@@ -33,6 +33,7 @@ page{
 .product_box{
 	height:230rpx;
 	border-bottom:solid 1px #e0e0e0;
+	position:relative;
 }
 .product_detail{
 	width:100%;

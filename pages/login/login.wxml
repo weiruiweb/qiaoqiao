@@ -22,7 +22,7 @@
         <image src="/images/login2.png"></image>
       </view>
        <view class="input_in">
-        <input placeholder="请输入密码" placeholder-class="placeholder"  class="color1" data-key="password" bindinput="bindInputChange"></input>
+        <input placeholder="请输入密码" placeholder-class="placeholder"  class="color1" data-key="password" name="password" type="password" bindinput="bindInputChange"></input>
       </view>
     </view>
   </view>

@@ -11,7 +11,7 @@
         <view class="product_right">
             <view class="product_detail">
                 <view class="font32 color3 product_top avoidOverflow">{{web_mainData.products[0].snap_product.title}}</view>
-                <view class="font24 color9">{{web_mainData.products[0].snap_product.description}}</view>
+                <view class="font24 color9  avoidOverflow">{{web_mainData.products[0].snap_product.description}}</view>
                 <view class="font30 color6  flex" style="height:50%;">
                     <view class="product_number">X{{web_mainData.products[0].count}}</view>
                     <view class="product_price color">¥{{web_mainData.price}}</view>
@@ -24,6 +24,7 @@
     快递公司:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.passage3}}</text>
 </view>
 <view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
-    快递单号:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.express_info}}</text>
-    <text  bindtap="copyTBL" style="font-size:15px;color:red;text-align:right" wx:if="{{web_mainData.express_info}}">复制</text>
+    <view class="font28 color9" style="width:24%;">快递单号:</view>
+    <view class="color9" style="width:45%;">{{web_mainData.express_info}}</view>
+    <view  bindtap="copyTBL" style="width:25%" class="font28 submit_info" wx:if="{{web_mainData.express_info}}">复制</view>
 </view>

@@ -1,7 +1,7 @@
 <!--userPoster.wxml-->
 <view class="poster">
 	<view class="poster_txt1" style="{{fonts[4].font}}">
-		限时抢购商城
+		巧巧爱家限时购买商城
 	</view>
 	<view class="poster_img">
 		<image src="{{web_QrData.info.url}}"></image>

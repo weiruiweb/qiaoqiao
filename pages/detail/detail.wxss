@@ -62,7 +62,6 @@ swiper{
 }
 .choose{
 	padding:0rpx 35rpx;
-	height:70rpx;
 	line-height:70rpx;
 	border-bottom:solid 1px #f3c6c9;
 	background: #fff;

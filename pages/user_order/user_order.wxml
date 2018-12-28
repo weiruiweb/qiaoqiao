@@ -33,13 +33,13 @@
                 <view class="product_right">
                     <view class="product_detail">
                         <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000" wx:if="{{item.passage2}}">(自提单取货码:{{item.passage2}})</span></view>
-                        <view class="font24 color9">{{c_item.snap_product.description}}</view>
+                        <view class="font24 color9 avoidOverflow">{{c_item.snap_product.description}}</view>
                         <view class="font30 color6  flex" style="height:50%;">
                             <view class="product_number">X{{c_item.count}}</view>
                             <view class="product_price color">¥{{c_item.snap_product.price}}</view>
                         </view>
                     </view>
-                        <view class="comment_order font24 color" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}&orderItem_id={{c_item.id}}" wx:if="{{c_item.isremark!='1'}}">
+                        <view class="comment_order font24 color" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}&orderItem_id={{c_item.id}}" wx:if="{{c_item.isremark!='1'&&item.transport_status=='2'}}">
                         <view><image src="/images/comment.png"></image></view>
                     </view>
                 </view>

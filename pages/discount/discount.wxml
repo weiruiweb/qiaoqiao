@@ -1,9 +1,7 @@
 <!--userPoster.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
-
-
 <view class="w710">
-<view style="color:red" class="font32">我的可使用积分:{{web_userData.score}}</view>
+<view class="font32 color6">我的可使用积分:<text class="color">{{web_userData.score}}</text></view>
   <view class="recommend " >
   	  <block wx:for="{{web_mainData}}" wx:key="id">
 	      <view class="recommend_left" style="margin-top:20rpx">

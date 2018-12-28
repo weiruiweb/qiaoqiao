@@ -38,6 +38,7 @@
 }
 .product_box{
 	height:230rpx;
+	position:relative;
 }
 .product_detail{
 	width:100%;

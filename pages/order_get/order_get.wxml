@@ -7,8 +7,8 @@
             </view>
             <view class="product_right" style="width:72.5%">
                 <view class="product_detail">
-                    <view class="font32 color3 product_top">{{item.product.title}}</view>
-                    <view class="font24 color9 product_top">{{item.product.description}}</view>
+                    <view class="font32 color3 product_top avoidOverflow">{{item.product.title}}</view>
+                    <view class="font24 color9 product_top  avoidOverflow">{{item.product.description}}</view>
                     <view class="product_top flex">
                         <view class="font30 color6 product_number">X{{item.count}}</view>
                         <view class="font30 product_price color">¥{{item.product.price}}</view>
@@ -52,9 +52,9 @@
             </view>
             <view class="product_right">
                 <view class="product_detail">
-                    <view class="font32 color3 product_top">{{item.title}}</view>
-                    <view class="font24 color9 product_top">地址：{{item.description}}</view>
-            		<view class="font24 color9 product_top">联系电话：{{item.url}}</view>
+                    <view class="font32 color3 product_top  avoidOverflow">{{item.title}}</view>
+                    <view class="font24 color9 product_top  avoidOverflow">地址：{{item.description}}</view>
+            		<view class="font24 color9 product_top  avoidOverflow">联系电话：{{item.url}}</view>
                 </view>
             </view>
             <view class="product_bottom">

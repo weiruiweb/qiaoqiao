@@ -75,7 +75,7 @@ page{
 }
 .order_left{
 	align-items:center;
-	width:80%;
+	width:75%;
 }
 .order_left image{
 	width:28rpx;
@@ -84,7 +84,7 @@ page{
 	margin-right:16rpx;
 }
 .check_order{
-	width:20%;
+	width:25%;
 	height:100%;
 	text-align:right;
 }
@@ -181,4 +181,8 @@ page{
 
 	width:20rpx;height:20rpx;border-radius:50%;background:#21c3d4;margin:0rpx auto;text-align:center;line-height:20rpx;
 	z-index:3;
+}
+.sort_icon{
+	font-size:30rpx;
+	color:#666;
 }
