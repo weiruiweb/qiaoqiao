@@ -38,6 +38,7 @@ Page({
     img:"background:url('/images/small.png')",
     hasGroup:false,
     isMember:false,
+    skuIdArray:[]
   },
   
   onLoad(options){
@@ -65,7 +66,7 @@ Page({
     };
     
     self.getMainData();
-    self.getMessageData();
+    
     self.getAddressData();
 
     self.orderGet();
@@ -168,6 +169,7 @@ Page({
           if(self.data.mainData.sku[i].id==self.data.id){
             self.data.skuData = api.cloneForm(self.data.mainData.sku[i]);
           };
+          self.data.skuIdArray.push(self.data.mainData.sku[i].id);//为了抓所有Sku的评论
           self.data.choose_sku_item.push.apply(self.data.choose_sku_item,self.data.mainData.sku[i].sku_item);
         };
 
@@ -188,6 +190,7 @@ Page({
         web_choose_sku_item:self.data.choose_sku_item,
         web_category_id:self.data.category_id
       });
+      self.getMessageData();
       console.log('self.data.labelData',self.data.labelData)
       self.checkLoadComplete();
     };
@@ -613,7 +616,7 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
     postData.searchItem = {
-      relation_id:self.data.id,
+      relation_id:['in',self.data.skuIdArray],
       type:2
     };
     postData.order = {

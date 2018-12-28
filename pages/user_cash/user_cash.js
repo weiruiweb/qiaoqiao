@@ -7,7 +7,7 @@ const token = new Token();
 Page({
   data: {
   	searchItem:{
-
+      status:['in',[0,1,-1]]
   	},
     currentId:0,
     mainData:[],
@@ -38,7 +38,8 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
     postData.searchItem = api.cloneForm(self.data.searchItem);
-    postData.searchItem.type=3;
+    postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.searchItem.type=2;
     postData.searchItem.count = ['<','0'];
    
     postData.order = {
@@ -76,7 +77,7 @@ Page({
     });
     self.data.searchItem = {}
     if(num=='0'){
-
+      self.data.searchItem.status = ['in',[0,1,-1]]
     }else if(num=='1'){
      	self.data.searchItem.status = 0
     }else if(num=='2'){

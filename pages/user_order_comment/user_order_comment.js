@@ -6,11 +6,13 @@ const token = new Token();
 
 Page({
   data: {
-    currentId:0,
+
     submitData:{
       content:'',
       type:1,
-    }
+    },
+
+
   },
   //事件处理函数
 
@@ -18,6 +20,7 @@ Page({
   onLoad(options){
     const self = this;
     self.data.id = options.id;
+    self.data.orderItem_id = options.orderItem_id;
     console.log(self.data.id);
     self.getMainData()
   },
@@ -28,7 +31,7 @@ Page({
 
     const postData = {};
     
-    postData.token = wx.getStorageSync('token');
+    postData.token=wx.getStorageSync('token');
     postData.searchItem = {
       id:self.data.id
     };
@@ -37,39 +40,55 @@ Page({
     const callback = (res)=>{
       if(res.solely_code==100000){
         if(res.info.data.length>0){
-          self.data.mainData = res.info.data[0]
+          for (var i = 0; i < res.info.data[0].products.length; i++) {
+            if(res.info.data[0].products[i].id==self.data.orderItem_id){
+              self.data.mainData = res.info.data[0].products[i].snap_product;
+              break;
+            };
+          };
         }else{
           api.showToast('数据错误','none');
         };
-        wx.hideLoading();
+
         self.setData({
           web_mainData:self.data.mainData,
         });  
       }else{
         api.showToast('网络故障','none')
-      }
-      console.log('getMainData',self.data.mainData.products[0].snap_product.product.id)
+      };
     };
     api.orderGet(postData,callback);
   },
 
-
   messageAdd(){
     const self = this;
-    wx.showLoading();
+    
     const postData = {};
-    postData.token = wx.getStorageSync('token');
+    postData.token =wx.getStorageSync('token');
     postData.data = api.cloneForm(self.data.submitData);
-    postData.data.relation_id = self.data.mainData.products[0].snap_product.product.id;
+    postData.data.relation_id = self.data.mainData.id;
+    postData.data.relation_table = 'sku';
     console.log(postData)
+    postData.saveAfter = [{
+      tableName:'OrderItem',
+      FuncName:'update',
+      searchItem:{
+        id:self.data.orderItem_id
+      },
+      data:{
+        isremark:1,
+        user_no:wx.getStorageSync('info').user_no,
+        thirdapp_id:getApp().globalData.thirdapp_id
+      }
+    }]
     const callback = (data)=>{  
       if(data.solely_code == 100000){
         api.showToast('评价成功','none');
         setTimeout(function(){
-      wx.navigateBack({
-        delta:1
-      })
-      }, 1000)
+          wx.navigateBack({
+            delta:1
+          })
+        }, 1000)
       }else{
         api.showToast('评价失败','none');
       };
@@ -77,12 +96,10 @@ Page({
     api.messageAdd(postData,callback);  
   },
 
-
   submit(){
     const self = this;
     const pass = api.checkComplete(self.data.submitData);
     if(pass){
-        wx.showLoading();
         self.messageAdd(); 
     }else{
       api.showToast('请补全信息','none');

@@ -99,3 +99,21 @@ page{
 .tlt_right{
 	text-align:right;
 }
+.comment_order{
+	position:absolute;
+	right:0;
+	top:10rpx;
+	width:60rpx;
+	height:60rpx;
+	text-align:center;
+}
+.comment_order image{
+	width:50rpx;
+	height:50rpx;
+}
+.same_stroe{
+	padding:0rpx 25rpx;
+	overflow:hidden;
+	border-bottom:solid 1rpx #fff;
+	position:relative;
+}

@@ -14,21 +14,23 @@
     </view>
 </view>
 <view class="credit_cont">
-    <view class="credit_list">
-        <view class="credit_item">
-            <view class="credit_left">
-                <view class="credit_reson font28">
-                    {{item.trade_info}}
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="credit_list">
+            <view class="credit_item">
+                <view class="credit_left">
+                    <view class="credit_reson font28">
+                        {{item.trade_info}}
+                    </view>
+                    <view class="credit_dates font24 color9">
+                       {{item.create_time}}
+                    </view>
                 </view>
-                <view class="credit_dates font24 color9">
-                   {{item.create_time}}
+                <view class="credit_right font28 {{item.count>0?'color':''}}">
+                    {{item.count}}
                 </view>
-            </view>
-            <view class="credit_right font28 {{item.count>0?'color':''}}">
-                {{item.count}}
             </view>
         </view>
-    </view>
+    </block>
 </view>
 <view class="cash_button bg font30 color1" bindtap="intoPath" data-path="/pages/userCashNow/userCashNow">
     立即提现
