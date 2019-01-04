@@ -14,14 +14,14 @@
 <view class="user_input" style="padding:0 5%;width:90%;">
 	<view class="users_detail flexRowBetween" bindtap="chooseLocation" style="justify-content:left">
 
-		<text style="line-height:50px;font-size:30rpx;color:#363636;">点击选取位置:</text>
-		<text style="line-height:50px;font-size:30rpx;color:#999" class=" avoidOverflow">{{web_mainData.city}}</text>
+		<view style="font-size:30rpx;color:#363636;width:30%;">点击选取位置:</view>
+		<view style="font-size:30rpx;color:#999;width:70%" class=" avoidOverflow">{{web_mainData.city}}</view>
 	</view>
 </view>
 
-<view style="width:90%;height:250rpx;margin:0 auto;line-height:50px;padding:0 5%;font-size:30rpx;display:flex">
-	<text style="line-height:50px;font-size:30rpx;color:#363636;">详细地址:</text>
-	<textarea value="{{web_mainData.detail}}" style="border:1px solid #E5E5E5;height:200rpx;border-radius:15rpx;width:250px;padding:16rpx;margin:17px 10px;line-height:36rpx;" class='user_textarea' data-key="detail" bindinput="inputChange"></textarea>
+<view style="width:90%;height:280rpx;margin:0 auto;line-height:50px;padding:0 5%;font-size:30rpx;display:flex">
+	<view style="line-height:50px;font-size:30rpx;color:#363636;width:22%;">详细地址:</view>
+	<textarea value="{{web_mainData.detail}}" style="border:1px solid #E5E5E5;height:200rpx;border-radius:15rpx;width:70%;padding:16rpx;margin:17px 10px;line-height:36rpx;" class='user_textarea' data-key="detail" bindinput="inputChange"></textarea>
 </view>
 
 

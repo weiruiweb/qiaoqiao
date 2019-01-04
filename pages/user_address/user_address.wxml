@@ -3,7 +3,7 @@
 <view class="manage flex" bindtap="choose" data-id="{{item.id}}" style="padding:0 5%;width:90%;">
 	<view class="manage_cont" style="width:95%">
 		<view class="user_address flex color3">
-			<view class="address_left">
+			<view class="address_left color3">
 				{{item.name}}
 			</view>
 			<view class="address_right">

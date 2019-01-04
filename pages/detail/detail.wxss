@@ -7,17 +7,17 @@ page{
 }
 .banner{
 	width:100%;
-	height:420rpx;
+	height:600rpx;
 	overflow:hidden;
 }
 swiper{
 	width:100%;
-	height:420rpx;
+	height:600rpx;
 	overflow:hidden;
 }
 .banner image{
 	width:100%;
-	height:420rpx;
+	height:600rpx;
 }
 .product_name{
 	font-size:32rpx;
@@ -232,7 +232,7 @@ line-height:62rpx;}
 	margin-bottom:120rpx;
 }
 #choose{
-	height:596rpx;
+	height:696rpx;
 	width:100%;
 	position:fixed;
 	bottom:-100%;
@@ -272,7 +272,7 @@ line-height:62rpx;}
 	font-size:28rpx;
 	color:#e50112;
 }
-.product_txt{width:65%;}
+.product_txt{width:75%;}
 #type{
 	width: 100%;
 	height:60rpx;
@@ -284,9 +284,7 @@ line-height:62rpx;}
 	color:#666;
 }
 .pro_types{
-	width:108rpx;
-	height:60rpx;
-	line-height:60rpx;
+	padding:10rpx 20rpx;
 	text-align:center;
 	font-size:28rpx;
 	color:#666;
