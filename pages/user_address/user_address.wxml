@@ -16,7 +16,7 @@
 <view class="w710 flex">
 	<view class="address_handle flex font28" >
 		<view class="handle_left flex  {{item.isdefault=='0'?'color':''}}" bindtap="{{item.isdefault=='0'?'updateAddress':''}}" data-id="{{item.id}}">
-			<image id="select_icon" src="{{item.isdefault=='0'?'/images/select.png':'/images/select-a.png'}}"></image><text class="{{item.isdefault=='0'?'color2':'color6'}}">{{item.isdefault=='0'?'设为默认地址':'默认地址'}}</text>
+			<image id="select_icon" src="{{item.isdefault=='0'?'/images/select.png':'/images/select-a.png'}}"></image><text class="{{item.isdefault=='0'?'color6':'color2'}}">{{item.isdefault=='0'?'设为默认地址':'默认地址'}}</text>
 		</view>
 		<view class="handle_right flexRowBetween">
 			<view class="edit flex" data-path="/pages/user_address_new/user_address_new?id={{item.id}}" bindtap="intoPath">

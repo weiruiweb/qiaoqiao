@@ -13,7 +13,8 @@ Page({
   
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
-      is_group:1
+      is_group:1,
+      onShelf:1
     },
     mainData:[],
     sForm:{

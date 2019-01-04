@@ -95,6 +95,7 @@ Page({
     var id = api.getDataSet(e,'id');
     var type = api.getDataSet(e,'type');
     var deadline = api.getDataSet(e,'deadline');
+    var standard = api.getDataSet(e,'standard')
     self.data.price =  api.getDataSet(e,'price');
 
     const postData = {
@@ -104,8 +105,12 @@ Page({
       ],
       pay:{score:self.data.price},
       type:type,
-      deadline:deadline
+      deadline:deadline,
+      standard:parseInt(Date.parse(new Date()))+parseInt(standard),
     };
+    console.log('postData',parseInt(Date.parse(new Date())));
+    console.log('postData',standard);
+    console.log('postData',postData);
     const callback = (res)=>{
       if(res&&res.solely_code==100000){
         self.data.order_id = res.info.id
@@ -135,7 +140,10 @@ Page({
      
        wx.hideLoading();
       if(res.solely_code==100000){
-        api.showToast('兑换成功','none')
+        api.showToast('兑换成功','none',1000);
+        setTimeout(function(){
+          api.pathTo('/pages/discount/discount','redi')
+        },1000);
       }else{
         api.showToast(res.msg,'none')
       }

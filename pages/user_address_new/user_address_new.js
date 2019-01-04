@@ -23,15 +23,10 @@ Page({
 
   onLoad(options) {
     const self=this;
-    api.commonInit(self);
     if(options.id){
       self.data.id = options.id
       self.getMainData(self.data.id); 
-    }else{
-      self.setData({
-        web_region:self.data.region
-      })
-    };
+    }
     wx.hideLoading();
     
   },
@@ -42,7 +37,7 @@ Page({
     const postData = {};
     postData.searchItem = {};
     postData.searchItem.id = id;
-    postData.tokenFuncName = 'getProjectToken';
+    postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
       console.log(res);
       self.data.mainData = res;
@@ -78,7 +73,7 @@ Page({
   addressUpdate(){
     const self = this;
     const postData = {};
-    postData.tokenFuncName = 'getProjectToken';
+    postData.token = wx.getStorageSync('token');
     postData.searchItem = {};
     postData.searchItem.id = self.data.id;
     postData.data = {};
@@ -88,7 +83,7 @@ Page({
       if(data){
         api.dealRes(data);
       };
-      api.buttonCanClick(self,true); 
+
     };
     api.addressUpdate(postData,callback);
   },
@@ -97,7 +92,7 @@ Page({
   addressAdd(){
     const self = this;
     const postData = {};
-    postData.tokenFuncName = 'getProjectToken';
+    postData.token = wx.getStorageSync('token');
     postData.data = {};
     postData.data = api.cloneForm(self.data.sForm);
     postData.data.isdefault = self.data.isdefault;
@@ -105,7 +100,6 @@ Page({
       if(data){
         api.dealRes(data);
       };
-       api.buttonCanClick(self,true); 
     };
     api.addressAdd(postData,callback);
   },
@@ -113,7 +107,6 @@ Page({
 
   submit(){
     const self = this;
-    api.buttonCanClick(self,true);
     var phone = self.data.sForm.phone;
     const pass = api.checkComplete(self.data.sForm);
     console.log('self.data.sForm',self.data.sForm)

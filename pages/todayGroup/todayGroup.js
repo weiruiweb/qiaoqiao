@@ -76,7 +76,8 @@ getMainData(){
         middleKey:'product_no',
         searchItem:{
           deadline:['>',nowTime],
-          status:1
+          status:1,
+          onShelf:1
         },
         key:'product_no',
         condition:'=',

@@ -128,6 +128,7 @@ Page({
     self.data.id = api.getDataSet(e,'id');
    self.data.type = api.getDataSet(e,'type');
    self.data.deadline = api.getDataSet(e,'deadline');
+   var standard = api.getDataSet(e,'standard')
     if(!self.data.order_id){
     wx.showLoading();
     if(self.data.buttonClicked){
@@ -148,7 +149,8 @@ Page({
       ],
       pay:{score:0},
       type:self.data.type,
-      deadline:self.data.deadline
+      deadline:self.data.deadline,
+      standard:parseInt(Date.parse(new Date()))+parseInt(standard),
     };
     const callback = (res)=>{
       if(res&&res.solely_code==100000){

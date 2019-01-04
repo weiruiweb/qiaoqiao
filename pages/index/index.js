@@ -7,6 +7,7 @@ const token = new Token();
 
 Page({
   data: {
+    sliderData:[],
     groupData:[],
     mainData:[],
     labelData:[],
@@ -134,13 +135,23 @@ Page({
     const self = this;
     const postData = {};
     postData.searchItem = {
-      title:'首页轮播图',
       thirdapp_id:'2'
+    };
+    postData.getBefore = {
+      aboutData:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['首页轮播图']],
+        },
+        middleKey:'parentid',
+        key:'id',
+        condition:'in',
+      },
     };
     const callback = (res)=>{ 
       if(res.info.data.length>0){
-        self.data.sliderData = res.info.data[0];
-      }
+        self.data.sliderData.push.apply(self.data.sliderData,res.info.data)
+      };
       self.setData({
         web_sliderData:self.data.sliderData,
       });
@@ -195,30 +206,31 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:1,
-      category_id:['NOT IN',[38]]
+      category_id:['NOT IN',[38]],
+      deadline:['>',nowTime],
+      onShelf:1
     };
-    postData.getAfter={
+/*    postData.getAfter={
       sku:{
         tableName:'sku',
         middleKey:'product_no',
         searchItem:{
-          deadline:['>',nowTime],
-          status:1
+          
+          status:1,
+          onShelf:1
         },
         key:'product_no',
         condition:'=',
       } 
-    };
+    };*/
     postData.order = {
       listorder:'desc'
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        for (var i = 0; i < res.info.data.length; i++) {
 
-            self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
-        };
+            self.data.mainData.push.apply(self.data.mainData,res.info.data);
+
       
       }else{
         self.data.isLoadAll = true;
@@ -232,7 +244,7 @@ Page({
       });  
       
     };
-    api.productGet(postData,callback);
+    api.skuGet(postData,callback);
   },
 
 
@@ -292,7 +304,8 @@ Page({
         middleKey:'product_no',
         searchItem:{
           deadline:['>',nowTime],
-          status:1
+          status:1,
+          onShelf:1
         },
         key:'product_no',
         condition:'=',
@@ -306,8 +319,11 @@ Page({
         for (var i = 0; i < res.info.data.length; i++) {
           self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
         };
+        
+      };
+      if(self.data.groupData.length>1){
         self.countDown();
-      }
+      };
       wx.hideLoading();
       if(self.data.groupData.length>1){
         self.countDownTwo();

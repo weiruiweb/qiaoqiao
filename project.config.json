@@ -138,9 +138,22 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "取货吗",
-					"pathName": "pages/user_order_code/user_order_code"
+					"pathName": "pages/user_order_code/user_order_code",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/user_order/user_order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收获",
+					"pathName": "pages/waitGoods/waitGoods",
+					"query": ""
 				}
 			]
 		}

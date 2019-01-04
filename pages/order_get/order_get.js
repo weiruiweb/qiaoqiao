@@ -112,8 +112,8 @@ Page({
       },
     };
     postData.order = {
-      create_time:'normal'
-    }
+      listorder:'asc'
+    };
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.labelData.push.apply(self.data.labelData,res.info.data);
@@ -248,8 +248,7 @@ Page({
       var newObject = api.cloneForm(self.data.submitData);
 
       delete newObject.message;
-
-      if(!api.checkComplete(self.data.newObject)){
+      if(!api.checkComplete(newObject)){
         api.showToast('请补全信息或选择自提点','none')
         self.data.buttonClicked = false;
         return;

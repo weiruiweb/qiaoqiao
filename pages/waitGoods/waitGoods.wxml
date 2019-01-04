@@ -8,20 +8,25 @@
     </view>
 </view>
 <block wx:for="{{web_mainData}}" wx:key="id">
+
     <view class="product" wx:if="{{num == 0&&item.passage2!=''}}">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
             <view class="tlt_left tlt_right" style="width:38%;">{{item.create_time}}</view>
         </view>
+        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
         <view class="product_box w710 flexRowBetween">
             <view class="product_left" style="width:25%;">
-                <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
+                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
             </view>
             <view class="product_right" style="width:75%;">
                 <view class="product_detail">
                     <view class="flexRowBetween" style="height:30%;">
-                        <view class="font32 color3 avoidOverflow">{{item.products[0].snap_product.title}}<span class="font24 color">(取货码:{{item.passage2}})</span></view>
-                        <view class="font30 color product_price flex">¥{{item.products[0].snap_product.price}}</view>
+                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}<span class="font24 color">(取货码:{{item.passage2}})</span></view>
+                        <view class="font30 color product_price flex">¥{{c_item.snap_product.price}}</view>
+                    </view>
+                    <view class="flexRowBetween" style="height:45%;">
+                        <view class="font24 color3 avoidOverflow">{{c_item.snap_product.description}}*{{c_item.count}}</view>  
                     </view>
                     <view class="flexRowBetween" style="height:45%;">
                         <view class="font24 color3 avoidOverflow">自提地址：{{item.store[0].description}}</view>
@@ -31,8 +36,11 @@
                     
                 </view>
             </view>
+
         </view>
+      </block>
     </view>
+  
 </block>
 
 <block wx:for="{{web_mainData}}" wx:key="id">
@@ -41,15 +49,19 @@
             <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
             <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" style="width:38%;">查看物流</view>
         </view>
+        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
         <view class="product_box w710 flexRowBetween">
             <view class="product_left"  style="width:25%;">
-                <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
+                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
             </view>
             <view class="product_right flex"  style="width:75%;">
                 <view class="product_detail">
                     <view class="flexRowBetween" style="height:30%;">
-                        <view class="font32 color3 avoidOverflow">{{item.products[0].snap_product.title}}</view>
-                        <view class="font24 color avoidOverflow" style="text-align:center">¥{{item.products[0].snap_product.price}}</view>
+                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}</view>
+                        <view class="font24 color avoidOverflow" style="text-align:center">¥{{c_item.snap_product.price}}</view>
+                    </view>
+                    <view class="flexRowBetween" style="height:45%;">
+                        <view class="font24 color3 avoidOverflow">{{c_item.snap_product.description}}*{{c_item.count}}</view>  
                     </view>
                     <view class="flexRowBetween" style="height:40%;" bindtap="phoneCallTwo" data-index="{{index}}">
                         <view class="font26 color3">{{item.snap_address.name}}收</view>
@@ -62,6 +74,7 @@
                 </view>
             </view> 
         </view>
+        </block>
     </view>
 </block>
 <view style="width:100%;height:150rpx;"></view>

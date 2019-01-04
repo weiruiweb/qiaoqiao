@@ -32,6 +32,7 @@ Page({
 
   getOrderData(isNew){
     const self = this;
+    var nowTime = Date.parse(new Date())
     if(isNew){
       api.clearPageIndex(self);
     }
@@ -43,6 +44,7 @@ Page({
     postData.searchItem.type = ['in',[3,4]];
     postData.searchItem.user_no = wx.getStorageSync('info').user_no;
     postData.searchItem.pay_status = 1;
+    postData.searchItem.standard = ['>',nowTime]
     postData.order = {
       create_time:'desc'
     }

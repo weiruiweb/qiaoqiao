@@ -9,21 +9,23 @@
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
         </view>
+        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
         <view class="product_box w710 flexRowBetween bg1">
             <view class="product_left">
-                <image src="{{item.products[0].snap_product.mainImg[0].url}}"></image>
+                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
             </view>
             <view class="product_right">
             <view class="product_detail">
-            <view class="font32 color3 product_top avoidOverflow">{{item.products[0].snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
-                <view class="font24 color9">{{item.products[0].snap_product.description}}</view>
+            <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
+                <view class="font24 color9">{{c_item.snap_product.description}}</view>
                 <view class="font30 color6  flex" style="height:50%;">
-                    <view class="product_number">X{{item.products[0].count}}</view>
+                    <view class="product_number">X{{c_item.count}}</view>
                     <view class="product_price color">¥{{item.price}}</view>
                 </view>
             </view>
             </view>
         </view>
+        </block>
       <!--   <view class="order_handle" style="height:200rpx;display:flex">
             <view >
                 头像：

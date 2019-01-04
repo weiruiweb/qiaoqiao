@@ -15,8 +15,9 @@ Page({
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
       user_type:0,
-      transport_status:0,
-      pay_status:1
+      transport_status:1,
+      pay_status:1,
+      type:1
     },
     searchItemOr:{},
     sForm:{
@@ -32,7 +33,9 @@ Page({
     self.setData({
       web_mainData:self.data.mainData
     });
-    self.getMainData()
+    if(wx.getStorageSync('threeInfo').user_type==2){
+      self.getMainData() 
+    }
   },
 
   changeBind(e){
@@ -51,8 +54,15 @@ Page({
       self.getMainData(true,self.data.sForm.passage2)
       
     }else if(self.data.sForm.passage2==''){
-    	delete self.data.searchItem.passage2;
-      self.getMainData()
+      if(wx.getStorageSync('threeInfo').user_type==1){
+        api.showToast('请输入取货码  ','none');
+        return
+      };
+      if(wx.getStorageSync('threeInfo').user_type==2){
+        delete self.data.searchItem.passage2;
+        self.getMainData(true)
+      }
+      
     }
   },
 

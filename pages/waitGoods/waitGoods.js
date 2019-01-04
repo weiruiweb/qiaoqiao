@@ -65,6 +65,7 @@ Page({
     postData.searchItem.type = 1;
     postData.searchItem.status = ['in',[0,1]];
     postData.searchItem.pay_status = 1;
+    postData.searchItem.user_no = wx.getStorageSync('info').user_no;
     postData.order = {
       create_time:'desc'
     };

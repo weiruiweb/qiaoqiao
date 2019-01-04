@@ -8,9 +8,9 @@
       <swiper
          autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
         interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="swiperChange">
-        <block wx:for="{{web_sliderData.mainImg}}" wx:index="{{index}}" wx:key="id">
+        <block wx:for="{{web_sliderData}}" wx:index="{{index}}" wx:key="id">
           <swiper-item>
-            <image src="{{item.url}}"></image>
+            <image src="{{item.mainImg[0].url}}" data-path="{{item.url}}" bindtap="intoPath"></image>
           </swiper-item>
         </block>
       </swiper>
@@ -162,7 +162,7 @@
                   <view class="color price" style="width:100%">¥{{item.price}}</view>
                 </view>
                 <view class="product_pro font28 flex">
-                  <view class="color6 price font22">销量:{{item.saleNum}}</view>
+                  <view class="color6 price font22">销量:{{item.product.saleNum}}</view>
                   <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
                 </view>
             </view>

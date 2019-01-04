@@ -101,6 +101,7 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.deadline=['>',nowTime];
     postData.searchItem.is_group = 0;
+    postData.searchItem.onShelf = 1;
     if(self.data.id){
       postData.searchItem.category_id = self.data.id
     }else if(currentId==0){

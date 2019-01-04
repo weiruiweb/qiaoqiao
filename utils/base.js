@@ -33,7 +33,7 @@ class Base{
                     const callback = (data)=>{
                         that.request(data);
                     };
-                    if(wx.getStorageSync('threeToken')&&params.data.token == wx.getStorageSync('threeToken')){
+                    if(wx.getStorageSync('threeToken')&&(params.data.token == wx.getStorageSync('threeToken')||(params.data[0]&&params.data[0].token==wx.getStorageSync('threeToken')))){
                         that.logOff();
                     }else{
                        token.getUserInfo(params,callback); 
@@ -457,7 +457,7 @@ class Base{
         wx.removeStorageSync('threeInfo');
         wx.removeStorageSync('threeToken');
         if(!wx.getStorageSync('login')){
-            self.pathTo('/pages/User/user','tab')
+            self.pathTo('/pages/user/user','redi')
         }else{
             self.showToast('系统故障','fail')
         }

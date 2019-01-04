@@ -258,7 +258,9 @@ Page({
       self.setData({
         web_orderData:self.data.orderData
       });
-      self.groupData();
+      if(self.data.orderData.length>0){
+        self.groupData();
+      }; 
       console.log('orderGet',self.data.orderData)
     }
     api.orderGet(postData,callback)

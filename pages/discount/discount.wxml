@@ -19,9 +19,10 @@
 								<view class="discount_bottom avoidOverflow"  style="height:25%;">
 									<view class="discount_time font22 discount_bg1">截至到{{func.timestampToTime(item.deadline)}}</view>
 								</view>
+								<view class="detail2 font24 avoidOverflow2" style="height:45%;">有效期：{{func.SecondToDate(item.standard)}}</view>
 							</view>
 							<view class="discount_btn flex">
-								<view class="click_btn submit_info" data-id="{{item.id}}" data-type="{{item.type}}" data-deadline="{{item.deadline}}" data-price="{{item.price}}" bindtap="addOrder">立即领取</view>
+								<view class="click_btn submit_info" data-id="{{item.id}}" data-type="{{item.type}}" data-deadline="{{item.deadline}}" data-price="{{item.price}}" data-standard="{{item.standard}}" bindtap="addOrder">立即领取</view>
 							</view>
 						</view>
 						

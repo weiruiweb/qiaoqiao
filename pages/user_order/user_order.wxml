@@ -23,7 +23,7 @@
         
             <view class="tlt_left1 tlt_right color"  wx:if="{{item.pay_status == '0'}}">等待买家付款</view>
             <view class="tlt_left1 tlt_right color" wx:if="{{item.order_step=='3'}}">已完成</view>
-            <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.order_step=='0'&&item.transport_status =='1'}}">物流配送中</view>
+            <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.order_step=='0'&&item.transport_status=='1'&&item.passage2.length==0}}">物流配送中</view>
         </view>
         <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
             <view class="product_box w710 flexRowBetween same_store">
@@ -54,7 +54,7 @@
             <view class="submit_info font28" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'||item.pay_status == '1'&&item.order_step == '1'}}">删除订单</view>
 
 
-            <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
+            <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'&&item.passage2.length==0}}" data-id="{{item.id}}">确认收货</view>
 
 
              <view class="submit_info font28"  wx:if="{{item.pay_status == '1'&&item.transport_status == '0'&&item.order_step == '0'}}">待领取</view>

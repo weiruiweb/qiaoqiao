@@ -15,7 +15,7 @@
 	<view class="users_detail flexRowBetween" bindtap="chooseLocation" style="justify-content:left">
 
 		<text style="line-height:50px;font-size:30rpx;color:#363636;">点击选取位置:</text>
-		<text style="line-height:50px;font-size:30rpx;color:#999" class=" avoidOverflow">{{web_name}}</text>
+		<text style="line-height:50px;font-size:30rpx;color:#999" class=" avoidOverflow">{{web_mainData.city}}</text>
 	</view>
 </view>
 
