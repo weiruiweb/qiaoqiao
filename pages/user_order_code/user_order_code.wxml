@@ -20,7 +20,7 @@
                 <view class="font24 color9">{{c_item.snap_product.description}}</view>
                 <view class="font30 color6  flex" style="height:50%;">
                     <view class="product_number">X{{c_item.count}}</view>
-                    <view class="product_price color">¥{{item.price}}</view>
+                    <view class="product_price color">¥{{c_item.snap_product.price}}</view>
                 </view>
             </view>
             </view>

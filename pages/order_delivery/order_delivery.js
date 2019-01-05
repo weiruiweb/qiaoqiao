@@ -158,7 +158,7 @@ Page({
     const self = this;
     const postData = {};
     postData.searchItem = {
-      thirdapp_id:getApp().globalData.mall_thirdapp_id,
+      thirdapp_id:getApp().globalData.thirdapp_id,
       id:['in',self.data.idData]
     }
     const callback = (res)=>{

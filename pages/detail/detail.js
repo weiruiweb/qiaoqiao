@@ -619,7 +619,8 @@ Page({
     postData.token = wx.getStorageSync('token');
     postData.searchItem = {
       relation_id:['in',self.data.skuIdArray],
-      type:2
+      type:1,
+      user_type:0
     };
     postData.order = {
       create_time:'desc'

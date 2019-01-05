@@ -22,7 +22,7 @@
             <view class="product_right" style="width:75%;">
                 <view class="product_detail">
                     <view class="flexRowBetween" style="height:20%;">
-                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}<span class="font24 color">(取货码:{{item.passage2}})</span></view>
+                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}<span class="font32 color">(取货码:{{item.passage2}})</span></view>
                         <view class="font30 color product_price flex">¥{{c_item.snap_product.price}}</view>
                     </view>
                     <view class="flexRowBetween" style="height:30%;">
@@ -71,6 +71,7 @@
                     <view class="flexRowBetween font26 color6 avoidOverflow" style="height:25%;">
                         {{item.snap_address.detail}}
                     </view>
+                    <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
                 </view>
             </view> 
         </view>

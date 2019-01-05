@@ -1,4 +1,5 @@
 <!--userINfo.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
 <view class="tab font30 flexRowBetween color6">
     <view class="tab_item " data-num="0" bindtap="menuClick">
         <text class="{{web_num == 0?'tab_this':''}}">全部</text>
@@ -24,8 +25,7 @@
 		   		</view>
 		   		<view class="discount_center">
 		   			<view class="discount_txt1 color1">{{item.products[0].snap_product.description}}</view>
-		   			<view class="discount_txt2 color1">11.12当日有效 可叠加店铺券</view>
-		   			<view class="discount_txt3  color1">限制公众号使用</view>
+		   			<view class="discount_txt2 color1">{{func.timestampToTime(item.standard)}}失效</view>
 		   		</view>
 		   		<view class="discount_right"><view class="ac_discount">已领取</view></view>
 		   </view>

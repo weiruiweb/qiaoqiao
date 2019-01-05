@@ -83,11 +83,9 @@ Page({
     }]
     const callback = (data)=>{  
       if(data.solely_code == 100000){
-        api.showToast('评价成功','none');
+        api.showToast('评价成功','none',1000);
         setTimeout(function(){
-          wx.navigateBack({
-            delta:1
-          })
+          api.pathTo('/pages/user/user','rela')
         }, 1000)
       }else{
         api.showToast('评价失败','none');

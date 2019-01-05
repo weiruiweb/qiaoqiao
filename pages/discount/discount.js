@@ -105,8 +105,12 @@ Page({
       ],
       pay:{score:self.data.price},
       type:type,
-      deadline:deadline,
-      standard:parseInt(Date.parse(new Date()))+parseInt(standard),
+      data:{
+
+        deadline:deadline,
+        standard:parseInt(Date.parse(new Date()))+parseInt(standard), 
+      }
+      
     };
     console.log('postData',parseInt(Date.parse(new Date())));
     console.log('postData',standard);

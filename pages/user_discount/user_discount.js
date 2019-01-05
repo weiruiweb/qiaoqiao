@@ -9,7 +9,7 @@ Page({
     num:0,
     mainData:[],
     searchItem:{
-      
+      standard:['>',Date.parse(new Date())]
     },
     buttonClicked:false,
     isLoadAll:false,
@@ -32,7 +32,6 @@ Page({
 
   getOrderData(isNew){
     const self = this;
-    var nowTime = Date.parse(new Date())
     if(isNew){
       api.clearPageIndex(self);
     }
@@ -44,7 +43,7 @@ Page({
     postData.searchItem.type = ['in',[3,4]];
     postData.searchItem.user_no = wx.getStorageSync('info').user_no;
     postData.searchItem.pay_status = 1;
-    postData.searchItem.standard = ['>',nowTime]
+    
     postData.order = {
       create_time:'desc'
     }
@@ -86,15 +85,15 @@ Page({
     console.log(endTime)
     self.data.searchItem = {};
     if(num=='0'){
-      
+      self.data.searchItem.standard = ['>',endTime]
     }else if(num=='1'){
-      self.data.searchItem.deadline = ['>',endTime]
+      self.data.searchItem.standard = ['>',endTime]
       self.data.searchItem.order_step = '0';
     }else if(num=='2'){
-      self.data.searchItem.deadline = ['>',endTime]
+      self.data.searchItem.standard = ['>',endTime]
       self.data.searchItem.order_step = '1'
     }else if(num=='3'){
-      self.data.searchItem.deadline = ['<',endTime]
+      self.data.searchItem.standard = ['<',endTime]
     }
     self.setData({
       web_mainData:[],
