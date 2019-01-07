@@ -68,15 +68,18 @@
                         <view class="font30 color9 product_price flex" >{{item.snap_address.phone}}</view>
                         
                     </view>
-                    <view class="flexRowBetween font26 color6 avoidOverflow" style="height:25%;">
+                    <view class="flexRowBetween font26 color6 avoidOverflow" style="height:25%;width:100%;">
                         {{item.snap_address.detail}}
                     </view>
-                    <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
                 </view>
             </view> 
         </view>
         </block>
+        <view class="handle w710">
+            <view class="submit_info font28" bindtap="orderUpdate"  wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}" data-id="{{item.id}}">确认收货</view>
+        </view>
     </view>
+
 </block>
 <view style="width:100%;height:150rpx;"></view>
 <view class="navbar">

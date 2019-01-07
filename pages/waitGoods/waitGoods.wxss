@@ -107,3 +107,13 @@ page{
 	height:0rpx;
 	z-index:;
 }
+.handle{
+	height:100rpx;
+	border-top:solid 1px #e0e0e0;
+}
+.submit_info{
+	height:60rpx;
+	line-height:60rpx;
+	font-size:26rpx;
+	margin-top:16rpx;
+}

@@ -36,6 +36,7 @@ Page({
 
   onLoad(options) {
     const self = this;
+    wx.removeStorageSync('couponId');
     wx.showLoading();
 
       var token = new Token();
@@ -60,6 +61,7 @@ Page({
 
   onShow(){
     const self = this;
+    
     self.data.searchItem = {};
     if(getApp().globalData.address_id){
       self.data.searchItem.id = getApp().globalData.address_id;
@@ -74,9 +76,12 @@ Page({
     self.userGet();
 
     
-    console.log(self.data.idData)
+    console.log(self.data.idData);
     self.getAddressData();
-    self.getCouponData();
+    if(wx.getStorageSync('couponId')){
+      self.getCouponData();
+    };
+    
    
   },
 
@@ -417,11 +422,15 @@ Page({
     var secondBalance = 0;
     var couponPrice = 0;
     var productsArray = self.data.mainData;
+    console.log('productsArray',productsArray)
+    
     for(var i=0;i<productsArray.length;i++){
+      console.log('productsArray',productsArray[i].product.price)
       totalPrice += productsArray[i].product.price*productsArray[i].count;
       firstBalance += productsArray[i].count*productsArray[i].product.firstBalance;
       secondBalance += productsArray[i].count*productsArray[i].product.secondBalance;
     };
+    console.log('totalPrice',totalPrice)
     self.data.realTotalPrice = totalPrice; 
     self.data.secondBalance = secondBalance;
     self.data.firstBalance = firstBalance;
@@ -437,12 +446,12 @@ Page({
         couponPrice = self.data.couponData.discount;
          console.log(totalPrice)
       }else if(self.data.couponData.type==4){
-
+         couponPrice = totalPrice*(self.data.couponData.discount/10)
         totalPrice = totalPrice-totalPrice*self.data.couponData.discount/10;
-        couponPrice = totalPrice*self.data.couponData.discount/10
+       
       }; 
 
-
+      console.log('self.data.couponData.discount',self.data.couponData.discount/10)
 
     
     self.data.totalPrice = totalPrice;
