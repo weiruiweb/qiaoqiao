@@ -78,9 +78,7 @@ Page({
     
     console.log(self.data.idData);
     self.getAddressData();
-    if(wx.getStorageSync('couponId')){
-      self.getCouponData();
-    };
+    
     
    
   },
@@ -178,8 +176,13 @@ Page({
       self.setData({
         web_mainData:self.data.mainData,
       });
-      console.log(self.data.mainData)
-      self.countTotalPrice();
+      console.log(self.data.mainData);
+      if(wx.getStorageSync('couponId')){
+        self.getCouponData();
+      }else{
+        self.countTotalPrice();
+      };
+      
       self.checkLoadComplete()   
     };
     api.skuGet(postData,callback);
@@ -422,10 +425,11 @@ Page({
     var secondBalance = 0;
     var couponPrice = 0;
     var productsArray = self.data.mainData;
+    
     console.log('productsArray',productsArray)
     
     for(var i=0;i<productsArray.length;i++){
-      console.log('productsArray',productsArray[i].product.price)
+      console.log('productsArray-price',productsArray[i].product)
       totalPrice += productsArray[i].product.price*productsArray[i].count;
       firstBalance += productsArray[i].count*productsArray[i].product.firstBalance;
       secondBalance += productsArray[i].count*productsArray[i].product.secondBalance;

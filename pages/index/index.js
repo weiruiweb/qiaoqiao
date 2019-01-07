@@ -34,7 +34,7 @@ Page({
   },
   run2: function () {
     var self = this;
-    var interval1 = setInterval(function () {
+    self.data.intervalOne = setInterval(function () {
       if (-self.data.marqueeDistance2 < self.data.length) {
         self.setData({
           marqueeDistance2: self.data.marqueeDistance2 - self.data.marqueePace,
@@ -45,10 +45,10 @@ Page({
           self.setData({
             marqueeDistance2: self.data.marquee2_margin
           });
-          clearInterval(interval1);
+          clearInterval(self.data.intervalOne);
           self.run2();
         } else {
-          clearInterval(interval1);
+          clearInterval(self.data.intervalOne);
           self.setData({
             marqueeDistance2: -self.data.windowWidth
           });
@@ -66,9 +66,19 @@ Page({
   },
 
   onShow(){
+
   	const self = this;
   	self.getSliderData();
-    self.checkRead();
+    const callback = (res)=>{
+      self.checkRead();
+    };
+    if(!wx.getStorageSync('token')){
+      var token = new Token();
+      token.getUserInfo({data:{}},callback);
+    }else{
+      self.checkRead();
+    };
+
   },
 
   onLoad(options) {
@@ -85,27 +95,35 @@ Page({
     });
     self.run2();
     self.getMainData();
-   	self.getMessageData();
     self.getLabelData();
-    
     self.getNoticeData();
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
     };
-    
     if(options.parent_no){
       var scene = options.parent_no
+    };
+
+    const callback = (res)=>{
+      self.getMessageData();
     };
    
     if(scene){
       var token = new Token({parent_no:scene});
-      token.getUserInfo();
+      token.getUserInfo({data:{}},callback);
     }else if(!wx.getStorageSync('token')){
       var token = new Token();
-      token.getUserInfo();
+      token.getUserInfo({data:{}},callback);
+    }else{
+      self.getMessageData();
     };
     
     self.data.scene = scene;
+  },
+
+  onUnload:function () {
+      const self = this;
+      clearInterval(self.data.intervalOne);
   },
 
 

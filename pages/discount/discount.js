@@ -24,10 +24,16 @@ Page({
       var token = new Token();
       token.getUserInfo();
     };
+    self.init();
+   
+  },
+
+  init(){
+    const self = this;
+    self.data.mainData = [];
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getUserInfoData()
-   
   },
 
   getUserInfoData(){
@@ -82,7 +88,7 @@ Page({
 
   addOrder(e){
     const self = this;
-    if(!self.data.order_id){
+    
     wx.showLoading();
     if(self.data.buttonClicked){
       api.showToast('数据有误请稍等','none');
@@ -123,9 +129,7 @@ Page({
       }; 
     };
       api.addOrder(postData,callback);
-    }else{
-      self.pay(self.data.order_id)
-    } 
+    
   },
 
     
@@ -145,12 +149,13 @@ Page({
        wx.hideLoading();
       if(res.solely_code==100000){
         api.showToast('兑换成功','none',1000);
-        setTimeout(function(){
+        /*setTimeout(function(){
           api.pathTo('/pages/discount/discount','redi')
-        },1000);
+        },1000);*/
       }else{
         api.showToast(res.msg,'none')
-      }
+      };
+      self.init();
          
     };
     api.pay(postData,callback);
