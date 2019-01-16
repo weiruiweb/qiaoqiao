@@ -150,7 +150,6 @@ Page({
     self.data.id = self.data.mainData[index].id;
     self.data.submitData.passage4 = content;
     self.data.mainData[index].passage4 = self.data.mainData[index].passage4 +'\r\n'+content;
-    
     self.setData({
       web_submitData:self.data.submitData,
       web_mainData:self.data.mainData
@@ -166,6 +165,7 @@ Page({
   
     self.data.id = self.data.mainData[index].id;
     api.fillChange(e,self,'submitData');
+    self.data.mainData[index].passage4 = self.data.submitData.passage4;
     console.log('self.data.submitData',self.data.submitData);
     console.log('self.data.id',self.data.id);
     self.setData({
