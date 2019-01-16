@@ -17,11 +17,15 @@ Page({
       user_type:0,
       transport_status:1,
       pay_status:1,
-      type:1
+      type:1,
+      passage2:['not in','']
     },
     searchItemOr:{},
     sForm:{
       passage2:''
+    },
+    submitData:{
+      passage4:''
     },
     isLoadAll:false
   },
@@ -91,7 +95,7 @@ Page({
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        self.data.mainData.push.apply(self.data.mainData,res.info.data)
+        self.data.mainData.push.apply(self.data.mainData,res.info.data);
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有查询到订单','none');
@@ -99,7 +103,7 @@ Page({
       self.setData({
         web_mainData:self.data.mainData
       })
-      console.log('getMainData',self.data.sForm)
+      console.log('getMainData',self.data.mainData)
     };
     api.orderGet(postData,callback);
   },
@@ -133,6 +137,80 @@ Page({
       	web_sForm:self.data.sForm,
       	web_mainData:self.data.mainData
       })	
+    };
+    api.orderUpdate(postData,callback);
+  },
+
+
+  fillForm(e){
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    var content = api.getDataSet(e,'content');
+    console.log('index',index);
+    self.data.id = self.data.mainData[index].id;
+    self.data.submitData.passage4 = content;
+    self.data.mainData[index].passage4 = self.data.mainData[index].passage4 +'\r\n'+content;
+    
+    self.setData({
+      web_submitData:self.data.submitData,
+      web_mainData:self.data.mainData
+    });  
+  },
+
+
+
+  textareaBind(e){
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    console.log('index',index);
+  
+    self.data.id = self.data.mainData[index].id;
+    api.fillChange(e,self,'submitData');
+    console.log('self.data.submitData',self.data.submitData);
+    console.log('self.data.id',self.data.id);
+    self.setData({
+      web_submitData:self.data.submitData,
+    });  
+  },
+
+
+  orderUpdateTwo(e){
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    console.log(index)
+    var id = api.getDataSet(e,'id');
+    if(id!=self.data.id){
+      console.log('id',id);
+      console.log('self.data.id',self.data.id);
+      api.showToast('错误提交','none');
+      return;
+    };
+    const postData = {};
+    postData.token = wx.getStorageSync('threeToken');
+    postData.data ={
+      passage4:self.data.mainData[index].passage4
+    }
+    postData.searchItem = {
+      id:self.data.id,
+      user_type:0
+    };
+
+    const callback  = (res)=>{
+      if(res.solely_code==100000){  
+        api.showToast('已添加备注','none')
+      }else{
+        api.showToast(res.msg,'none')
+      }
+      self.data.mainData = [];
+      self.data.sForm.title='';
+      self.setData({
+        web_sForm:self.data.sForm,
+      });
+       
+      if(wx.getStorageSync('threeInfo').user_type==2){
+        self.getMainData(true) 
+      };
+
     };
     api.orderUpdate(postData,callback);
   },

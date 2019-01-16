@@ -4,35 +4,29 @@
     <input placeholder="请输入取货码" bindchange="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
     <view class="code_btn"><button bindtap='search' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
 </view>
-<block wx:for="{{web_mainData}}" wx:key="id">
-     <view class="product" wx:if="{{item.passage2!=''}}">
+<block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
+     <view class="product">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
         </view>
-        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
-        <view class="product_box w710 flexRowBetween bg1">
-            <view class="product_left">
-                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
-            </view>
-            <view class="product_right">
-            <view class="product_detail">
-            <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
-                <view class="font24 color9">{{c_item.snap_product.description}}</view>
-                <view class="font30 color6  flex" style="height:50%;">
-                    <view class="product_number">X{{c_item.count}}</view>
-                    <view class="product_price color">¥{{c_item.snap_product.price}}</view>
+        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item"  wx:for-index="c_index" wx:key="id">
+            <view class="product_box w710 flexRowBetween bg1" data-index="{{index}}" data-content="{{c_item.snap_product.title+'已取货X'+c_item.count}}" bindtap="fillForm">
+                <view class="product_left">
+                    <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
+                </view>
+                <view class="product_right">
+                <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:24rpx;color:#ff0000">(自提单取货码:{{item.passage2}})</span></view>
+                    <view class="font24 color9">{{c_item.snap_product.description}}</view>
+                    <view class="font30 color6  flex" style="height:50%;">
+                        <view class="product_number">X{{c_item.count}}</view>
+                        <view class="product_price color">¥{{c_item.snap_product.price}}</view>
+                    </view>
+                </view>
                 </view>
             </view>
-            </view>
-        </view>
         </block>
-      <!--   <view class="order_handle" style="height:200rpx;display:flex">
-            <view >
-                头像：
-            </view>
-            <view class="font28">微信名：{{item.user[0].nickname}}</view>
-             
-        </view>-->
+        
         <view class="getUser flex bg1">
             <view class="user_left">
                 <view class="user_img">
@@ -46,8 +40,19 @@
             <view class="font28"><text class="font28 color3">收货人电话：</text>{{item.snap_address.phone}}</view>
             </view>
         </view>
+        <view class="w710 flex balance bg_white" style="margin-bottom:20rpx;">          
+            <view class="balance_left font28">
+                <text>备注信息</text>
+            </view>
+            <view class="balance_right bg_white">
+                <textarea class="font24" placeholder="备注信息" style="border:1px solid #e5e5e5;" data-key="passage4" data-index="{{index}}" bindinput="textareaBind" value="{{item.passage4}}"></textarea>
+            </view>
+        </view>
         <view class="order_handle">
             <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">确认取货</view>
+
+            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdateTwo" data-index="{{index}}">添加备注</view>
+            
         </view>
     </view>
 </block>

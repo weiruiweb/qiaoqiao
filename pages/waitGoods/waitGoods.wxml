@@ -1,15 +1,15 @@
 <!--index1.wxml-->
 <view class="tab font30 flexRowBetween color6">
     <view class="tab_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
-        <text class="{{num == 0?'tab_this':''}}">上门自提</text>
+        <text class="{{web_num == 0?'tab_this':''}}">上门自提</text>
     </view>
     <view class="tab_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
-        <text class="{{num == 1?'tab_this':''}}">快递配送</text>
+        <text class="{{web_num == 1?'tab_this':''}}">快递配送</text>
     </view>
 </view>
 <block wx:for="{{web_mainData}}" wx:key="id">
 
-    <view class="product" wx:if="{{num == 0&&item.passage2!=''}}">
+    <view class="product" wx:if="{{web_num == 0}}">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
             <view class="tlt_left tlt_right" style="width:38%;">{{item.create_time}}</view>
@@ -29,9 +29,9 @@
                         <view class="font24 color3 avoidOverflow">{{c_item.snap_product.description}}*{{c_item.count}}</view>  
                     </view>
                     <view class="flexRowBetween" style="height:25%;">
-                        <view class="font24 color3 avoidOverflow">自提地址：{{item.store[0].description}}</view>
-                        
+                        <view class="font24 color3 avoidOverflow">自提地址：{{item.store[0].description}}</view>      
                     </view>
+
                     <view class="font26 color6 flex" style="height:25%;" data-index ="{{index}}" bindtap="phoneCallOne">联系电话:{{item.store[0].url}}</view>
                     
                 </view>
@@ -40,11 +40,18 @@
         </view>
       </block>
     </view>
-  
+   <view class="w710 flex balance bg_white" style="margin-bottom:20rpx;">          
+        <view class="balance_left font28">
+            <text>备注信息</text>
+        </view>
+        <view class="balance_right bg_white">
+            <textarea class="font24" placeholder="备注信息" style="border:1px solid #e5e5e5;" data-key="passage4" data-index="{{index}}" bindinput="textareaBind" value="{{item.passage4}}"></textarea>
+        </view>
+    </view>
 </block>
 
 <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="product" wx:if="{{num == 1&&item.passage2==''}}">
+    <view class="product" wx:if="{{web_num == 1}}">
         <view class="order_tlt w710 flexRowBetween ">
             <view class="tlt_left" style="width:62%;">订单编号：{{item.order_no}}</view>
             <view class="tlt_left tlt_right" bindtap="intoPath" data-path="/pages/user_order_flow/user_order_flow?id={{item.id}}" style="width:38%;">查看物流</view>

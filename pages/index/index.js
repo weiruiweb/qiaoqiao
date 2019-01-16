@@ -68,6 +68,7 @@ Page({
   onShow(){
 
   	const self = this;
+    self.getAdData();
   	self.getSliderData();
     const callback = (res)=>{
       self.checkRead();
@@ -172,6 +173,25 @@ Page({
       };
       self.setData({
         web_sliderData:self.data.sliderData,
+      });
+      
+    };
+    api.labelGet(postData,callback);
+  },
+
+  getAdData(){
+    const self = this;
+    const postData = {};
+    postData.searchItem = {
+      title:'首页广告条',
+      thirdapp_id:'2'
+    };
+    const callback = (res)=>{ 
+      if(res.info.data.length>0){
+        self.data.adData = res.info.data[0]
+      };
+      self.setData({
+        web_adData:self.data.adData,
       });
       
     };

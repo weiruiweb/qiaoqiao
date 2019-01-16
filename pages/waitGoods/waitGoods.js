@@ -10,7 +10,10 @@ Page({
   data: {
    num:0,
    mainData:[],
-   buttonClicked:false
+   buttonClicked:false,
+   searchItem:{
+      passage2:['not in','']
+   }
   },
 
 
@@ -31,7 +34,10 @@ Page({
     });
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-    self.checkRead()
+    self.checkRead();
+    self.setData({
+      web_num: self.data.num
+    });
   },
 
   checkRead(){
@@ -60,7 +66,7 @@ Page({
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
-    postData.searchItem = {};
+    postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.thirdapp_id = 2;
     postData.searchItem.type = 1;
     postData.searchItem.status = ['in',[0,1]];
@@ -153,14 +159,14 @@ Page({
 
   changeSearch(num){
     const self = this;
-    this.setData({
-      num: num
+    self.setData({
+      web_num: num
     });
     self.data.searchItem = {}
     if(num=='0'){
-
+      passage2:['not in','']
     }else if(num=='1'){
-      
+      passage2:['in','']
     }
     self.setData({
       web_mainData:[],
