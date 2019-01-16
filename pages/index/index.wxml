@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
 <view class="swiper" style="height:80rpx">
-  {{web_adData.mainImg[0].url}}
+  <image src="{{web_adData.mainImg[0].url}}"></image>
 </view>
 <view class="page-body">
     <view class="page-section page-section-spacing swiper">

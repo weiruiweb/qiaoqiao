@@ -28,7 +28,7 @@
         <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
             <view class="product_box w710 flexRowBetween same_store">
                 <view class="product_left">
-                    <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
+                    <image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
                 </view>
                 <view class="product_right">
                     <view class="product_detail">

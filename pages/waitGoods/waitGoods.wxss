@@ -117,3 +117,6 @@ page{
 	font-size:26rpx;
 	margin-top:16rpx;
 }
+.flex1{
+	display:flex;
+}

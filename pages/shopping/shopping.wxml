@@ -7,7 +7,7 @@
 					<image src="{{item.isSelect?'/images/select-a.png':'/images/select.png'}}"></image>
 				</view>
 				<view class="shopping_img"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
-					<image src="{{item.mainImg[0].url}}"></image>
+					<image src="{{item.mainImg[0].url}}" mode='aspectFill'></image>
 				</view>
 				<view class="shopping_name">
 					<text class="text1 avoidOverflow">{{item.title}}</text>

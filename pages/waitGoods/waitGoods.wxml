@@ -17,7 +17,7 @@
         <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
         <view class="product_box w710 flexRowBetween">
             <view class="product_left" style="width:25%;">
-                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
+                <image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
             </view>
             <view class="product_right" style="width:75%;">
                 <view class="product_detail">
@@ -40,12 +40,12 @@
         </view>
       </block>
     </view>
-   <view class="w710 flex balance bg_white" style="margin-bottom:20rpx;">          
-        <view class="balance_left font28">
+   <view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;">          
+        <view class="balance_left font28" style="width:22%">
             <text>备注信息</text>
         </view>
-        <view class="balance_right bg_white">
-            <textarea class="font24" placeholder="备注信息" style="border:1px solid #e5e5e5;" data-key="passage4" data-index="{{index}}" bindinput="textareaBind" value="{{item.passage4}}"></textarea>
+        <view class="balance_right bg_white" style="width:78%">
+            <view class="font24">{{item.passage4}}</view>
         </view>
     </view>
 </block>
@@ -59,7 +59,7 @@
         <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
         <view class="product_box w710 flexRowBetween">
             <view class="product_left"  style="width:25%;">
-                <image src="{{c_item.snap_product.mainImg[0].url}}"></image>
+                <image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
             </view>
             <view class="product_right flex"  style="width:75%;">
                 <view class="product_detail">
