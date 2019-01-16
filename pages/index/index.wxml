@@ -15,10 +15,10 @@
         </block>
       </swiper>
       <view class="dots"> 
-      <block wx:for="{{web_sliderData.mainImg}}" wx:key="unique"> 
-        <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
-      </block> 
-    </view>
+        <block wx:for="{{web_sliderData.mainImg}}" wx:key="unique"> 
+          <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
+        </block> 
+      </view>
     </view>
 </view>
 <view class="w710" style="background: #fff7f7;" >
