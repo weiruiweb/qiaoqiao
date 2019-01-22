@@ -164,9 +164,9 @@ Page({
     });
     self.data.searchItem = {}
     if(num=='0'){
-      passage2:['not in','']
+      self.data.searchItem.passage2=['not in','']
     }else if(num=='1'){
-      passage2:['in','']
+      self.data.searchItem.passage2=['in','']
     }
     self.setData({
       web_mainData:[],

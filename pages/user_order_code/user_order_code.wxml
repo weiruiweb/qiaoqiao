@@ -1,7 +1,7 @@
 <!--index3.wxml-->
 <view class="order_code flex font28 w710">
     <view class="code_tlt color3">取货码:</view>
-    <input placeholder="请输入取货码" bindchange="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
+    <input placeholder="请输入取货码" bindInput="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
     <view class="code_btn"><button bindtap='search' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
 </view>
 <block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
@@ -49,9 +49,9 @@
             </view>
         </view>
         <view class="order_handle">
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">确认取货</view>
+            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel">整单核销</view>
 
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdateTwo" data-index="{{index}}">添加备注</view>
+            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdateTwo" data-index="{{index}}">部分核销</view>
             
         </view>
     </view>
