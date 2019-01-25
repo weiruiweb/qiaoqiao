@@ -28,7 +28,8 @@ page{
 .product{
 	border-bottom:solid 1px #e0e0e0;
 	background:#fff;
-	margin-bottom:24rpx;
+	margin-bottom:30rpx;
+	box-shadow:0 4rpx 8rpx #999;
 }
 .product_box{
 	height:230rpx;

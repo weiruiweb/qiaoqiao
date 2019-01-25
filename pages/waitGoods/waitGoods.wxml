@@ -45,7 +45,7 @@
             <text>备注信息</text>
         </view>
         <view class="balance_right bg_white" style="width:78%">
-            <view class="font32" style="color:red">{{item.passage4}}</view>
+            <view class="font32 color">{{item.passage4}}</view>
         </view>
     </view>
 </block>

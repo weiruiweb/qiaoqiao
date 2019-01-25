@@ -206,6 +206,10 @@ line-height:62rpx;}
 	overflow:hidden;
 	overflow:hidden;
 }
+.go_buy button{
+	height:70rpx;
+	line-height:70rpx;
+}
 .shoppingCart{
 	width:50%;
 	background:#e5747c;
