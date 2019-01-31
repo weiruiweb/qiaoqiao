@@ -1,7 +1,7 @@
 <!--index3.wxml-->
 <view class="order_code flex font28 w710">
     <view class="code_tlt color3">取货码:</view>
-    <input placeholder="请输入取货码" bindInput="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
+    <input placeholder="请输入取货码" bindinput="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
     <view class="code_btn"><button bindtap='search' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
 </view>
 <block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
