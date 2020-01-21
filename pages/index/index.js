@@ -21,42 +21,12 @@ Page({
     nextMargin: 0,
     swiperIndex:0,
     img1:0,
-    text: '',
-    marqueePace: 1,
-    marqueeDistance: 0,
-    marqueeDistance2: 0,
-    marquee2copy_status: false,
-    marquee2_margin: 60,
-    size: 14,
-    orientation: 'left',
-    interval1: 20,
-    isLoadAll:false,
+    size:14,//宽度即文字大小
+    marqueeW:0,
+    moveTimes:8,//一屏内容滚动时间为8s
+    allT:"0s",
   },
-  run2: function () {
-    var self = this;
-    self.data.intervalOne = setInterval(function () {
-      if (-self.data.marqueeDistance2 < self.data.length) {
-        self.setData({
-          marqueeDistance2: self.data.marqueeDistance2 - self.data.marqueePace,
-          marquee2copy_status: self.data.length + self.data.marqueeDistance2 <= self.data.windowWidth + self.data.marquee2_margin,
-        });
-      } else {
-        if (-self.data.marqueeDistance2 >= self.data.marquee2_margin) {
-          self.setData({
-            marqueeDistance2: self.data.marquee2_margin
-          });
-          clearInterval(self.data.intervalOne);
-          self.run2();
-        } else {
-          clearInterval(self.data.intervalOne);
-          self.setData({
-            marqueeDistance2: -self.data.windowWidth
-          });
-          self.run2();
-        }
-      }
-    }, self.data.interval1);
-  },
+ 
   //事件处理函数
   swiperChange(e) {
     const that = this;
@@ -68,9 +38,10 @@ Page({
   onShow(){
 
   	const self = this;
-    self.getAdData();
+ 
   	self.getSliderData();
-    const callback = (res)=>{
+		self.checkRead();
+  /*  const callback = (res)=>{
       self.checkRead();
     };
     if(!wx.getStorageSync('token')){
@@ -78,7 +49,7 @@ Page({
       token.getUserInfo({data:{}},callback);
     }else{
       self.checkRead();
-    };
+    }; */
 
   },
 
@@ -86,18 +57,13 @@ Page({
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     console.log(self.data.img1);
-    var length = self.data.text.length * self.data.size;
-    var windowWidth = wx.getSystemInfoSync().windowWidth;
     self.setData({
       img1:self.data.img1,
-      length: length,
-      windowWidth: windowWidth,
-      marquee2_margin: length < windowWidth ? windowWidth - length : self.data.marquee2_margin
     });
-    self.run2();
+	self.getGroupData();
     self.getMainData();
     self.getLabelData();
-    self.getNoticeData();
+
     if(options.scene){
       var scene = decodeURIComponent(options.scene)
     };
@@ -105,9 +71,7 @@ Page({
       var scene = options.parent_no
     };
 
-    const callback = (res)=>{
-      self.getMessageData();
-    };
+  
    
     if(scene){
       var token = new Token({parent_no:scene});
@@ -141,9 +105,15 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.messageData = res.info.data[0]
+				self.data.text = self.data.messageData.title
       }
+			var screenW=wx.getSystemInfoSync().windowWidth;//获取屏幕宽度
+			var contentW=self.data.text.length*self.data.size;//获取文本宽度（大概宽度）
+			var allT=(contentW/screenW)*self.data.moveTimes;//文字很长时计算有几屏
+			allT=allT<8?8:allT;//不够一平-----最小滚动一平时间
       console.log(self.data.messageData);
       self.setData({
+				marqueeW:-contentW+"px",allT:allT+"s",
         web_messageData:self.data.messageData,
       });   
     };
@@ -179,24 +149,7 @@ Page({
     api.labelGet(postData,callback);
   },
 
-  getAdData(){
-    const self = this;
-    const postData = {};
-    postData.searchItem = {
-      title:'首页广告条',
-      thirdapp_id:'2'
-    };
-    const callback = (res)=>{ 
-      if(res.info.data.length>0){
-        self.data.adData = res.info.data[0]
-      };
-      self.setData({
-        web_adData:self.data.adData,
-      });
-      
-    };
-    api.labelGet(postData,callback);
-  },
+
 
   getLabelData(){
     const self = this;
@@ -222,8 +175,6 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.labelData.push.apply(self.data.labelData,res.info.data);
-      }else{
-        api.showToast('没有更多了','none');
       }
       console.log(self.data.labelData)
       wx.hideLoading();
@@ -244,7 +195,7 @@ Page({
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      category_id:['NOT IN',[38]],
+      /* category_id:['NOT IN',[38]], */
       deadline:['>',nowTime],
       onShelf:1
     };
@@ -272,10 +223,10 @@ Page({
       
       }else{
         self.data.isLoadAll = true;
-        api.showToast('没有更多了','none');
+        
       };
       wx.hideLoading();
-      self.getGroupData();
+      
       self.setData({
 
         web_mainData:self.data.mainData,
@@ -354,12 +305,15 @@ Page({
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        for (var i = 0; i < res.info.data.length; i++) {
-          self.data.groupData.push.apply(self.data.groupData,res.info.data[i].sku);
-        };
         
+          self.data.groupData.push.apply(self.data.groupData,res.info.data);
+		  
+        
+       /* for (var j = 0; j < self.data.groupData[j].length; j++) {
+        	self.data.groupData[j].pdtSale = res.info.data[i].saleNum
+        } */
       };
-      if(self.data.groupData.length>1){
+     /* if(self.data.groupData.length>0){
         self.countDown();
       };
       wx.hideLoading();
@@ -368,8 +322,8 @@ Page({
       };
       if(self.data.groupData.length>2){
         self.countDownThree();
-      };
-      
+      }; */
+      console.log('self.data.groupData',self.data.groupData)
       self.setData({   
         web_groupData:self.data.groupData,
       });  

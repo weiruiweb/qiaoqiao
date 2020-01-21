@@ -14,12 +14,19 @@ view{
 	color:#666;
 }
 .swiper{
-	height:500rpx;
+	height:600rpx;
 	 position:relative;
 }
 swiper{
 	width:100%;
 	height: 100%;
+}
+.marquee_text{
+ 
+  font-size: 28rpx;
+  display: inline-block;
+  white-space: nowrap;
+  animation: around var(--allTs--)  infinite linear;
 }
 .swiper-block{
   height: 500rpx;
@@ -85,11 +92,7 @@ swiper{
 	width:34rpx;
 	height:34rpx;
 }
-.marquee_right{
-	width:80%;
-	height:100%;
-	overflow:hidden;
-}
+
 .next_page{
 	width:10%;
 	height:100%;
@@ -99,40 +102,47 @@ swiper{
 	height:38rpx;
 	margin:0 auto;
 }
-.marquee_box {
-  width: 100%;
-  height:100%;
+
+
+.marquee_right{
+	width:90%;
+	height:100%;
+	overflow:hidden;
+}
+
+@keyframes around {
+  from {
+   margin-left: 100%;
+  }
+  to {
+   /* var接受传入的变量 */
+   margin-left: var(--marqueeWidth--);
+  }
+ }
+ 
+.marquee_container{
+
+  height: 40rpx;
+  line-height: 40rpx;
   position: relative;
+  width: 100%;
 }
-.marquee_text {
+
+.marquee_text{
+	color: red;
+	font-weight: bold;
+  font-size: 28rpx;
+  display: inline-block;
   white-space: nowrap;
-  position: absolute;
-  top: 0;
-}
-.marquee_box .title {
-  padding: 10rpx 20rpx;
-  margin: 0 0 20rpx 0;
-  border-left: 10rpx solid #ccc;
-  font-size: 30rpx;
-  background: #ececec;
-}
-.marquee_panel {
-  margin: 20rpx 20rpx 20rpx 0;
-  border-left: 10rpx solid #ccc;
-  font-size: 26rpx;
-}
-.marquee_panel>view {
-  padding: 30rpx;
-  background: #ececec;
-  border-radius: 0 20rpx 20rpx 0;
+  animation: around var(--allTs--)  infinite linear;
 }
 /******************推荐1************************/
 .great{
 	width:100%;
-	height:318rpx;
+	height:450rpx;
 	border-top:solid 1px #e0e0e0;
 	border-bottom:solid 1px #e0e0e0;
-	margin-top: 44rpx;
+	margin-top: 15rpx;
 	background: #fff7f7;
 }
 .great_left{
@@ -263,7 +273,7 @@ swiper{
 	margin-top:10rpx;
 	padding-top: 40rpx;
 	background: #f7f7f7;
-	margin-top:20rpx;
+	margin-top:15rpx;
 }
 .menu_item{
 	width:25%;

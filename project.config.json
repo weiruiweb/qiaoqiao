@@ -15,6 +15,8 @@
 	"appid": "wxb982c1855d613157",
 	"projectname": "%E5%B7%A7%E5%B7%A7%E7%88%B1%E5%AE%B6",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -32,8 +34,12 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 19,
+			"current": 22,
 			"list": [
 				{
 					"id": 0,
@@ -150,10 +156,38 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 19,
 					"name": "订单",
 					"pathName": "pages/order_confirm/order_confirm",
-					"query": "id=31"
+					"query": "id=105",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "11",
+					"pathName": "pages/user_order_code/user_order_code",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "1111",
+					"pathName": "pages/order_get/order_get",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user_order_code/user_order_code",
+					"pathName": "pages/user_order_code/user_order_code",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order_get/order_get",
+					"pathName": "pages/order_get/order_get",
+					"scene": null
 				}
 			]
 		}

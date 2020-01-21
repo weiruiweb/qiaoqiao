@@ -11,20 +11,23 @@
 		<input placeholder="请输入手机号码"  value="{{web_mainData.phone}}"  data-key="phone" bindblur="inputChange"></input>
 	</view>
 </view>
-<view class="user_input" style="padding:0 5%;width:90%;">
-	<view class="users_detail flexRowBetween" bindtap="chooseLocation" style="justify-content:left">
 
-		<view style="font-size:30rpx;color:#363636;width:30%;">点击选取位置:</view>
-		<view style="font-size:30rpx;color:#999;width:70%" class=" avoidOverflow">{{web_mainData.city}}</view>
+<view class="user_input" style="padding:0 5%;width:90%;">
+	<view class="users_detail flexRowBetween">
+		<view class="input_note font30">所在地区:</view>
+		<picker  mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view style="color:#666;font-size:28rpx;">
+				{{web_region?web_region:'请选择省市县/区'}}
+			</view>
+		</picker>
 	</view>
 </view>
-
-<view style="width:90%;height:280rpx;margin:0 auto;line-height:50px;padding:0 5%;font-size:30rpx;display:flex">
-	<view style="line-height:50px;font-size:30rpx;color:#363636;width:22%;">详细地址:</view>
-	<textarea value="{{web_mainData.detail}}" style="border:1px solid #E5E5E5;height:200rpx;border-radius:15rpx;width:70%;padding:16rpx;margin:17px 10px;line-height:36rpx;" class='user_textarea' data-key="detail" bindinput="inputChange"></textarea>
+<view class="user_input" style="padding:0 5%;width:90%;">
+	<view class="users_detail flexRowBetween">
+		<view class="input_note font30">详细地址:</view>
+		<input value="{{web_mainData.detail}}"  data-key="detail" bindblur="inputChange" placeholder="如街道、门牌号"></input>
+	</view>
 </view>
-
-
 
 <view class="user_input flexRowBetween" style="padding:0 5%;width:90%;">
 	<view class="input_note font30 address_set">设为默认地址</view>

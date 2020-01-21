@@ -112,6 +112,9 @@ Page({
     const self = this;
     var id = api.getDataSet(e,'id');
     var price = api.getDataSet(e,'price')
+		self.setData({
+		  buttonClicked:true
+		});
     const postData = {
       token:wx.getStorageSync('token'),
       searchItem:{

@@ -48,7 +48,7 @@ Page({
       self.data.category_id = options.category_id
     };
     console.log(self.data.category_id)
-    self.data.paginate = getApp().globalData.paginate;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     wx.showLoading();
     if(!wx.getStorageSync('token')){
       var token = new Token();
@@ -67,7 +67,7 @@ Page({
     
     self.getMainData();
     
-    self.getAddressData();
+   
 
     self.orderGet();
 
@@ -149,7 +149,7 @@ Page({
         key:'product_no',
         condition:'=',
         searchItem:{
-          
+         /* deadline:['>',nowTime], */
           status:['in',[1]]
         },
       },
@@ -197,24 +197,7 @@ Page({
     api.productGet(postData,callback);
   },
 
-  getAddressData(){
-    const self = this;
-    const postData = {}
-    postData.token = wx.getStorageSync('token');
-    postData.searchItem = {
-      isdefault:1
-    };
-    const callback = (res)=>{
-      if(res.info.data.length>0){
-        self.data.addressData = res.info.data[0]; 
-      };
-      console.log('getAddressData',self.data.addressData)
-      self.setData({
-        web_addressData:self.data.addressData,
-      });
-    };
-    api.addressGet(postData,callback);
-  },
+
 
 
   orderGet(){
@@ -232,7 +215,7 @@ Page({
       OrderItem:{
         tableName:'OrderItem',
         searchItem:{
-          product_id:['=',[self.data.id]],
+          sku_id:['=',[self.data.id]],
         },
         key:'order_no',
         middleKey:'order_no',
@@ -253,14 +236,11 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.orderData.push.apply(self.data.orderData,res.info.data);
-        self.data.group_no1 = self.data.orderData[0].group_no
+		self.groupData()
       };
       self.setData({
         web_orderData:self.data.orderData
       });
-      if(self.data.orderData.length>0){
-        self.groupData();
-      }; 
       console.log('orderGet',self.data.orderData)
     }
     api.orderGet(postData,callback)
@@ -268,6 +248,7 @@ Page({
 
   groupData(e){
     const self = this;
+	
     const postData ={};
     postData.token = wx.getStorageSync('token');  
     postData.searchItem = {
@@ -300,13 +281,32 @@ Page({
       if(res.info.data.length>0){
         self.data.groupData = res.info.data[0];
       };
-      console.log('666',self.data.isMember )
       self.setData({
         web_groupData:self.data.groupData,
         web_lessNum:self.data.groupData.standard - self.data.groupData.groupMember.length
       })
     }
     api.orderGet(postData,callback)
+  },
+  
+  goJoin(){
+  	const self = this;
+	const callback = (user,res) =>{
+	  const skuDatas = [];
+	  skuDatas.push({
+	    id:self.data.id,
+	    count:self.data.count
+	  });
+	  console.log(skuDatas);
+	  if(self.data.skuData.id !=''&&self.data.skuData.id !=undefined){
+	    wx.setStorageSync('payPro',skuDatas);
+	   
+	    api.pathTo('/pages/order_confirm/order_confirm?group_no='+self.data.groupData.group_no,'nav')
+	  }else{
+	    api.showToast('请完善信息','none')
+	  }
+	};
+	api.getAuthSetting(callback);
   },
 
   addOrder(){
@@ -491,11 +491,9 @@ Page({
       }
     };
     api.getAuthSetting(callback);
-
-
   },
 
-
+	
 
   chooseSku(e){
     const self = this;
@@ -584,7 +582,7 @@ Page({
         self.data.shareBtn = false;
       }
       return {
-        title: '巧巧爱家',
+        title: self.data.skuData.title,
         path: 'pages/detail/detail?id='+self.data.id+'&&user_no='+wx.getStorageSync('info').user_no,
         success: function (res){
           console.log(res);
@@ -614,6 +612,7 @@ Page({
 
   getMessageData(isNew){
     const self = this;
+	
     if(isNew){
       api.clearPageIndex(self); 
     };
@@ -642,13 +641,15 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.messageData.push.apply(self.data.messageData,res.info.data);
+				self.data.totalMessage = res.info.total
       }else{
         self.data.isLoadAll = true;
-      
+				self.data.totalMessage = res.info.total
       };
       wx.hideLoading();
       self.setData({
-        web_num:self.data.messageData.length,
+				web_totalMessage:self.data.totalMessage,
+       
         web_messageData:self.data.messageData,
       });  
     };

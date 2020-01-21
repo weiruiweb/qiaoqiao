@@ -104,9 +104,7 @@ line-height:62rpx;}
 	border-left:solid 1px #ececec;
 	width:50%;text-align:center;}
 #detail image{
-	width:550rpx;
-	height:354rpx;
-	margin:60rpx auto 40rpx auto;
+
 }
 #detail{
 	text-align:center;
@@ -288,7 +286,7 @@ line-height:62rpx;}
 	color:#666;
 }
 .pro_types{
-	padding:10rpx 20rpx;
+	padding:5rpx;
 	text-align:center;
 	font-size:28rpx;
 	color:#666;

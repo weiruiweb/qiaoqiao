@@ -13,6 +13,7 @@ Page({
   
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
+      onShelf:1
     },
     mainData:[],
     sForm:{
@@ -27,6 +28,7 @@ Page({
   onLoad(options) {
     const self = this;
     var nowTime = Date.parse(new Date());
+		self.data.searchItem.deadline=['<',nowTime];
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     wx.showLoading();
     if(!wx.getStorageSync('token')){
@@ -36,11 +38,7 @@ Page({
     this.setData({
       fonts:app.globalData.font
     });
-    if(options.id==30){
-      self.data.searchItem.deadline =['>',nowTime]
-    }else if(options.id==34){
-      self.data.searchItem.deadline =['<',nowTime]
-    };
+   
     self.getMainData()
   },
 
@@ -50,73 +48,38 @@ Page({
 
 
 
-getMainData(isNew){
+  getMainData(isNew){
     const self = this;
-	if(isNew){
-		api.clearPageIndex()
-	};
-    var nowTime = Date.parse(new Date());
+    
+    if(isNew){
+      api.clearPageIndex(self); 
+    };
     const postData = {};
-	
-    postData.searchItem = {
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      type:1
-    };
-    postData.getBefore = {
-      label:{
-        tableName:'label',
-        searchItem:{
-          title:['=',['今日团购']],
-        },
-        middleKey:'category_id',
-        key:'id',
-        condition:'in'
-      },
-    };
-    postData.getAfter={
-      sku:{
-        tableName:'sku',
-        middleKey:'product_no',
-        searchItem:{
-					deadline:['>',nowTime],
-          status:1,
-          onShelf:1
-        },
-        key:'product_no',
-        condition:'=',
-      } 
-    };
-    postData.order = {
-      listorder:'desc'
-    };
+    postData.paginate = api.cloneForm(self.data.paginate);
+    postData.searchItem = api.cloneForm(self.data.searchItem);
     const callback = (res)=>{
-      if(res.info.data.length>0){
-        for (var i = 0; i < res.info.data.length; i++) {
-				
-            self.data.mainData.push.apply(self.data.mainData,res.info.data[i].sku);
-        };
-      
-      }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','none');
-      };
-      wx.hideLoading();
-      self.setData({
-
-        web_mainData:self.data.mainData,
-      });  
-      
+    if(res.info.data.length>0){
+      self.data.mainData.push.apply(self.data.mainData,res.info.data);
+    }else{
+      self.data.isLoadAll = true;
+      api.showToast('没有更多了','none');
+    }
+    wx.hideLoading();
+    console.log(self.data.mainData)
+    self.setData({
+      web_mainData:self.data.mainData,
+    });  
     };
-    api.productGet(postData,callback);
+    api.skuGet(postData,callback);
   },
 
-/*  onReachBottom() {
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-  }, */
+  },
 
    changeBind(e){
     const self = this;

@@ -174,17 +174,23 @@ Page({
   },
 
 
-    orderUpdateTwo(e){
+   orderUpdateTwo(e){
     const self = this;
+		
     var index = api.getDataSet(e,'index');
     console.log(index)
     var id = api.getDataSet(e,'id');
+		if(self.data.mainData[index].order_step==4){
+			api.showToast('此订单为团购单，并且还未成团','none');
+			return;
+		};
     if(id!=self.data.id){
       console.log('id',id);
       console.log('self.data.id',self.data.id);
       api.showToast('错误提交','none');
       return;
     };
+		
     const postData = {};
     postData.token = wx.getStorageSync('threeToken');
     postData.data ={
@@ -249,6 +255,11 @@ Page({
 showModel(e){
   const self = this;
   var id = api.getDataSet(e,'id');
+	var index = api.getDataSet(e,'index');
+	if(self.data.mainData[index].order_step==4){
+		api.showToast('此订单为团购单，并且还未成团','none');
+		return;
+	};
     wx.showModal({
        title: '确认核销',
        content: '是否核销此订单',

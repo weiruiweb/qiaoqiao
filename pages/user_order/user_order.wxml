@@ -25,6 +25,15 @@
             <view class="tlt_left1 tlt_right color" wx:if="{{item.order_step=='3'}}">已完成</view>
             <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.order_step=='0'&&item.transport_status=='1'&&item.passage2.length==0}}">物流配送中</view>
         </view>
+		<view class="order_tlt w710 flexRowBetween"  wx:if="{{item.passage2}}">
+		    <view style="font-size:32rpx;color:#ff0000">取货码:{{item.passage2}}</view>
+		</view>
+		<view class="order_tlt w710 flexRowBetween" wx:if="{{item.snap_address.storeId&&item.snap_address.message!=''}}">
+		    <view style="font-size:32rpx;color:#ff0000" >备注信息: {{item.snap_address.message}}</view>
+		</view>
+		<view class="order_tlt w710 flexRowBetween" wx:if="{{item.passage1&&item.passage1!=''}}">
+		    <view style="font-size:32rpx;color:#ff0000" >备注信息: {{item.passage1}}</view>
+		</view>
         <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
             <view class="product_box w710 flexRowBetween same_store">
                 <view class="product_left">
@@ -32,7 +41,8 @@
                 </view>
                 <view class="product_right">
                     <view class="product_detail">
-                        <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}<span style="font-size:32rpx;color:#ff0000" wx:if="{{item.passage2}}">(取货码:{{item.passage2}})</span></view>
+                        <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}</view>
+						
                         <view class="font24 color9 avoidOverflow">{{c_item.snap_product.description}}</view>
                         <view class="font30 color6  flex" style="height:50%;">
                             <view class="product_number">X{{c_item.count}}</view>
@@ -42,13 +52,15 @@
                         <view class="comment_order font24 color" bindtap="intoPath" data-path="/pages/user_order_comment/user_order_comment?id={{item.id}}&orderItem_id={{c_item.id}}" wx:if="{{c_item.isremark!='1'&&item.transport_status=='2'}}">
                         <view><image src="/images/comment.png"></image></view>
                     </view>
+					
                 </view>
                 
             </view>
         </block>
+		
         <view class="order_handle">
             <button class="submit_info font28" data-id="{{item.id}}"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='4'}}" bindtap="onShareAppMessage"  open-type="share" data-group_no="{{item.group_no}}" data-id="{{item.products[0].snap_product.id}}">去分享</button>  
-            <view class="submit_info font28" data-id="{{item.id}}" data-price="{{item.price}}" bindtap="pay" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">去支付</view>  
+            <view class="submit_info font28" data-id="{{item.id}}" data-price="{{item.price}}" bindtap="{{!buttonClicked?'pay':''}}" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">去支付</view>  
             <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='5'}}">已成团</view>
             <view class="submit_info font28"  wx:if="{{item.group_no&&item.group_no!='null'&&item.pay_status=='1'&&item.order_step=='4'}}">未成团</view>  
             <view class="submit_info font28" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'||item.pay_status == '1'&&item.order_step == '1'}}">删除订单</view>

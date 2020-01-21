@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
-<view class="swiper" style="height:80rpx">
+<!-- <view class="swiper" style="height:80rpx">
   <image src="{{web_adData.mainImg[0].url}}"></image>
-</view>
+</view> -->
 <view class="page-body">
     <view class="page-section page-section-spacing swiper">
       <swiper
@@ -21,23 +21,33 @@
       </view>
     </view>
 </view>
-<view class="w710" style="background: #fff7f7;" >
+<view class="w710" style="background: #fff7f7;">
     <view id="marquee" class="flexRowBetween" data-path="/pages/user_news/user_news" bindtap="intoPath">
       <view class="horn"><image src="/images/horn.png"></image></view>
       <view class="marquee_right">
-        <view class="marquee_box">
-          <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
-            <text>{{web_messageData.title}}</text>
-            <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
-          </view>
-        </view>
+		<view class="marquee_container" style="--marqueeWidth--:{{marqueeW}};--allTs--:{{allT}};">
+			<view class="marquee_text" style="font-size:{{size}}px;height:72rpx;line-height: 72rpx;">{{web_messageData.title}}</view>
+		</view>
       </view>
-      <view class="next_page flex"><image src="/images/next_page.png"></image></view>
+			
   </view>
+	
 </view>
 <view class="great flex">
     <view class="great_left flex" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
-      <view class="left_cont">
+			<view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
+				<image src="../../images/home-icon9.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
+			    <image src="{{web_groupData[0].sku[0].mainImg[0].url}}" style="margin: 0;"></image>
+			    <view class="product_name1 font30 avoidOverflow">{{web_groupData[0].sku[0].title}}</view>
+			    <view class="product_pro font28 flex" >
+			      <view class="color price" style="width:100%">¥{{web_groupData[0].sku[0].price}}</view>
+			    </view>
+			    <view class="product_pro font28 flex">
+			      <view class="color6 price font22">销量:{{web_groupData[0].saleNum}}</view>
+			      <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[0].deadline)}}</view> -->
+			    </view>
+			</view>
+   <!--   <view class="left_cont">
         <view class="color">
             <view class="group flex">
                 <view class="group_left color" style="font-size:30rpx">今日团购</view>
@@ -51,10 +61,39 @@
         </view>
         <image src="{{web_groupData[0].mainImg[0].url}}"></image>
         <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
-      </view>
+      </view> -->
     </view>
-    <view class="great_right">
-      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}&&category_id={{web_groupData[1].category_id}}">
+		 <view class="great_left flex" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].sku[0].id}}">
+			 <view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
+			 	<image src="../../images/home-icon10.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
+			     <image src="{{web_groupData[1].sku[0].mainImg[0].url}}" style="margin: 0;"></image>
+			     <view class="product_name1 font30 avoidOverflow">{{web_groupData[1].sku[0].title}}</view>
+			     <view class="product_pro font28 flex" >
+			       <view class="color price" style="width:100%">¥{{web_groupData[1].sku[0].price}}</view>
+			     </view>
+			     <view class="product_pro font28 flex">
+			       <view class="color6 price font22">销量:{{web_groupData[1].saleNum}}</view>
+			       <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[1].deadline)}}</view> -->
+			     </view>
+			 </view>
+		<!--   <view class="left_cont">
+		     <view class="color">
+		         <view class="group flex">
+		             <view class="group_left color" style="font-size:30rpx">今日团购</view>
+		             <view class="group_right flexRowBetween">
+		               <view class="time1">{{web_day}}</view> <view class="time_center flex">:</view>
+		               <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
+		               <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
+		               <view class="time1">{{web_second}}</view>
+		             </view>
+		         </view>
+		     </view>
+		     <image src="{{web_groupData[0].mainImg[0].url}}"></image>
+		     <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
+		   </view> -->
+		 </view>
+<!--    <view class="great_right">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">{{web_groupData[1].title}}</view>
@@ -75,7 +114,7 @@
             </view>
         </view>
       </view>
-      <view class="great_top" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[2].id}}&&category_id={{web_groupData[2].category_id}}">
+      <view class="great_top" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[2].id}}">
         <view class="right_top flex">
           <view class="great_tLeft avoidOverflow">
               <view class="font30" style="color:#ff9b0e;">{{web_groupData[2].title}}</view>
@@ -98,13 +137,13 @@
             </view>
         </view>
       </view>
-    </view>
+    </view> -->
 </view>
-<view class="menu flexRowBetween font30 color6">
+<view class="menu flexRowBetween font30 color6" wx:if="{{web_sliderData[0].url!='001'}}">
   <block wx:for="{{web_labelData}}" wx:key="id">
-    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30||item.id==34?'/pages/group_list/group_list?id='+item.id:'/pages/product_list/product_list?id='+item.id}}" wx:if="{{item.id!=38}}">
+    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30?'/pages/group_list/group_list?id='+item.id:(item.id==34?'/pages/oldGroup/oldGroup?id='+item.id:'/pages/product_list/product_list?id='+item.id)}}" wx:if="{{item.id!=38}}">
       <view><image src="{{item.mainImg[0].url}}"></image></view>
-      <view class="font24" >{{item.title}}</view>
+      <view class="font24" style="color: #000000;">{{item.title}}</view>
     </view>
   </block>
 </view>
@@ -116,7 +155,7 @@
     </view>
   <view class="recommend1 flexRowBetween" >
       <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
-        <image src="/images/discout1.png" class="img_bg" ></image>
+        <image src="/images/home-icon11.png" class="img_bg" ></image>
         <view class="activty flex" >
           <view class="activty_cont flex">
             <view class="activty_left">
@@ -130,7 +169,7 @@
         </view>
       </view>
       <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/freeDiscount/freeDiscount" >
-        <image src="/images/discout2.png" class="img_bg" ></image>
+        <image src="/images/home-icon12.png" class="img_bg" ></image>
         <view class="activty flex" >
           <view class="activty_cont flex">
             <view class="activty_left">

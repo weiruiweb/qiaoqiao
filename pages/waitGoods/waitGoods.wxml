@@ -1,10 +1,10 @@
 <!--index1.wxml-->
 <view class="tab font30 flexRowBetween color6">
     <view class="tab_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
-        <text class="{{web_num == 0?'tab_this':''}}">上门自提</text>
+        <text class="{{web_num == 0?'tab_this':''}}">到店自提</text>
     </view>
     <view class="tab_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
-        <text class="{{web_num == 1?'tab_this':''}}">快递配送</text>
+        <text class="{{web_num == 1?'tab_this':''}}">快递邮寄</text>
     </view>
 </view>
 <block wx:for="{{web_mainData}}" wx:key="id">
@@ -22,7 +22,7 @@
             <view class="product_right" style="width:75%;">
                 <view class="product_detail">
                     <view class="flexRowBetween" style="height:20%;">
-                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}<span class="font32 color">(取货码:{{item.passage2}})</span></view>
+                        <view class="font32 color3 avoidOverflow">{{c_item.snap_product.title}}</view>
                         <view class="font30 color product_price flex">¥{{c_item.snap_product.price}}</view>
                     </view>
                     <view class="flexRowBetween" style="height:30%;">
@@ -33,7 +33,7 @@
                     </view>
 
                     <view class="font26 color6 flex" style="height:25%;" data-index ="{{index}}" bindtap="phoneCallOne">联系电话:{{item.store[0].url}}</view>
-                    
+                    <view class="font32 color">(取货码:{{item.passage2}})</view>
                 </view>
             </view>
 
@@ -45,7 +45,8 @@
             <text>备注信息</text>
         </view>
         <view class="balance_right bg_white" style="width:78%">
-            <view class="font32 color">{{item.passage4}}</view>
+            <view class="font32 color" wx:if="{{item.passage4.length!=0}}">{{item.passage4}}</view>
+			<view class="font32 color" wx:if="{{item.passage4.length==0&&item.order_step!=0}}">{{item.order_step==4?'还未成团，无法取货':'已成团，可前往取货'}}</view>
         </view>
     </view>
 </block>

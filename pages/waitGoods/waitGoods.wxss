@@ -32,7 +32,7 @@ page{
 	box-shadow:0 4rpx 8rpx #999;
 }
 .product_box{
-	height:230rpx;
+	height:270rpx;
 }
 .product_detail{
 	width:100%;

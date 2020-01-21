@@ -59,14 +59,13 @@
 .product_bottom{
 	width:15%;
 	height:156rpx;
-	position:relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .product_bottom image{
-	width:86rpx;
-	height:84rpx;
-	position:absolute;
-	right:0;
-	bottom:0;
+	width:60rpx;
+	height:60rpx;
 }
 .product_number{
 	width:50%;

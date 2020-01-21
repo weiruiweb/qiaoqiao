@@ -21,7 +21,7 @@
 </view>
 <view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">
     <view class="code_cont">
-        <view class="font32 color3" style="height:120rpx;line-height: 120rpx;text-align: center;">
+        <view class="font32 color3" style="line-height: 120rpx;text-align: center;">
         <view class="content ql-editor" >
             <import src="../../wxParse/wxParse.wxml"/>
             <template is="wxParse" data="{{wxParseData:web_messageOneData.content}}"/>

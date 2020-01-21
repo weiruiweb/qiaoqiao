@@ -50,10 +50,11 @@ Page({
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token=wx.getStorageSync('token');
-    postData.searchItem = {
+  /*  postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:6,
-      user_no:wx.getStorageSync('info').user_no 
+      user_no:wx.getStorageSync('info').user_no,
+	  status:1
     };
     postData.searchItemOr = {
       type:5,
@@ -69,7 +70,7 @@ Page({
         },
         condition:'='
       }
-    };
+    }; */
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.messageData.push.apply(self.data.messageData,res.info.data)
@@ -83,7 +84,7 @@ Page({
         web_messageData:self.data.messageData,
       });   
     };
-    api.messageGet(postData,callback);
+    api.getMessage(postData,callback);
   },
 
 

@@ -18,7 +18,7 @@
         <view class="banner_right flex">
             <view  style="width:100%;text-align: center;">
                 <view class="font32 color1" style="width:100%;text-align: center;">{{web_userData.balance?web_userData.balance:'网络故障'}}</view>
-                <view class="font28 color1" style="width:100%;text-align: center;">分享金</view>
+                <view class="font28 color1" style="width:100%;text-align: center;">佣金</view>
             </view>
         </view>
     </view>

@@ -111,7 +111,7 @@ page{
 	text-align:center;
 }
 .navbar .text{
-	color:#999;
+	color:#000000;
 	font-size:26rpx;
 }
 .navbar .this-text{

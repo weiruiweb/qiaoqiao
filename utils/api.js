@@ -38,7 +38,17 @@ class Api extends Base{
 
     }
   
-
+	getMessage(param,callback){
+	    var allParams ={
+	        url:'Project/Jzyz/getMessage',
+	        type:'post',
+	        data:param,
+	        sCallback: function(data) {
+	            callback && callback(data);
+	        }
+	    };
+	    this.request(allParams);
+	}
 
     labelGet(param,callback){
         var allParams ={

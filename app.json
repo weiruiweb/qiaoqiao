@@ -32,12 +32,14 @@
     "pages/score_confirm/score_confirm",
     "pages/userCashNow/userCashNow",
     "pages/todayGroup/todayGroup",
-    "pages/freeDiscount/freeDiscount"
+    "pages/freeDiscount/freeDiscount",
+		"pages/oldGroup/oldGroup"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "巧巧爱家",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

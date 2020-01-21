@@ -1,4 +1,39 @@
 <!--index3.wxml-->
+
+<view class="product">
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.product.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top">{{item.product.title}}</view>
+                    <view class="font24 color9 product_top">{{item.product.description}}</view>
+                    <view class="product_top flex">
+                        <view class="font30 color6 product_number">X{{item.count}}</view>
+                        <view class="font30 product_price color">¥{{item.product.price}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+
+<view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
+    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
+        <view class="infor_right avoidOverflow font28 color6" style="width:75%;padding:0;">优惠券抵扣</view>
+        <view class="infor_left flexRowBetween font28" style="width:25%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
+    </view>
+</view>
+
+<view class="user_message">
+    <view style="display:flex;">
+        <text class="text1">买家留言</text>
+        <textarea placeholder="选填:填写内容已和卖家协商确认" auto-height="true" data-key="passage1" bindblur="changeBind" value="{{web_submitData.passage1}}">
+        </textarea>
+    </view>
+</view>
 <view class="manage w710 flex" wx:if="{{web_addressData.name}}">
     <view class="manage_cont" bindtap="intoPath" data-path="/pages/user_address/user_address">
         <view class="user_address flex color3">
@@ -26,40 +61,6 @@
         <image src="/images/next_page.png"></image>
     </view>
 </view>
-<view class="product">
-    <block wx:for="{{web_mainData}}" wx:key="id">
-        <view class="product_box w710 flexRowBetween">
-            <view class="product_left">
-                <image src="{{item.product.mainImg[0].url}}"></image>
-            </view>
-            <view class="product_right">
-                <view class="product_detail">
-                    <view class="font32 color3 product_top">{{item.product.title}}</view>
-                    <view class="font24 color9 product_top">{{item.product.description}}</view>
-                    <view class="product_top flex">
-                        <view class="font30 color6 product_number">X{{item.count}}</view>
-                        <view class="font30 product_price color">¥{{item.product.price}}</view>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </block>
-</view>
-
-<view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
-    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
-        <view class="infor_right avoidOverflow font28 color6" style="width:75%;padding:0;">优惠券抵扣</view>
-        <view class="infor_left flexRowBetween font28" style="width:25%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
-    </view>
-</view>
-<view class="user_message">
-    <view style="display:flex;">
-        <text class="text1">买家留言</text>
-        <textarea placeholder="选填:填写内容已和卖家协商确认" auto-height="true" data-key="passage1" bindblur="changeBind" value="{{web_submitData.passage1}}">
-        </textarea>
-    </view>
-</view>
-
 
 
 <view class="confirm_btn flex font30">

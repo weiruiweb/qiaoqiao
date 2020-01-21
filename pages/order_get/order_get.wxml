@@ -57,8 +57,8 @@
             		<view class="font24 color9 product_top  avoidOverflow">联系电话：{{item.url}}</view>
                 </view>
             </view>
-            <view class="product_bottom">
-                <image src="/images/selelct_bottom.png" style="{{web_submitData.storeId==item.id?'display:block':'display:none;'}}"></image>
+            <view class="product_bottom" >
+                <image  src="{{web_submitData.storeId==item.id?'/images/select-a.png':'/images/select.png'}}"></image>
             </view>
         </view>
     </block>

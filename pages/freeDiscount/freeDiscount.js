@@ -67,7 +67,8 @@ Page({
         middleKey:'id',
         key:'product_id',
         searchItem:{
-          status:1
+          status:['in',[1,-1]],
+			user_no:wx.getStorageSync('info').user_no
         },
         condition:'='
       }
@@ -150,7 +151,10 @@ Page({
       pay:{score:0},
       type:self.data.type,
       deadline:self.data.deadline,
-      standard:parseInt(Date.parse(new Date()))+parseInt(standard),
+			data:{
+				 standard:parseInt(Date.parse(new Date()))+parseInt(standard)
+			}
+     
     };
     const callback = (res)=>{
       if(res&&res.solely_code==100000){
@@ -181,7 +185,8 @@ Page({
      
        wx.hideLoading();
       if(res.solely_code==100000){
-        api.showToast('领取成功','none')
+        api.showToast('领取成功','none');
+		self.getMainData(true)
       }else{
         api.showToast(res.msg,'none')
       }

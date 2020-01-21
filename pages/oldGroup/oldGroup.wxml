@@ -1,4 +1,4 @@
-  <!--userPoster.wxml-->
+<!--userPoster.wxml-->
 <wxs module="func" src="../../utils/func.wxs" />
 <view class="w710">
 	<view id="sort" class="flex">
@@ -11,20 +11,17 @@
 
 <view class="w710 flexRowBetween" style="flex-wrap: wrap;margin-top: 40rpx;">
   <block wx:for="{{web_mainData}}" wx:key="id">
-    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
-        <image src="{{item.mainImg[0].url}}"></image>
+    <view class="recommend_left product_item" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+		<view style="position: relative;">
+			<image src="{{item.mainImg[0].url}}"></image>
+			<view style="width:90px;height:90px;border-radius:50%;background: rgba(0,0,0,0.6);position: absolute;top:20%;left:22%;text-align: center;line-height: 90px;color: #fff;">已售完</view>
+		</view>
+        
         <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
         <view class="product_pro font28 flex">
           <view class="color price">¥{{item.price}}</view>
-          <view class="color6 font22 time">开始时间:{{func.timestampToTime(item.start_time)}}</view>
-         
+          <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
         </view>
-        <view class="product_pro font28 flex">
-          <view class="color price"></view>
-          <view class="color6 font22 time" >结束时间:{{func.timestampToTime(item.deadline)}}</view>
-         
-        </view>
-    
     </view>
   </block>
  </view>
