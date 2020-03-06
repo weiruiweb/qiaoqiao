@@ -15,8 +15,8 @@
     </view>
 </view>
 	
-<block wx:for="{{web_mainData}}" wx:key="id">
-	<view class="ticket" bindtap="choose" data-id="{{item.id}}">
+<block wx:for="{{web_mainData}}" wx:key="index">
+	<view class="ticket" bindtap="choose" data-index="{{index}}">
 		<view class="ticket_bg">
 		   <image src="/images/discount1.png"></image>
 		   <view class="ticket_cont">
