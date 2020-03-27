@@ -272,9 +272,13 @@ Page({
     const self = this;
     var nowTime = Date.parse(new Date());
     const postData = {};
+	postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:1
+    
+	  deadline:['>',nowTime],
+	  status:1,
+	  onShelf:1
     };
     postData.getBefore = {
       label:{
@@ -287,7 +291,7 @@ Page({
         condition:'in'
       },
     };
-    postData.getAfter={
+    /* postData.getAfter={
       sku:{
         tableName:'sku',
         middleKey:'product_no',
@@ -299,7 +303,7 @@ Page({
         key:'product_no',
         condition:'=',
       } 
-    };
+    }; */
     postData.order = {
       listorder:'desc'
     };
@@ -329,7 +333,7 @@ Page({
       });  
       
     };
-    api.productGet(postData,callback);
+    api.skuGet(postData,callback);
   },
 
 

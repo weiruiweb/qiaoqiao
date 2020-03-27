@@ -15,7 +15,7 @@
         </block>
       </swiper>
       <view class="dots"> 
-        <block wx:for="{{web_sliderData.mainImg}}" wx:key="unique"> 
+        <block wx:for="{{web_sliderData.mainImg}}" wx:key="index"> 
           <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
         </block> 
       </view>
@@ -37,13 +37,13 @@
     <view class="great_left flex" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
 			<view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
 				<image src="../../images/home-icon9.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
-			    <image src="{{web_groupData[0].sku[0].mainImg[0].url}}" style="margin: 0;"></image>
-			    <view class="product_name1 font30 avoidOverflow">{{web_groupData[0].sku[0].title}}</view>
+			    <image src="{{web_groupData[0].mainImg[0].url}}" style="margin: 0;"></image>
+			    <view class="product_name1 font30 avoidOverflow">{{web_groupData[0].title}}</view>
 			    <view class="product_pro font28 flex" >
-			      <view class="color price" style="width:100%">¥{{web_groupData[0].sku[0].price}}</view>
+			      <view class="color price" style="width:100%">¥{{web_groupData[0].price}}</view>
 			    </view>
 			    <view class="product_pro font28 flex">
-			      <view class="color6 price font22">销量:{{web_groupData[0].saleNum}}</view>
+			      <view class="color6 price font22">销量:{{web_groupData[0].product.saleNum}}</view>
 			      <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[0].deadline)}}</view> -->
 			    </view>
 			</view>
@@ -63,16 +63,16 @@
         <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
       </view> -->
     </view>
-		 <view class="great_left flex" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].sku[0].id}}">
+		 <view class="great_left flex" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}">
 			 <view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
 			 	<image src="../../images/home-icon10.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
-			     <image src="{{web_groupData[1].sku[0].mainImg[0].url}}" style="margin: 0;"></image>
-			     <view class="product_name1 font30 avoidOverflow">{{web_groupData[1].sku[0].title}}</view>
+			     <image src="{{web_groupData[1].mainImg[0].url}}" style="margin: 0;"></image>
+			     <view class="product_name1 font30 avoidOverflow">{{web_groupData[1].title}}</view>
 			     <view class="product_pro font28 flex" >
-			       <view class="color price" style="width:100%">¥{{web_groupData[1].sku[0].price}}</view>
+			       <view class="color price" style="width:100%">¥{{web_groupData[1].price}}</view>
 			     </view>
 			     <view class="product_pro font28 flex">
-			       <view class="color6 price font22">销量:{{web_groupData[1].saleNum}}</view>
+			       <view class="color6 price font22">销量:{{web_groupData[1].product.saleNum}}</view>
 			       <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[1].deadline)}}</view> -->
 			     </view>
 			 </view>

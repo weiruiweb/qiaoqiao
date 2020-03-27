@@ -29,7 +29,7 @@
     </view>
  
     <view class="user_message w710">
-        <view class="font28" style="display: flex;">
+        <view class="font28" style="display: flex;align-items: center;">
             <view class="input_before1">买家留言:</view>
             <textarea placeholder="输入买家留言" data-key="message" auto-height="true" bindblur="changeBind" value="{{web_submitData.message}}"></textarea>
         </view>

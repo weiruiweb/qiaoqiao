@@ -15,7 +15,7 @@ var timestampToTime = function(timestamp) {
     }else{
     	var Minutes = format + ':' + getDate(timestamp).getMinutes();
     }
-    console.log(format)
+   
     return format;
 
 }

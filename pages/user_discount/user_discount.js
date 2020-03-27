@@ -104,16 +104,17 @@ Page({
   choose(e){
     const self = this;
     var index = api.getDataSet(e,'index');
+	console.log('index',index)
 	var endTime = Date.parse(new Date());
-	if(self.mainData[index].order_step==1){
+	if(self.data.mainData[index].order_step==1){
 		api.showToast('优惠券已使用','none');
 		return
 	};
-	if(self.mainData[index].standard<endTime){
+	if(self.data.mainData[index].standard<endTime){
 		api.showToast('优惠券已失效','none');
 		return
 	};
-    wx.setStorageSync('couponId',self.mainData[index].id);
+    wx.setStorageSync('couponId',self.data.mainData[index].id);
     wx.navigateBack({
       delta:1
     })

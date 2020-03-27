@@ -6,15 +6,15 @@
     <view class="page-section page-section-spacing swiper">
       <swiper
          autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
-        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="swiperChange">
-        <block wx:for="{{web_mainData.bannerImg}}" wx:index="{{index}}" wx:key="id">
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+        <block wx:for="{{web_mainData.bannerImg}}" wx:index="{{index}}">
           <swiper-item>
             <image src="{{item.url}}"></image>
           </swiper-item>
         </block>
       </swiper>
       <view class="dots"> 
-      <block wx:for="{{web_sliderData.mainImg}}" wx:key="unique"> 
+      <block wx:for="{{web_sliderData.mainImg}}" wx:key="index"> 
         <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
       </block> 
     </view>
