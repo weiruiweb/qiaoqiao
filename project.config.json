@@ -187,6 +187,14 @@
 					"id": -1,
 					"name": "pages/order_get/order_get",
 					"pathName": "pages/order_get/order_get",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "pages/detail/detail",
+					"pathName": "pages/detail/detail",
+					"query": "id=1027",
 					"scene": null
 				}
 			]

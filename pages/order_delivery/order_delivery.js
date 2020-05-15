@@ -64,7 +64,7 @@ import {
 
  	onShow() {
  		const self = this;
-
+		wx.showLoading();
  		self.data.searchItem = {};
  		if (getApp().globalData.address_id) {
  			self.data.searchItem.id = getApp().globalData.address_id;
@@ -232,7 +232,6 @@ import {
  					passage3: self.data.user_no ? self.data.user_no : '',
  					standard: self.data.mainData[0].product.standard
  				},
- 				passage1: self.data.submitData.passage1,
  				type: 1
  			};
  			console.log('addOrder', self.data.addressData)
@@ -245,6 +244,7 @@ import {
  			};
  			if (self.data.addressData) {
  				postData.snap_address = self.data.addressData;
+				postData.snap_address.message = self.data.submitData.passage1
  			};
  			if (self.data.addressData.length == 0) {
  				api.showToast('请选择收货地址', 'none')

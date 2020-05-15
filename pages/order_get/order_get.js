@@ -89,7 +89,7 @@ Page({
 		for (var i = 0; i < self.data.mainData.length; i++) {
 			self.data.idData.push(self.data.mainData[i].id)
 		}
-
+		wx.showLoading();
 		self.getCouponData();
 		self.userGet();
 		console.log(self.data.idData)
@@ -518,7 +518,7 @@ Page({
 			web_totalPrice: totalPrice.toFixed(2),
 			/*web_paidPrice:totalPrice.toFixed(2),*/
 		});
-
+		wx.hideLoading()
 	},
 
 

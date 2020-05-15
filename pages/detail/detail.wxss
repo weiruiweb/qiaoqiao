@@ -277,7 +277,7 @@ line-height:62rpx;}
 .product_txt{width:75%;}
 #type{
 	width: 100%;
-	height:60rpx;
+	
 	margin-bottom:28rpx;
 	align-items:center;
 }
@@ -292,8 +292,9 @@ line-height:62rpx;}
 	color:#666;
 	background:#f7f7f7;
 	border-radius:3rpx;
-	margin-left: 30rpx;
-	flex-wrap:wrap
+	margin-right: 30rpx;
+	flex-wrap:wrap;
+	margin-top: 20rpx;
 }
 .choose_number{
 	height:126rpx;
@@ -305,14 +306,14 @@ line-height:62rpx;}
 }
 
 .edit_number{
-	width:166rpx;
-	height:50rpx;
+	
+	height:60rpx;
 	line-height:52rpx;
 	border:solid 1px #e5e5e5;
 	font-size:20rpx;
 }
 .edit_number .minus,.edit_number .add{
-	width:50rpx;
+	width:60rpx;
 	height:100%;
 	text-align:center;
 	color:#aeaeae;

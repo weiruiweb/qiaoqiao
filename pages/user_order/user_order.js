@@ -84,32 +84,70 @@ Page({
 
 	deleteOrder(e) {
 		const self = this;
-		const postData = {};
-		postData.token = wx.getStorageSync('token');
-		postData.searchItem = {};
-		postData.searchItem.id = api.getDataSet(e, 'id');
-		const callback = res => {
-			api.dealRes(res);
-			self.getMainData(true);
-		};
-		api.orderDelete(postData, callback);
+		wx.showModal({
+			title: '提示',
+			content: '是否要删除该订单？',
+			showCancel: true, //是否显示取消按钮
+			cancelText: "否", //默认是“取消”
+			
+			confirmText: "是", //默认是“确定”
+			
+			success: function(res) {
+				if (res.cancel) {
+					//点击取消,默认隐藏弹框
+				} else {
+					//点击确定
+					const postData = {};
+					postData.token = wx.getStorageSync('token');
+					postData.searchItem = {};
+					postData.searchItem.id = api.getDataSet(e, 'id');
+					const callback = res => {
+						api.dealRes(res);
+						self.getMainData(true);
+					};
+					api.orderDelete(postData, callback);
+				}
+			},
+			fail: function(res) {}, //接口调用失败的回调函数
+			complete: function(res) {}, //接口调用结束的回调函数（调用成功、失败都会执行）
+		})
+		
 	},
 
 	orderUpdate(e) {
 		const self = this;
-		const postData = {};
-		postData.token = wx.getStorageSync('token');
-		postData.data = {
-			transport_status: 2,
-			order_step: 3
-		}
-		postData.searchItem = {};
-		postData.searchItem.id = api.getDataSet(e, 'id');
-		const callback = res => {
-			api.showToast('已确认收货', 'none');
-			self.getMainData(true);
-		};
-		api.orderUpdate(postData, callback);
+		wx.showModal({
+			title: '提示',
+			content: '是否要确认收货？',
+			showCancel: true, //是否显示取消按钮
+			cancelText: "否", //默认是“取消”
+			
+			confirmText: "是", //默认是“确定”
+			
+			success: function(res) {
+				if (res.cancel) {
+					//点击取消,默认隐藏弹框
+				} else {
+					//点击确定
+					const postData = {};
+					postData.token = wx.getStorageSync('token');
+					postData.data = {
+						transport_status: 2,
+						order_step: 3
+					}
+					postData.searchItem = {};
+					postData.searchItem.id = api.getDataSet(e, 'id');
+					const callback = res => {
+						api.showToast('已确认收货', 'none');
+						self.getMainData(true);
+					};
+					api.orderUpdate(postData, callback);
+				}
+			},
+			fail: function(res) {}, //接口调用失败的回调函数
+			complete: function(res) {}, //接口调用结束的回调函数（调用成功、失败都会执行）
+		})
+		
 	},
 
 
